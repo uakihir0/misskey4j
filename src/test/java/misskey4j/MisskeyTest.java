@@ -21,8 +21,8 @@ public class MisskeyTest extends AbstractTest {
         Response<CreateAppResponse> response =
                 misskey.app().createApp(
                         CreateAppRequest.builder()
-                                .name("SocialHub")
-                                .description("SocialHub Test")
+                                .name("Misskey4J")
+                                .description("Misskey4J Test")
                                 .callbackUrl("http://localhost:8080/")
                                 .permission(Scope.ALL)
                                 .build());
