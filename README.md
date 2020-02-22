@@ -1,15 +1,12 @@
-![Image](./resource/img/misskey4j.png)
-
----
+<img src="./resource/img/misskey4j.png" width="200">
 
 Misskey4J is client library to call api to [Misskey](https://join.misskey.page/ja/) written in java. This will be able to compile with [google/j2objc] to Objective-C library. (iOS, Mac OS) 
-
 
 ## How To Use
 
 First, you must register your application to Misskey instance server (like as [misskey.io](https://misskey.io/)).
 
-```
+```java
 Misskey misskey = MisskeyFactory.getInstance(HOST);
 
 Response<CreateAppResponse> response =
@@ -26,7 +23,7 @@ System.out.println("Secret:" + response.get().getSecret());
 
 next, generate user authentication url from client secret.
 
-```
+```java
 Misskey misskey = MisskeyFactory.getInstance(HOST);
 
 Response<GenerateAuthSessionResponse> response =
@@ -40,7 +37,7 @@ System.out.println("URL: " + response.get().getUrl());
 
 and user access to url, and get verify token which include redirected url as param. finally get user access token as followings.
 
-```
+```java
 Misskey misskey = MisskeyFactory.getInstance(HOST);
 
 Response<UserKeyAuthSessionResponse> response =
