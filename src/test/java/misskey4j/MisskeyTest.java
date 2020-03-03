@@ -2,12 +2,12 @@ package misskey4j;
 
 import misskey4j.api.request.CreateAppRequest;
 import misskey4j.api.request.GenerateAuthSessionRequest;
-import misskey4j.api.request.IRequest;
 import misskey4j.api.request.UserKeyAuthSessionRequest;
+import misskey4j.api.request.i.IRequest;
 import misskey4j.api.response.CreateAppResponse;
 import misskey4j.api.response.GenerateAuthSessionResponse;
-import misskey4j.api.response.IResponse;
 import misskey4j.api.response.UserKeyAuthSessionResponse;
+import misskey4j.api.response.i.IResponse;
 import misskey4j.entity.contant.Scope;
 import misskey4j.entity.share.Response;
 import org.junit.Test;
@@ -62,9 +62,7 @@ public class MisskeyTest extends AbstractTest {
     @Test
     public void testGetI() {
         Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
-
-        Response<IResponse> response =
-                misskey.accounts().i(IRequest.builder().build());
+        Response<IResponse> response = misskey.accounts().i(IRequest.builder().build());
 
         System.out.println("NAME: " + response.get().getName());
     }

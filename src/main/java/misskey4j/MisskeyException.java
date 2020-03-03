@@ -1,5 +1,7 @@
 package misskey4j;
 
+import misskey4j.entity.Error;
+
 public class MisskeyException extends RuntimeException {
 
     private Error error;
@@ -33,3 +35,4 @@ public class MisskeyException extends RuntimeException {
     }
     // endregion
 }
+

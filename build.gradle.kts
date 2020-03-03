@@ -19,7 +19,7 @@ dependencies {
 
     // Library
     compile("com.google.code.gson", "gson", "2.8.6")
-    compile("org.java-websocket", "Java-WebSocket", "1.4.0")
+    //compile("org.java-websocket", "Java-WebSocket", "1.4.0")
 
     // Test
     testCompile("junit", "junit", "4.12")

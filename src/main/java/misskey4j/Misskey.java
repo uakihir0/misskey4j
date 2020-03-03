@@ -3,15 +3,13 @@ package misskey4j;
 import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
-import misskey4j.api.ListResource;
-import misskey4j.api.UserResource;
+import misskey4j.api.FollowingResource;
+import misskey4j.api.ListsResource;
+import misskey4j.api.MuteResource;
+import misskey4j.api.NotesResource;
+import misskey4j.api.UsersResource;
 
-public interface Misskey extends
-        AppResource,
-        AuthResource,
-        AccountsResource,
-        UserResource,
-        ListResource {
+public interface Misskey {
 
     AppResource app();
 
@@ -19,7 +17,13 @@ public interface Misskey extends
 
     AccountsResource accounts();
 
-    UserResource user();
+    UsersResource users();
 
-    ListResource list();
+    ListsResource lists();
+
+    NotesResource notes();
+
+    FollowingResource following();
+
+    MuteResource mute();
 }

@@ -4,41 +4,30 @@ import misskey4j.Misskey;
 import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
-import misskey4j.api.ListResource;
-import misskey4j.api.UserResource;
-import misskey4j.api.request.CreateAppRequest;
-import misskey4j.api.request.GenerateAuthSessionRequest;
-import misskey4j.api.request.IFavoritesRequest;
-import misskey4j.api.request.INotificationsRequest;
-import misskey4j.api.request.IRequest;
-import misskey4j.api.request.ListUsersListsRequest;
-import misskey4j.api.request.ShowUsersListsRequest;
-import misskey4j.api.request.UserKeyAuthSessionRequest;
-import misskey4j.api.request.users.CreateFollowRequest;
-import misskey4j.api.request.users.CreateMuteRequest;
-import misskey4j.api.request.users.DeleteFollowRequest;
-import misskey4j.api.request.users.DeleteMuteRequest;
-import misskey4j.api.request.users.UsersFollowersRequest;
-import misskey4j.api.request.users.UsersFollowingsRequest;
-import misskey4j.api.response.CreateAppResponse;
-import misskey4j.api.response.GenerateAuthSessionResponse;
-import misskey4j.api.response.IFavoritesResponse;
-import misskey4j.api.response.INotificationsResponse;
-import misskey4j.api.response.IResponse;
-import misskey4j.api.response.ListUsersListsResponse;
-import misskey4j.api.response.ShowUsersListsResponse;
-import misskey4j.api.response.UserKeyAuthSessionResponse;
-import misskey4j.api.response.users.UsersFollowersResponse;
-import misskey4j.api.response.users.UsersFollowingsResponse;
-import misskey4j.entity.share.Response;
+import misskey4j.api.FollowingResource;
+import misskey4j.api.ListsResource;
+import misskey4j.api.MuteResource;
+import misskey4j.api.NotesResource;
+import misskey4j.api.UsersResource;
+import misskey4j.internal.api.AccountsResourceImpl;
+import misskey4j.internal.api.AppResourceImpl;
+import misskey4j.internal.api.AuthResourceImpl;
+import misskey4j.internal.api.FollowingResourceImpl;
+import misskey4j.internal.api.ListsResourceImpl;
+import misskey4j.internal.api.MuteResourceImpl;
+import misskey4j.internal.api.NotesResourceImpl;
+import misskey4j.internal.api.UsersResourceImpl;
 
 public class MisskeyImpl implements Misskey {
 
     private AppResource app;
     private AuthResource auth;
     private AccountsResource accounts;
-    private UserResource user;
-    private ListResource list;
+    private UsersResource users;
+    private ListsResource lists;
+    private NotesResource notes;
+    private MuteResource mute;
+    private FollowingResource following;
 
     public MisskeyImpl(String url, String i) {
 
@@ -47,8 +36,12 @@ public class MisskeyImpl implements Misskey {
 
         // Needs AccessToken
         accounts = new AccountsResourceImpl(url, i);
-        user = new UserResourceImpl(url, i);
-        list = new ListResourceImpl(url, i);
+        users = new UsersResourceImpl(url, i);
+        lists = new ListsResourceImpl(url, i);
+        notes = new NotesResourceImpl(url, i);
+
+        following = new FollowingResourceImpl(url, i);
+        mute = new MuteResourceImpl(url, i);
     }
 
     @Override
@@ -67,111 +60,27 @@ public class MisskeyImpl implements Misskey {
     }
 
     @Override
-    public UserResource user() {
-        return user;
+    public UsersResource users() {
+        return users;
     }
 
     @Override
-    public ListResource list() {
-        return list;
-    }
-
-    // --------------------------------------------------------------------- //
-    // ACCOUNT
-    // --------------------------------------------------------------------- //
-    @Override
-    public Response<IResponse> i(
-            IRequest request) {
-        return accounts.i(request);
+    public ListsResource lists() {
+        return lists;
     }
 
     @Override
-    public Response<IFavoritesResponse[]> iFavorites(
-            IFavoritesRequest request) {
-        return accounts.iFavorites(request);
+    public NotesResource notes() {
+        return notes;
     }
 
     @Override
-    public Response<INotificationsResponse[]> iNotifications(
-            INotificationsRequest request) {
-        return accounts.iNotifications(request);
-    }
-
-    // --------------------------------------------------------------------- //
-    // AUTH
-    // --------------------------------------------------------------------- //
-    @Override
-    public Response<GenerateAuthSessionResponse> generateAuthSession(
-            GenerateAuthSessionRequest request) {
-        return auth.generateAuthSession(request);
+    public FollowingResource following() {
+        return following;
     }
 
     @Override
-    public Response<UserKeyAuthSessionResponse> userKeyAuthSession(
-            UserKeyAuthSessionRequest request) {
-        return auth.userKeyAuthSession(request);
-    }
-
-    // --------------------------------------------------------------------- //
-    // APPLICATION
-    // --------------------------------------------------------------------- //
-    @Override
-    public Response<CreateAppResponse> createApp(
-            CreateAppRequest request) {
-        return app.createApp(request);
-    }
-
-    // --------------------------------------------------------------------- //
-    // USER
-    // --------------------------------------------------------------------- //
-    @Override
-    public Response<Void> createFollow(
-            CreateFollowRequest request) {
-        return user.createFollow(request);
-    }
-
-    @Override
-    public Response<Void> deleteFollow(
-            DeleteFollowRequest request) {
-        return user.deleteFollow(request);
-    }
-
-    @Override
-    public Response<Void> createMute(
-            CreateMuteRequest request) {
-        return user.createMute(request);
-    }
-
-    @Override
-    public Response<Void> deleteMute(
-            DeleteMuteRequest request) {
-        return user.deleteMute(request);
-    }
-
-    @Override
-    public Response<UsersFollowersResponse[]> usersFollowers(
-            UsersFollowersRequest request) {
-        return user.usersFollowers(request);
-    }
-
-    @Override
-    public Response<UsersFollowingsResponse[]> usersFollowings(
-            UsersFollowingsRequest request) {
-        return user.usersFollowings(request);
-    }
-
-    // --------------------------------------------------------------------- //
-    // LIST
-    // --------------------------------------------------------------------- //
-    @Override
-    public Response<ListUsersListsResponse[]> listUsersLists(
-            ListUsersListsRequest request) {
-        return list.listUsersLists(request);
-    }
-
-    @Override
-    public Response<ShowUsersListsResponse> showUsersLists(
-            ShowUsersListsRequest request) {
-        return list.showUsersLists(request);
+    public MuteResource mute() {
+        return mute;
     }
 }

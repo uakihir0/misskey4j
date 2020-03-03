@@ -1,11 +1,11 @@
 package misskey4j.api;
 
-import misskey4j.api.request.IFavoritesRequest;
-import misskey4j.api.request.INotificationsRequest;
-import misskey4j.api.request.IRequest;
-import misskey4j.api.response.IFavoritesResponse;
-import misskey4j.api.response.INotificationsResponse;
-import misskey4j.api.response.IResponse;
+import misskey4j.api.request.i.IFavoritesRequest;
+import misskey4j.api.request.i.INotificationsRequest;
+import misskey4j.api.request.i.IRequest;
+import misskey4j.api.response.i.IFavoritesResponse;
+import misskey4j.api.response.i.INotificationsResponse;
+import misskey4j.api.response.i.IResponse;
 import misskey4j.entity.share.Response;
 
 /**
