@@ -7,6 +7,7 @@ import misskey4j.api.FollowingResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MuteResource;
 import misskey4j.api.NotesResource;
+import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
 
 public interface Misskey {
@@ -22,6 +23,8 @@ public interface Misskey {
     ListsResource lists();
 
     NotesResource notes();
+
+    ReactionsResource reactions();
 
     FollowingResource following();
 

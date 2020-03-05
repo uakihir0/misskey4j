@@ -2,5 +2,5 @@ package misskey4j.api.response.notes;
 
 import misskey4j.entity.Note;
 
-public class UsersNotesResponse extends Note {
+public class NotesHybridTimelineResponse extends Note {
 }

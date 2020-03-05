@@ -1,7 +1,7 @@
 package misskey4j.api.request.notes;
 
 import misskey4j.api.model.TokenRequest;
-import misskey4j.api.request.PollRequest;
+import misskey4j.api.model.PollRequest;
 
 import java.util.List;
 

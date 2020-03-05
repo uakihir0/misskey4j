@@ -1,4 +1,4 @@
-package misskey4j.api.request;
+package misskey4j.api.model;
 
 import java.util.List;
 

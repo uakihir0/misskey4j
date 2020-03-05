@@ -8,6 +8,7 @@ import misskey4j.api.FollowingResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MuteResource;
 import misskey4j.api.NotesResource;
+import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
 import misskey4j.internal.api.AccountsResourceImpl;
 import misskey4j.internal.api.AppResourceImpl;
@@ -16,6 +17,7 @@ import misskey4j.internal.api.FollowingResourceImpl;
 import misskey4j.internal.api.ListsResourceImpl;
 import misskey4j.internal.api.MuteResourceImpl;
 import misskey4j.internal.api.NotesResourceImpl;
+import misskey4j.internal.api.ReactionsResourceImpl;
 import misskey4j.internal.api.UsersResourceImpl;
 
 public class MisskeyImpl implements Misskey {
@@ -27,6 +29,7 @@ public class MisskeyImpl implements Misskey {
     private ListsResource lists;
     private NotesResource notes;
     private MuteResource mute;
+    private ReactionsResource reactions;
     private FollowingResource following;
 
     public MisskeyImpl(String url, String i) {
@@ -40,6 +43,7 @@ public class MisskeyImpl implements Misskey {
         lists = new ListsResourceImpl(url, i);
         notes = new NotesResourceImpl(url, i);
 
+        reactions = new ReactionsResourceImpl(url, i);
         following = new FollowingResourceImpl(url, i);
         mute = new MuteResourceImpl(url, i);
     }
@@ -72,6 +76,11 @@ public class MisskeyImpl implements Misskey {
     @Override
     public NotesResource notes() {
         return notes;
+    }
+
+    @Override
+    public ReactionsResource reactions() {
+        return reactions;
     }
 
     @Override

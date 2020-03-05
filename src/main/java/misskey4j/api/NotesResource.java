@@ -4,11 +4,19 @@ import misskey4j.api.request.notes.NotesChildrenRequest;
 import misskey4j.api.request.notes.NotesConversationRequest;
 import misskey4j.api.request.notes.NotesCreateRequest;
 import misskey4j.api.request.notes.NotesDeleteRequest;
+import misskey4j.api.request.notes.NotesGlobalTimelineRequest;
+import misskey4j.api.request.notes.NotesHybridTimelineRequest;
+import misskey4j.api.request.notes.NotesLocalTimelineRequest;
+import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesRequest;
 import misskey4j.api.request.notes.UsersNotesRequest;
 import misskey4j.api.response.notes.NotesChildrenResponse;
 import misskey4j.api.response.notes.NotesConversationResponse;
 import misskey4j.api.response.notes.NotesCreateResponse;
+import misskey4j.api.response.notes.NotesGlobalTimelineResponse;
+import misskey4j.api.response.notes.NotesHybridTimelineResponse;
+import misskey4j.api.response.notes.NotesLocalTimelineResponse;
+import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesResponse;
 import misskey4j.api.response.notes.UsersNotesResponse;
 import misskey4j.entity.share.Response;
@@ -56,4 +64,32 @@ public interface NotesResource {
      */
     Response<Void> delete(
             NotesDeleteRequest request);
+
+    /**
+     * 自分に言及している投稿の一覧を取得します。
+     * https://misskey.io/api-doc#operation/notes/mentions
+     */
+    Response<NotesMentionsResponse[]> mentions(
+            NotesMentionsRequest request);
+
+    /**
+     * グローバルタイムラインを取得します。
+     * https://misskey.io/api-doc#operation/notes/global-timeline
+     */
+    Response<NotesGlobalTimelineResponse[]> globalTimeline(
+            NotesGlobalTimelineRequest request);
+
+    /**
+     * ソーシャルタイムラインを取得します。
+     * https://misskey.io/api-doc#operation/notes/hybrid-timeline
+     */
+    Response<NotesHybridTimelineResponse[]> hybridTimeline(
+            NotesHybridTimelineRequest request);
+
+    /**
+     * ローカルタイムラインを取得します。
+     * https://misskey.io/api-doc#operation/notes/local-timeline
+     */
+    Response<NotesLocalTimelineResponse[]> localTimeline(
+            NotesLocalTimelineRequest request);
 }
