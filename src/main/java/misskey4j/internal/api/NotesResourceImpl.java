@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.NotesResource;
 import misskey4j.api.request.notes.NotesChildrenRequest;
 import misskey4j.api.request.notes.NotesConversationRequest;
@@ -10,6 +11,9 @@ import misskey4j.api.request.notes.NotesHybridTimelineRequest;
 import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesRequest;
+import misskey4j.api.request.notes.NotesShowRequest;
+import misskey4j.api.request.notes.NotesTimelineRequest;
+import misskey4j.api.request.notes.NotesUserListTimelineRequest;
 import misskey4j.api.request.notes.UsersNotesRequest;
 import misskey4j.api.response.notes.NotesChildrenResponse;
 import misskey4j.api.response.notes.NotesConversationResponse;
@@ -19,6 +23,9 @@ import misskey4j.api.response.notes.NotesHybridTimelineResponse;
 import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesResponse;
+import misskey4j.api.response.notes.NotesShowResponse;
+import misskey4j.api.response.notes.NotesTimelineResponse;
+import misskey4j.api.response.notes.NotesUserListTimelineResponse;
 import misskey4j.api.response.notes.UsersNotesResponse;
 import misskey4j.entity.share.Response;
 
@@ -32,68 +39,89 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
     public Response<UsersNotesResponse[]> users(
             UsersNotesRequest request) {
         return post(UsersNotesResponse[].class,
-                "users/notes", request);
+                MisskeyAPI.UsersNotes.code(), request);
     }
 
     @Override
     public Response<NotesResponse[]> notes(
             NotesRequest request) {
         return post(NotesResponse[].class,
-                "notes", request);
+                MisskeyAPI.Notes.code(), request);
     }
 
     @Override
     public Response<NotesChildrenResponse[]> children(
             NotesChildrenRequest request) {
         return post(NotesChildrenResponse[].class,
-                "notes/children", request);
+                MisskeyAPI.NotesChildren.code(), request);
     }
 
     @Override
     public Response<NotesConversationResponse[]> conversation(
             NotesConversationRequest request) {
         return post(NotesConversationResponse[].class,
-                "notes/conversation", request);
+                MisskeyAPI.NotesConversation.code(), request);
     }
 
     @Override
     public Response<NotesCreateResponse> create(
             NotesCreateRequest request) {
         return post(NotesCreateResponse.class,
-                "notes/create", request);
+                MisskeyAPI.NotesCreate.code(), request);
     }
 
     @Override
     public Response<Void> delete(
             NotesDeleteRequest request) {
-        return post("notes/delete", request);
+        return post(MisskeyAPI.NotesDelete.code(), request);
     }
 
     @Override
     public Response<NotesMentionsResponse[]> mentions(
             NotesMentionsRequest request) {
         return post(NotesMentionsResponse[].class,
-                "notes/mentions", request);
+                MisskeyAPI.NotesMentions.code(), request);
     }
 
     @Override
     public Response<NotesGlobalTimelineResponse[]> globalTimeline(
             NotesGlobalTimelineRequest request) {
         return post(NotesGlobalTimelineResponse[].class,
-                "notes/global-timeline", request);
+                MisskeyAPI.NotesGlobalTimeline.code(), request);
     }
 
     @Override
     public Response<NotesHybridTimelineResponse[]> hybridTimeline(
             NotesHybridTimelineRequest request) {
         return post(NotesHybridTimelineResponse[].class,
-                "notes/hybrid-timeline", request);
+                MisskeyAPI.NotesHybridTimeline.code(), request);
     }
 
     @Override
     public Response<NotesLocalTimelineResponse[]> localTimeline(
             NotesLocalTimelineRequest request) {
         return post(NotesLocalTimelineResponse[].class,
-                "notes/local-timeline", request);
+                MisskeyAPI.NotesLocalTimeline.code(), request);
+    }
+
+    @Override
+    public Response<NotesTimelineResponse[]> timeline(
+            NotesTimelineRequest request) {
+        return post(NotesTimelineResponse[].class,
+                MisskeyAPI.NotesTimeline.code(), request);
+    }
+
+    @Override
+    public Response<NotesShowResponse> show(
+            NotesShowRequest request) {
+        return post(NotesShowResponse.class,
+                MisskeyAPI.NotesShow.code(), request);
+    }
+
+    @Override
+    public Response<NotesUserListTimelineResponse[]> userListTimeline(
+            NotesUserListTimelineRequest request) {
+        return post(NotesUserListTimelineResponse[].class,
+                MisskeyAPI.NotesUserListTimeline.code(), request);
     }
 }

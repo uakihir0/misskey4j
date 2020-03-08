@@ -9,6 +9,9 @@ import misskey4j.api.request.notes.NotesHybridTimelineRequest;
 import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesRequest;
+import misskey4j.api.request.notes.NotesShowRequest;
+import misskey4j.api.request.notes.NotesTimelineRequest;
+import misskey4j.api.request.notes.NotesUserListTimelineRequest;
 import misskey4j.api.request.notes.UsersNotesRequest;
 import misskey4j.api.response.notes.NotesChildrenResponse;
 import misskey4j.api.response.notes.NotesConversationResponse;
@@ -18,6 +21,9 @@ import misskey4j.api.response.notes.NotesHybridTimelineResponse;
 import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesResponse;
+import misskey4j.api.response.notes.NotesShowResponse;
+import misskey4j.api.response.notes.NotesTimelineResponse;
+import misskey4j.api.response.notes.NotesUserListTimelineResponse;
 import misskey4j.api.response.notes.UsersNotesResponse;
 import misskey4j.entity.share.Response;
 
@@ -92,4 +98,25 @@ public interface NotesResource {
      */
     Response<NotesLocalTimelineResponse[]> localTimeline(
             NotesLocalTimelineRequest request);
+
+    /**
+     * タイムラインを取得します。
+     * https://misskey.io/api-doc#operation/notes/timeline
+     */
+    Response<NotesTimelineResponse[]> timeline(
+            NotesTimelineRequest request);
+
+    /**
+     * 指定した投稿を取得します。
+     * https://misskey.io/api-doc#operation/notes/show
+     */
+    Response<NotesShowResponse> show(
+            NotesShowRequest request);
+
+    /**
+     * 指定したユーザーリストのタイムラインを取得します。
+     * https://misskey.io/api-doc#operation/notes/user-list-timeline
+     */
+    Response<NotesUserListTimelineResponse[]> userListTimeline(
+            NotesUserListTimelineRequest request);
 }
