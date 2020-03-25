@@ -19,6 +19,8 @@ public enum MisskeyAPI {
     NotesConversation("notes/conversation"),
     NotesChildren("notes/children"),
 
+    PollsVote("notes/polls/vote"),
+
     ;
 
     private String code;
