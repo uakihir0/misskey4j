@@ -1,6 +1,30 @@
 <img src="./resource/img/misskey4j.png" width="200">
 
+[![](https://jitpack.io/v/uakihir0/misskey4j.svg)](https://jitpack.io/#uakihir0/misskey4j)
+
 Misskey4J is client library to call api to [Misskey](https://join.misskey.page/ja/) written in java. This will be able to compile with [google/j2objc] to Objective-C library. (iOS, Mac OS) 
+
+## Install
+
+You can install via JitPack with gradle. Add the JitPack repository to your build file.
+
+```
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+And add the dependency as bellow.
+
+```
+dependencies {
+	implementation 'com.github.uakihir0:misskey4j:0.1'
+}
+```
+
 
 ## How To Use
 
@@ -27,7 +51,7 @@ next, generate user authentication url from client secret.
 Misskey misskey = MisskeyFactory.getInstance(HOST);
 
 Response<GenerateAuthSessionResponse> response =
-    misskey.auth().generateAuthSession(
+    misskey.auth().sessionGenerate(
         GenerateAuthSessionRequest.builder()
             .appSecret(CLIENT_SECRET)
             .build());
@@ -41,7 +65,7 @@ and user access to url, and get verify token which include redirected url as par
 Misskey misskey = MisskeyFactory.getInstance(HOST);
 
 Response<UserKeyAuthSessionResponse> response =
-    misskey.auth().userKeyAuthSession(
+    misskey.auth().sessionUserKey(
         UserKeyAuthSessionRequest.builder()
             .token("VERIFY TOKEN")
             .appSecret(CLIENT_SECRET)
@@ -55,6 +79,9 @@ after that, you can access to any endpoints. If you want to need more informatio
 
 ## License
 This software is released under the MIT License, see LICENSE.txt.
+
+## Author
+[@U_Akihir0](https://twitter.com/U_Akihir0)
 
 
   [google/j2objc]: https://github.com/google/j2objc
