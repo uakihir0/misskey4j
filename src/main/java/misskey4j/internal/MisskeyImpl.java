@@ -6,6 +6,7 @@ import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.ListsResource;
+import misskey4j.api.MessagesResource;
 import misskey4j.api.MuteResource;
 import misskey4j.api.NotesResource;
 import misskey4j.api.PollsResource;
@@ -16,6 +17,7 @@ import misskey4j.internal.api.AppResourceImpl;
 import misskey4j.internal.api.AuthResourceImpl;
 import misskey4j.internal.api.FollowingResourceImpl;
 import misskey4j.internal.api.ListsResourceImpl;
+import misskey4j.internal.api.MessagesResourceImpl;
 import misskey4j.internal.api.MuteResourceImpl;
 import misskey4j.internal.api.NotesResourceImpl;
 import misskey4j.internal.api.PollsResourceImpl;
@@ -34,6 +36,7 @@ public class MisskeyImpl implements Misskey {
     private ReactionsResource reactions;
     private FollowingResource following;
     private PollsResource polls;
+    private MessagesResource messages;
 
     public MisskeyImpl(String url, String i) {
 
@@ -50,6 +53,7 @@ public class MisskeyImpl implements Misskey {
         following = new FollowingResourceImpl(url, i);
         mute = new MuteResourceImpl(url, i);
         polls = new PollsResourceImpl(url, i);
+        messages = new MessagesResourceImpl(url, i);
     }
 
     @Override
@@ -100,6 +104,11 @@ public class MisskeyImpl implements Misskey {
     @Override
     public PollsResource polls() {
         return polls;
+    }
+
+    @Override
+    public MessagesResource messages() {
+        return messages;
     }
 
 }

@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.AuthResource;
 import misskey4j.api.request.GenerateAuthSessionRequest;
 import misskey4j.api.request.UserKeyAuthSessionRequest;
@@ -17,19 +18,19 @@ public class AuthResourceImpl extends AbstractResourceImpl implements AuthResour
      * {@inheritDoc}
      */
     @Override
-    public Response<GenerateAuthSessionResponse> generateAuthSession(
+    public Response<GenerateAuthSessionResponse> sessionGenerate(
             GenerateAuthSessionRequest request) {
         return post(GenerateAuthSessionResponse.class,
-                "auth/session/generate", request);
+                MisskeyAPI.AuthSessionGenerate.code(), request);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Response<UserKeyAuthSessionResponse> userKeyAuthSession(
+    public Response<UserKeyAuthSessionResponse> sessionUserKey(
             UserKeyAuthSessionRequest request) {
         return post(UserKeyAuthSessionResponse.class,
-                "auth/session/userkey", request);
+                MisskeyAPI.AuthSessionUserkey.code(), request);
     }
 }

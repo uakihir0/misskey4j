@@ -36,7 +36,7 @@ public class MisskeyTest extends AbstractTest {
         Misskey misskey = MisskeyFactory.getInstance(HOST);
 
         Response<GenerateAuthSessionResponse> response =
-                misskey.auth().generateAuthSession(
+                misskey.auth().sessionGenerate(
                         GenerateAuthSessionRequest.builder()
                                 .appSecret(CLIENT_SECRET)
                                 .build());
@@ -49,7 +49,7 @@ public class MisskeyTest extends AbstractTest {
         Misskey misskey = MisskeyFactory.getInstance(HOST);
 
         Response<UserKeyAuthSessionResponse> response =
-                misskey.auth().userKeyAuthSession(
+                misskey.auth().sessionUserKey(
                         UserKeyAuthSessionRequest.builder()
                                 .token("VERIFY TOKEN")
                                 .appSecret(CLIENT_SECRET)

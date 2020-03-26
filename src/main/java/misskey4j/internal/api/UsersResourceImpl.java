@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.UsersResource;
 import misskey4j.api.request.users.UsersFollowersRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
@@ -26,7 +27,7 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
     public Response<UsersFollowersResponse[]> followers(
             UsersFollowersRequest request) {
         return post(UsersFollowersResponse[].class,
-                "users/followers", request);
+                MisskeyAPI.UsersFollowers.code(), request);
     }
 
     /**
@@ -36,7 +37,7 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
     public Response<UsersFollowingsResponse[]> followings(
             UsersFollowingsRequest request) {
         return post(UsersFollowingsResponse[].class,
-                "users/following", request);
+                MisskeyAPI.UsersFollowing.code(), request);
     }
 
     /**
@@ -46,7 +47,7 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
     public Response<UsersShowResponse[]> show(
             UsersShowRequest request) {
         return post(UsersShowResponse[].class,
-                "users/show", request);
+                MisskeyAPI.UsersShow.code(), request);
     }
 
     /**
@@ -56,7 +57,7 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
     public Response<UsersRelationResponse[]> relation(
             UsersRelationRequest request) {
         return post(UsersRelationResponse[].class,
-                "users/relation", request);
+                MisskeyAPI.UsersRelation.code(), request);
     }
 
     /**
@@ -66,6 +67,6 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
     public Response<UsersSearchResponse[]> search(
             UsersSearchRequest request) {
         return post(UsersSearchResponse[].class,
-                "users/search", request);
+                MisskeyAPI.UsersSearch.code(), request);
     }
 }

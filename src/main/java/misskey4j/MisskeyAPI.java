@@ -2,7 +2,10 @@ package misskey4j;
 
 public enum MisskeyAPI {
 
+    // ------------------------------------------ //
     // Notes
+    // ------------------------------------------ //
+
     NotesCreate("notes/create"),
     NotesDelete("notes/delete"),
 
@@ -19,7 +22,81 @@ public enum MisskeyAPI {
     NotesConversation("notes/conversation"),
     NotesChildren("notes/children"),
 
+    // ------------------------------------------ //
+    // Users
+    // ------------------------------------------ //
+
+    UsersFollowers("users/followers"),
+    UsersFollowing("users/following"),
+
+    UsersShow("users/show"),
+    UsersRelation("users/relation"),
+    UsersSearch("users/search"),
+
+    // ------------------------------------------ //
+    // I
+    // ------------------------------------------ //
+
+    I("i"),
+    IFavorites("i/favorites"),
+    INotifications("i/notifications"),
+
+    // ------------------------------------------ //
+    // Auth
+    // ------------------------------------------ //
+
+    AuthSessionGenerate("auth/session/generate"),
+    AuthSessionUserkey("auth/session/userkey"),
+
+    // ------------------------------------------ //
+    // App
+    // ------------------------------------------ //
+
+    AppCreate("app/create"),
+
+    // ------------------------------------------ //
+    // Lists
+    // ------------------------------------------ //
+
+    Lists("users/lists/list"),
+    ListsShow("users/lists/show"),
+
+    // ------------------------------------------ //
+    // Following
+    // ------------------------------------------ //
+
+    FollowingCreate("following/create"),
+    FollowingDelete("following/delete"),
+
+    // ------------------------------------------ //
+    // Polls
+    // ------------------------------------------ //
+
     PollsVote("notes/polls/vote"),
+
+    // ------------------------------------------ //
+    // Messages
+    // ------------------------------------------ //
+
+    Messages("messaging/messages"),
+    MessagesHistory("messaging/history"),
+    MessagesCreate("messaging/messages/create"),
+    MessagesDelete("messaging/messages/delete"),
+
+    // ------------------------------------------ //
+    // Mute
+    // ------------------------------------------ //
+
+    MuteList("mute/list"),
+    MuteCreate("mute/create"),
+    MuteDelete("mute/delete"),
+
+    // ------------------------------------------ //
+    // Reactions
+    // ------------------------------------------ //
+
+    ReactionsCreate("notes/reactions/create"),
+    ReactionsDelete("notes/reactions/delete"),
 
     ;
 

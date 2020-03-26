@@ -5,6 +5,7 @@ import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.ListsResource;
+import misskey4j.api.MessagesResource;
 import misskey4j.api.MuteResource;
 import misskey4j.api.NotesResource;
 import misskey4j.api.PollsResource;
@@ -32,4 +33,6 @@ public interface Misskey {
     MuteResource mute();
 
     PollsResource polls();
+
+    MessagesResource messages();
 }

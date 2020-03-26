@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.MuteResource;
 import misskey4j.api.request.mute.MuteCreateRequest;
 import misskey4j.api.request.mute.MuteDeleteRequest;
@@ -19,7 +20,7 @@ public class MuteResourceImpl extends AbstractResourceImpl implements MuteResour
     @Override
     public Response<Void> create(
             MuteCreateRequest request) {
-        return post("mute/create", request);
+        return post(MisskeyAPI.MuteCreate.code(), request);
     }
 
     /**
@@ -28,7 +29,7 @@ public class MuteResourceImpl extends AbstractResourceImpl implements MuteResour
     @Override
     public Response<Void> delete(
             MuteDeleteRequest request) {
-        return post("mute/delete", request);
+        return post(MisskeyAPI.MuteDelete.code(), request);
     }
 
     /**
@@ -38,6 +39,6 @@ public class MuteResourceImpl extends AbstractResourceImpl implements MuteResour
     public Response<MuteListResponse[]> list(
             MuteListRequest request) {
         return post(MuteListResponse[].class,
-                "mute/list", request);
+                MisskeyAPI.MuteList.code(), request);
     }
 }

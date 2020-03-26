@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.request.following.FollowingCreateRequest;
 import misskey4j.api.request.following.FollowingDeleteRequest;
@@ -17,7 +18,7 @@ public class FollowingResourceImpl extends AbstractResourceImpl implements Follo
     @Override
     public Response<Void> create(
             FollowingCreateRequest request) {
-        return post("following/create", request);
+        return post(MisskeyAPI.FollowingCreate.code(), request);
     }
 
     /**
@@ -26,6 +27,6 @@ public class FollowingResourceImpl extends AbstractResourceImpl implements Follo
     @Override
     public Response<Void> delete(
             FollowingDeleteRequest request) {
-        return post("following/delete", request);
+        return post(MisskeyAPI.FollowingDelete.code(), request);
     }
 }

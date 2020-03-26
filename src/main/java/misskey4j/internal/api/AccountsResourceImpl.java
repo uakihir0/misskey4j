@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.AccountsResource;
 import misskey4j.api.request.i.IFavoritesRequest;
 import misskey4j.api.request.i.INotificationsRequest;
@@ -22,7 +23,7 @@ public class AccountsResourceImpl extends AbstractResourceImpl implements Accoun
     public Response<IResponse> i(
             IRequest request) {
         return post(IResponse.class,
-                "i", request);
+                MisskeyAPI.I.code(), request);
     }
 
     /**
@@ -32,7 +33,7 @@ public class AccountsResourceImpl extends AbstractResourceImpl implements Accoun
     public Response<IFavoritesResponse[]> iFavorites(
             IFavoritesRequest request) {
         return post(IFavoritesResponse[].class,
-                "i/favorites", request);
+                MisskeyAPI.IFavorites.code(), request);
     }
 
     /**
@@ -42,6 +43,6 @@ public class AccountsResourceImpl extends AbstractResourceImpl implements Accoun
     public Response<INotificationsResponse[]> iNotifications(
             INotificationsRequest request) {
         return post(INotificationsResponse[].class,
-                "i/notifications", request);
+                MisskeyAPI.INotifications.code(), request);
     }
 }

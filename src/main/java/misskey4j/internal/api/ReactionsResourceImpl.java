@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.ReactionsResource;
 import misskey4j.api.request.reactions.ReactionsCreateRequest;
 import misskey4j.api.request.reactions.ReactionsDeleteRequest;
@@ -14,12 +15,12 @@ public class ReactionsResourceImpl extends AbstractResourceImpl implements React
     @Override
     public Response<Void> create(
             ReactionsCreateRequest request) {
-        return post("notes/reactions/create", request);
+        return post(MisskeyAPI.ReactionsCreate.code(), request);
     }
 
     @Override
     public Response<Void> delete(
             ReactionsDeleteRequest request) {
-        return post("notes/reactions/delete", request);
+        return post(MisskeyAPI.ReactionsDelete.code(), request);
     }
 }

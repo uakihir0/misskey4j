@@ -15,13 +15,13 @@ public interface AuthResource {
      * アプリを認証するためのトークンを作成します。
      * https://misskey.io/api-doc#operation/auth/session/generate
      */
-    Response<GenerateAuthSessionResponse> generateAuthSession(
+    Response<GenerateAuthSessionResponse> sessionGenerate(
             GenerateAuthSessionRequest request);
 
     /**
      * ユーザーのアクセストークンを発行します。
      * https://misskey.io/api-doc#operation/auth/session/userkey
      */
-    Response<UserKeyAuthSessionResponse> userKeyAuthSession(
+    Response<UserKeyAuthSessionResponse> sessionUserKey(
             UserKeyAuthSessionRequest request);
 }

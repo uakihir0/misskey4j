@@ -1,5 +1,6 @@
 package misskey4j.internal.api;
 
+import misskey4j.MisskeyAPI;
 import misskey4j.api.ListsResource;
 import misskey4j.api.request.UsersListsListRequest;
 import misskey4j.api.request.UsersListsShowRequest;
@@ -20,7 +21,7 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
     public Response<UsersListsListResponse[]> list(
             UsersListsListRequest request) {
         return post(UsersListsListResponse[].class,
-                "users/lists/list", request);
+                MisskeyAPI.Lists.code(), request);
     }
 
     /**
@@ -30,6 +31,6 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
     public Response<UsersListsShowResponse> show(
             UsersListsShowRequest request) {
         return post(UsersListsShowResponse.class,
-                "users/lists/show", request);
+                MisskeyAPI.ListsShow.code(), request);
     }
 }
