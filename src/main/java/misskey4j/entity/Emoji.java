@@ -2,18 +2,18 @@ package misskey4j.entity;
 
 public class Emoji {
 
-    private String verify;
+    private String name;
     private String host;
     private String url;
     private String[] aliases;
 
     // region
-    public String getVerify() {
-        return verify;
+    public String getName() {
+        return name;
     }
 
-    public void setVerify(String verify) {
-        this.verify = verify;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHost() {
