@@ -84,12 +84,20 @@ public enum MisskeyAPI {
     MessagesDelete("messaging/messages/delete"),
 
     // ------------------------------------------ //
-    // Mute
+    // Mutes
     // ------------------------------------------ //
 
-    MuteList("mute/list"),
-    MuteCreate("mute/create"),
-    MuteDelete("mute/delete"),
+    MutesList("mute/list"),
+    MutesCreate("mute/create"),
+    MutesDelete("mute/delete"),
+
+    // ------------------------------------------ //
+    // Blocks
+    // ------------------------------------------ //
+
+    BlocksList("blocking/list"),
+    BlocksCreate("blocking/create"),
+    BlocksDelete("blocking/delete"),
 
     // ------------------------------------------ //
     // Reactions

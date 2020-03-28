@@ -4,10 +4,11 @@ import misskey4j.Misskey;
 import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
+import misskey4j.api.BlocksResource;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MessagesResource;
-import misskey4j.api.MuteResource;
+import misskey4j.api.MutesResource;
 import misskey4j.api.NotesResource;
 import misskey4j.api.PollsResource;
 import misskey4j.api.ReactionsResource;
@@ -15,10 +16,11 @@ import misskey4j.api.UsersResource;
 import misskey4j.internal.api.AccountsResourceImpl;
 import misskey4j.internal.api.AppResourceImpl;
 import misskey4j.internal.api.AuthResourceImpl;
+import misskey4j.internal.api.BlocksResourceImpl;
 import misskey4j.internal.api.FollowingResourceImpl;
 import misskey4j.internal.api.ListsResourceImpl;
 import misskey4j.internal.api.MessagesResourceImpl;
-import misskey4j.internal.api.MuteResourceImpl;
+import misskey4j.internal.api.MutesResourceImpl;
 import misskey4j.internal.api.NotesResourceImpl;
 import misskey4j.internal.api.PollsResourceImpl;
 import misskey4j.internal.api.ReactionsResourceImpl;
@@ -32,7 +34,8 @@ public class MisskeyImpl implements Misskey {
     private UsersResource users;
     private ListsResource lists;
     private NotesResource notes;
-    private MuteResource mute;
+    private MutesResource mutes;
+    private BlocksResource blocks;
     private ReactionsResource reactions;
     private FollowingResource following;
     private PollsResource polls;
@@ -51,7 +54,8 @@ public class MisskeyImpl implements Misskey {
 
         reactions = new ReactionsResourceImpl(url, i);
         following = new FollowingResourceImpl(url, i);
-        mute = new MuteResourceImpl(url, i);
+        mutes = new MutesResourceImpl(url, i);
+        blocks = new BlocksResourceImpl(url, i);
         polls = new PollsResourceImpl(url, i);
         messages = new MessagesResourceImpl(url, i);
     }
@@ -97,8 +101,13 @@ public class MisskeyImpl implements Misskey {
     }
 
     @Override
-    public MuteResource mute() {
-        return mute;
+    public MutesResource mutes() {
+        return mutes;
+    }
+
+    @Override
+    public BlocksResource blocks() {
+        return blocks;
     }
 
     @Override

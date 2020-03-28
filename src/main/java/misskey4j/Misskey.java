@@ -3,10 +3,11 @@ package misskey4j;
 import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
+import misskey4j.api.BlocksResource;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MessagesResource;
-import misskey4j.api.MuteResource;
+import misskey4j.api.MutesResource;
 import misskey4j.api.NotesResource;
 import misskey4j.api.PollsResource;
 import misskey4j.api.ReactionsResource;
@@ -30,7 +31,9 @@ public interface Misskey {
 
     FollowingResource following();
 
-    MuteResource mute();
+    MutesResource mutes();
+
+    BlocksResource blocks();
 
     PollsResource polls();
 

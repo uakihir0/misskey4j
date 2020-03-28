@@ -3,10 +3,7 @@ package misskey4j.entity;
 import java.util.List;
 
 /**
- *  ユーザーオブジェクト
- *
- * // TODO
- *  "emojis": null,
+ * ユーザーオブジェクト
  */
 public class User {
 
@@ -43,6 +40,9 @@ public class User {
     private Boolean isLocked;
     private Boolean hasUnreadSpecifiedNotes;
     private Boolean hasUnreadMentions;
+
+    private List<Emoji> emojis;
+    private List<Field> fields;
 
     // region
     public String getId() {
@@ -251,6 +251,22 @@ public class User {
 
     public void setHasUnreadMentions(Boolean hasUnreadMentions) {
         this.hasUnreadMentions = hasUnreadMentions;
+    }
+
+    public List<Emoji> getEmojis() {
+        return emojis;
+    }
+
+    public void setEmojis(List<Emoji> emojis) {
+        this.emojis = emojis;
+    }
+
+    public List<Field> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<Field> fields) {
+        this.fields = fields;
     }
     // endregion
 }
