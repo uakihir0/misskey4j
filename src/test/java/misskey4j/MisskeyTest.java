@@ -66,4 +66,10 @@ public class MisskeyTest extends AbstractTest {
 
         System.out.println("NAME: " + response.get().getName());
     }
+
+    @Test
+    public void testGetHost(){
+        Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
+        System.out.println("NAME: " + misskey.getHost());
+    }
 }

@@ -38,4 +38,10 @@ public interface Misskey {
     PollsResource polls();
 
     MessagesResource messages();
+
+    /**
+     * Get host to access.
+     * (ex, misskey.io)
+     */
+    String getHost();
 }

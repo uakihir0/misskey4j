@@ -26,6 +26,8 @@ import misskey4j.internal.api.PollsResourceImpl;
 import misskey4j.internal.api.ReactionsResourceImpl;
 import misskey4j.internal.api.UsersResourceImpl;
 
+import java.net.URL;
+
 public class MisskeyImpl implements Misskey {
 
     private AppResource app;
@@ -41,7 +43,10 @@ public class MisskeyImpl implements Misskey {
     private PollsResource polls;
     private MessagesResource messages;
 
+    private String url;
+
     public MisskeyImpl(String url, String i) {
+        this.url = url;
 
         app = new AppResourceImpl(url);
         auth = new AuthResourceImpl(url);
@@ -120,4 +125,12 @@ public class MisskeyImpl implements Misskey {
         return messages;
     }
 
+    @Override
+    public String getHost() {
+        try {
+            return new URL(url).getHost();
+        } catch (Throwable e) {
+            throw new IllegalStateException(e);
+        }
+    }
 }
