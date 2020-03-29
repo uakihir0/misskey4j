@@ -1,6 +1,7 @@
 package misskey4j.entity;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 投稿オブジェクト
@@ -40,6 +41,9 @@ public class Note {
     private List<File> files;
 
     private Poll poll;
+
+    private Map<String, Long> reactions;
+    private String myReaction;
 
     // region
     public String getId() {
@@ -208,6 +212,22 @@ public class Note {
 
     public void setPoll(Poll poll) {
         this.poll = poll;
+    }
+
+    public Map<String, Long> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(Map<String, Long> reactions) {
+        this.reactions = reactions;
+    }
+
+    public String getMyReaction() {
+        return myReaction;
+    }
+
+    public void setMyReaction(String myReaction) {
+        this.myReaction = myReaction;
     }
     // endregion
 }
