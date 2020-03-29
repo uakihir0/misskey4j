@@ -4,10 +4,8 @@ import java.util.List;
 
 /**
  * 投稿オブジェクト
- *
- *  // TODO
- *  "poll": { },
- *  "geo": { }
+ * // TODO
+ * "geo": { }
  */
 public class Note {
 
@@ -26,6 +24,9 @@ public class Note {
     private String renoteId;
     private Note renote;
 
+    private Long renoteCount;
+    private Long repliesCount;
+
     private Boolean viaMobile;
     private Boolean isHidden;
 
@@ -37,6 +38,8 @@ public class Note {
 
     private List<String> fileIds;
     private List<File> files;
+
+    private Poll poll;
 
     // region
     public String getId() {
@@ -181,6 +184,30 @@ public class Note {
 
     public void setFiles(List<File> files) {
         this.files = files;
+    }
+
+    public Long getRenoteCount() {
+        return renoteCount;
+    }
+
+    public void setRenoteCount(Long renoteCount) {
+        this.renoteCount = renoteCount;
+    }
+
+    public Long getRepliesCount() {
+        return repliesCount;
+    }
+
+    public void setRepliesCount(Long repliesCount) {
+        this.repliesCount = repliesCount;
+    }
+
+    public Poll getPoll() {
+        return poll;
+    }
+
+    public void setPoll(Poll poll) {
+        this.poll = poll;
     }
     // endregion
 }

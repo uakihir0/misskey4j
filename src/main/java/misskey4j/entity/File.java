@@ -11,6 +11,7 @@ public class File {
     private String type;
     private Long size;
     private String url;
+    private String thumbnailUrl;
     private String folderId;
     private Boolean isSensitive;
 
@@ -61,6 +62,14 @@ public class File {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getFolderId() {
