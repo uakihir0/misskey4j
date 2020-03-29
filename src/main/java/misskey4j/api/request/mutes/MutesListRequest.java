@@ -1,6 +1,7 @@
 package misskey4j.api.request.mutes;
 
 import misskey4j.api.model.TokenRequest;
+import misskey4j.api.request.protocol.PagingBuilder;
 
 public class MutesListRequest extends TokenRequest {
 
@@ -25,7 +26,9 @@ public class MutesListRequest extends TokenRequest {
         return untilId;
     }
 
-    public static final class MutesListRequestBuilder {
+    public static final class MutesListRequestBuilder
+            implements PagingBuilder<MutesListRequestBuilder> {
+
         private Long limit;
         private String sinceId;
         private String untilId;

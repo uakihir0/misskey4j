@@ -1,6 +1,7 @@
 package misskey4j.api.request.i;
 
 import misskey4j.api.model.TokenRequest;
+import misskey4j.api.request.protocol.PagingBuilder;
 
 public class IFavoritesRequest extends TokenRequest {
 
@@ -25,7 +26,9 @@ public class IFavoritesRequest extends TokenRequest {
         return untilId;
     }
 
-    public static final class IFavoritesRequestBuilder {
+    public static final class IFavoritesRequestBuilder
+            implements PagingBuilder<IFavoritesRequestBuilder> {
+
         private Long limit;
         private String sinceId;
         private String untilId;

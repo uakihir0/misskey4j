@@ -1,6 +1,7 @@
 package misskey4j.api.request.notes;
 
 import misskey4j.api.model.TokenRequest;
+import misskey4j.api.request.protocol.FullPagingBuilder;
 
 public class NotesTimelineRequest extends TokenRequest {
 
@@ -57,7 +58,9 @@ public class NotesTimelineRequest extends TokenRequest {
         return withFiles;
     }
 
-    public static final class NotesTimelineRequestBuilder {
+    public static final class NotesTimelineRequestBuilder
+            implements FullPagingBuilder<NotesTimelineRequestBuilder> {
+
         private Long limit;
         private String sinceId;
         private String untilId;

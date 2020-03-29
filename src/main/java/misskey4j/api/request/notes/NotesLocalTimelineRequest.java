@@ -1,6 +1,7 @@
 package misskey4j.api.request.notes;
 
 import misskey4j.api.model.TokenRequest;
+import misskey4j.api.request.protocol.FullPagingBuilder;
 
 import java.util.List;
 
@@ -54,7 +55,9 @@ public class NotesLocalTimelineRequest extends TokenRequest {
         return untilDate;
     }
 
-    public static final class NotesLocalTimelineRequestBuilder {
+    public static final class NotesLocalTimelineRequestBuilder
+            implements FullPagingBuilder<NotesLocalTimelineRequestBuilder> {
+        
         private Boolean withFiles;
         private List<String> fileType;
         private Boolean excludeNsfw;

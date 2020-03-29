@@ -1,6 +1,7 @@
 package misskey4j.api.request.i;
 
 import misskey4j.api.model.TokenRequest;
+import misskey4j.api.request.protocol.PagingBuilder;
 
 import java.util.List;
 
@@ -48,7 +49,9 @@ public class INotificationsRequest extends TokenRequest {
         return excludeTypes;
     }
 
-    public static final class INotificationsRequestBuilder {
+    public static final class INotificationsRequestBuilder
+            implements PagingBuilder<INotificationsRequestBuilder> {
+
         private Long limit;
         private String sinceId;
         private String untilId;

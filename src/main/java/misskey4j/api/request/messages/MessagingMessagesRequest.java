@@ -1,6 +1,7 @@
 package misskey4j.api.request.messages;
 
 import misskey4j.api.model.TokenRequest;
+import misskey4j.api.request.protocol.PagingBuilder;
 
 public class MessagingMessagesRequest extends TokenRequest {
 
@@ -42,7 +43,9 @@ public class MessagingMessagesRequest extends TokenRequest {
         return markAsRead;
     }
 
-    public static final class MessagingMessagesRequestBuilder {
+    public static final class MessagingMessagesRequestBuilder
+            implements PagingBuilder<MessagingMessagesRequestBuilder> {
+        
         private String userId;
         private String groupId;
         private Long limit;

@@ -1,5 +1,7 @@
 package misskey4j.api.request.users;
 
+import misskey4j.api.request.protocol.PagingBuilder;
+
 public class UsersFollowingsRequest {
 
     public static UsersFollowingsRequestBuilder builder() {
@@ -40,7 +42,9 @@ public class UsersFollowingsRequest {
         return limit;
     }
 
-    public static final class UsersFollowingsRequestBuilder {
+    public static final class UsersFollowingsRequestBuilder
+            implements PagingBuilder<UsersFollowingsRequestBuilder> {
+
         private String userId;
         private String username;
         private String host;

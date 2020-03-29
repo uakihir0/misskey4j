@@ -1,6 +1,7 @@
 package misskey4j.api.request.notes;
 
 import misskey4j.api.model.TokenRequest;
+import misskey4j.api.request.protocol.PagingBuilder;
 
 public class NotesRepliesRequest extends TokenRequest {
 
@@ -30,7 +31,9 @@ public class NotesRepliesRequest extends TokenRequest {
         return limit;
     }
 
-    public static final class NotesRepliesRequestBuilder {
+    public static final class NotesRepliesRequestBuilder
+            implements PagingBuilder<NotesRepliesRequestBuilder> {
+
         private String noteId;
         private String sinceId;
         private String untilId;

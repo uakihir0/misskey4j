@@ -1,5 +1,7 @@
 package misskey4j.api.request.notes;
 
+import misskey4j.api.request.protocol.FullPagingBuilder;
+
 import java.util.List;
 
 public class UsersNotesRequest {
@@ -68,7 +70,9 @@ public class UsersNotesRequest {
         return fileType;
     }
 
-    public static final class UsersNotesRequestBuilder {
+    public static final class UsersNotesRequestBuilder
+            implements FullPagingBuilder<UsersNotesRequestBuilder> {
+
         private String userId;
         private Long limit;
         private String sinceId;
