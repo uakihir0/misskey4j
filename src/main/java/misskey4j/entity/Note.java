@@ -41,6 +41,7 @@ public class Note {
     private List<File> files;
 
     private Poll poll;
+    private List<Emoji> emojis;
 
     private Map<String, Long> reactions;
     private String myReaction;
@@ -212,6 +213,14 @@ public class Note {
 
     public void setPoll(Poll poll) {
         this.poll = poll;
+    }
+
+    public List<Emoji> getEmojis() {
+        return emojis;
+    }
+
+    public void setEmojis(List<Emoji> emojis) {
+        this.emojis = emojis;
     }
 
     public Map<String, Long> getReactions() {
