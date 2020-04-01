@@ -8,6 +8,7 @@ public class Notification {
 
     private String userId;
     private User user;
+    private Note note;
 
     // region
     public String getId() {
@@ -50,5 +51,12 @@ public class Notification {
         this.user = user;
     }
 
+    public Note getNote() {
+        return note;
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
+    }
     // endregion
 }
