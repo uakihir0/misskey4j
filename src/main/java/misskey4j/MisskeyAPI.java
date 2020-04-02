@@ -12,6 +12,7 @@ public enum MisskeyAPI {
     Notes("notes"),
     NotesShow("notes/show"),
     UsersNotes("users/notes"),
+    NotesSearch("notes/search"),
     NotesTimeline("notes/timeline"),
     NotesMentions("notes/mentions"),
     NotesLocalTimeline("notes/local-timeline"),
@@ -106,6 +107,17 @@ public enum MisskeyAPI {
     ReactionsCreate("notes/reactions/create"),
     ReactionsDelete("notes/reactions/delete"),
 
+    // ------------------------------------------ //
+    // Files
+    // ------------------------------------------ //
+
+    FilesCreate("drive/files/create"),
+
+    // ------------------------------------------ //
+    // Hashtags
+    // ------------------------------------------ //
+
+    HashtagsTrend("hashtags/trend"),
     ;
 
     private String code;

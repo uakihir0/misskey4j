@@ -4,7 +4,9 @@ import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.BlocksResource;
+import misskey4j.api.FilesResource;
 import misskey4j.api.FollowingResource;
+import misskey4j.api.HashtagsResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MessagesResource;
 import misskey4j.api.MutesResource;
@@ -38,6 +40,10 @@ public interface Misskey {
     PollsResource polls();
 
     MessagesResource messages();
+
+    FilesResource files();
+
+    HashtagsResource hashtags();
 
     /**
      * Get host to access.

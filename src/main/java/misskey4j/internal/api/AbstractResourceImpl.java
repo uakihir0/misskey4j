@@ -6,13 +6,16 @@ import misskey4j.api.model.TokenRequest;
 import misskey4j.entity.Error;
 import misskey4j.entity.share.RateLimit;
 import misskey4j.entity.share.Response;
+import misskey4j.internal.model.StreamFile;
 import net.socialhub.http.HttpException;
 import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 import net.socialhub.http.HttpResponse;
 import net.socialhub.http.HttpResponseCode;
 
+import java.io.File;
 import java.net.URLEncoder;
+import java.util.Map;
 
 public abstract class AbstractResourceImpl {
 
@@ -124,9 +127,44 @@ public abstract class AbstractResourceImpl {
         });
     }
 
+    /**
+     * API の呼び出しを行う場合
+     * (ファイル付きの POST を行う場合)
+     */
+    protected <T> Response<T> post(Class<T> clazz, String path, Map<String, Object> params) {
+        return proceed(clazz, () -> {
+
+            HttpRequestBuilder builder = new HttpRequestBuilder();
+            addParam(builder, "i", i);
+
+            params.forEach((key, value) ->
+                    addParam(builder, key, value));
+
+            return builder.target(uri).path(path)
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .post();
+        });
+    }
+
     static void addParam(HttpRequestBuilder builder, String key, Object value) {
         if (value != null) {
+            if (value instanceof StreamFile) {
+                builder.file(key,
+                        ((StreamFile) value).getStream(),
+                        ((StreamFile) value).getName());
+                return;
+            }
+            if (value instanceof File) {
+                builder.file(key, (File) value);
+                return;
+            }
             builder.param(key, value.toString());
+        }
+    }
+
+    static void addParam(Map<String, Object> builder, String key, Object value) {
+        if (value != null) {
+            builder.put(key, value);
         }
     }
 

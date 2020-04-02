@@ -9,6 +9,7 @@ import misskey4j.api.request.notes.NotesHybridTimelineRequest;
 import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesRequest;
+import misskey4j.api.request.notes.NotesSearchRequest;
 import misskey4j.api.request.notes.NotesShowRequest;
 import misskey4j.api.request.notes.NotesTimelineRequest;
 import misskey4j.api.request.notes.NotesUserListTimelineRequest;
@@ -21,6 +22,7 @@ import misskey4j.api.response.notes.NotesHybridTimelineResponse;
 import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesResponse;
+import misskey4j.api.response.notes.NotesSearchResponse;
 import misskey4j.api.response.notes.NotesShowResponse;
 import misskey4j.api.response.notes.NotesTimelineResponse;
 import misskey4j.api.response.notes.NotesUserListTimelineResponse;
@@ -112,6 +114,13 @@ public interface NotesResource {
      */
     Response<NotesShowResponse> show(
             NotesShowRequest request);
+    
+    /**
+     * 投稿を検索します。
+     * https://misskey.io/api-doc#operation/notes/search
+     */
+    Response<NotesSearchResponse[]> search(
+            NotesSearchRequest request);
 
     /**
      * 指定したユーザーリストのタイムラインを取得します。

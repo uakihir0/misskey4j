@@ -11,6 +11,7 @@ import misskey4j.api.request.notes.NotesHybridTimelineRequest;
 import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesRequest;
+import misskey4j.api.request.notes.NotesSearchRequest;
 import misskey4j.api.request.notes.NotesShowRequest;
 import misskey4j.api.request.notes.NotesTimelineRequest;
 import misskey4j.api.request.notes.NotesUserListTimelineRequest;
@@ -23,6 +24,7 @@ import misskey4j.api.response.notes.NotesHybridTimelineResponse;
 import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesResponse;
+import misskey4j.api.response.notes.NotesSearchResponse;
 import misskey4j.api.response.notes.NotesShowResponse;
 import misskey4j.api.response.notes.NotesTimelineResponse;
 import misskey4j.api.response.notes.NotesUserListTimelineResponse;
@@ -116,6 +118,13 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
             NotesShowRequest request) {
         return post(NotesShowResponse.class,
                 MisskeyAPI.NotesShow.code(), request);
+    }
+
+    @Override
+    public Response<NotesSearchResponse[]> search(
+            NotesSearchRequest request) {
+        return post(NotesSearchResponse[].class,
+                MisskeyAPI.NotesSearch.code(), request);
     }
 
     @Override
