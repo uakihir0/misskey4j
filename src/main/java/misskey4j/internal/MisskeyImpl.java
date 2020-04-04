@@ -5,6 +5,7 @@ import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.BlocksResource;
+import misskey4j.api.FavoritesResource;
 import misskey4j.api.FilesResource;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.HashtagsResource;
@@ -19,6 +20,7 @@ import misskey4j.internal.api.AccountsResourceImpl;
 import misskey4j.internal.api.AppResourceImpl;
 import misskey4j.internal.api.AuthResourceImpl;
 import misskey4j.internal.api.BlocksResourceImpl;
+import misskey4j.internal.api.FavoritesResourceImpl;
 import misskey4j.internal.api.FilesResourceImpl;
 import misskey4j.internal.api.FollowingResourceImpl;
 import misskey4j.internal.api.HashtagsResourceImpl;
@@ -43,6 +45,7 @@ public class MisskeyImpl implements Misskey {
     private MutesResource mutes;
     private BlocksResource blocks;
     private ReactionsResource reactions;
+    private FavoritesResource favorites;
     private FollowingResource following;
     private PollsResource polls;
     private MessagesResource messages;
@@ -64,6 +67,7 @@ public class MisskeyImpl implements Misskey {
         notes = new NotesResourceImpl(url, i);
 
         reactions = new ReactionsResourceImpl(url, i);
+        favorites = new FavoritesResourceImpl(url, i);
         following = new FollowingResourceImpl(url, i);
         mutes = new MutesResourceImpl(url, i);
         blocks = new BlocksResourceImpl(url, i);
@@ -106,6 +110,11 @@ public class MisskeyImpl implements Misskey {
     @Override
     public ReactionsResource reactions() {
         return reactions;
+    }
+
+    @Override
+    public FavoritesResource favorites() {
+        return favorites;
     }
 
     @Override

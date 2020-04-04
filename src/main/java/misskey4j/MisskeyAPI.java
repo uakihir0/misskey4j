@@ -101,6 +101,13 @@ public enum MisskeyAPI {
     BlocksDelete("blocking/delete"),
 
     // ------------------------------------------ //
+    // Favorites
+    // ------------------------------------------ //
+
+    FavoritesCreate("notes/favorites/create"),
+    FavoritesDelete("notes/favorites/delete"),
+
+    // ------------------------------------------ //
     // Reactions
     // ------------------------------------------ //
 

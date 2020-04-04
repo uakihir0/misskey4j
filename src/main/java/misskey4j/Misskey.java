@@ -4,6 +4,7 @@ import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.BlocksResource;
+import misskey4j.api.FavoritesResource;
 import misskey4j.api.FilesResource;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.HashtagsResource;
@@ -30,6 +31,8 @@ public interface Misskey {
     NotesResource notes();
 
     ReactionsResource reactions();
+
+    FavoritesResource favorites();
 
     FollowingResource following();
 

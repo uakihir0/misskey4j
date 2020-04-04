@@ -15,6 +15,7 @@ public interface FavoritesResource {
 
     /**
      * 指定した投稿のお気に入りを解除します。
+     * https://misskey.io/api-doc#operation/notes/favorites/delete
      */
     Response<Void> delete(
             FavoritesDeleteRequest request);
