@@ -1,5 +1,6 @@
 package misskey4j.api;
 
+import misskey4j.api.request.notes.NoteUnrenoteRequest;
 import misskey4j.api.request.notes.NotesChildrenRequest;
 import misskey4j.api.request.notes.NotesConversationRequest;
 import misskey4j.api.request.notes.NotesCreateRequest;
@@ -114,7 +115,7 @@ public interface NotesResource {
      */
     Response<NotesShowResponse> show(
             NotesShowRequest request);
-    
+
     /**
      * 投稿を検索します。
      * https://misskey.io/api-doc#operation/notes/search
@@ -128,4 +129,13 @@ public interface NotesResource {
      */
     Response<NotesUserListTimelineResponse[]> userListTimeline(
             NotesUserListTimelineRequest request);
+
+    /**
+     * 指定した投稿のRenoteを解除します。
+     * https://misskey.io/api-doc#operation/notes/unrenote
+     */
+    Response<Void> unrenote(
+            NoteUnrenoteRequest request);
+
+
 }

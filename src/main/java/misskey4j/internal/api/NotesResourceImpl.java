@@ -2,6 +2,7 @@ package misskey4j.internal.api;
 
 import misskey4j.MisskeyAPI;
 import misskey4j.api.NotesResource;
+import misskey4j.api.request.notes.NoteUnrenoteRequest;
 import misskey4j.api.request.notes.NotesChildrenRequest;
 import misskey4j.api.request.notes.NotesConversationRequest;
 import misskey4j.api.request.notes.NotesCreateRequest;
@@ -132,5 +133,11 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
             NotesUserListTimelineRequest request) {
         return post(NotesUserListTimelineResponse[].class,
                 MisskeyAPI.NotesUserListTimeline.code(), request);
+    }
+
+    @Override
+    public Response<Void> unrenote(
+            NoteUnrenoteRequest request) {
+        return post(MisskeyAPI.NotesUnrenote.code(), request);
     }
 }
