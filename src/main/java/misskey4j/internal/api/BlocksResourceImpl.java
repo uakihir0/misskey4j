@@ -14,18 +14,27 @@ public class BlocksResourceImpl extends AbstractResourceImpl implements BlocksRe
         super(uri, i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> create(
             BlocksCreateRequest request) {
         return post(MisskeyAPI.BlocksCreate.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> delete(
             BlocksDeleteRequest request) {
         return post(MisskeyAPI.BlocksDelete.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<BlocksListResponse[]> list(
             BlocksListRequest request) {

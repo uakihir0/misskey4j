@@ -12,12 +12,18 @@ public class ReactionsResourceImpl extends AbstractResourceImpl implements React
         super(uri, i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> create(
             ReactionsCreateRequest request) {
         return post(MisskeyAPI.ReactionsCreate.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> delete(
             ReactionsDeleteRequest request) {

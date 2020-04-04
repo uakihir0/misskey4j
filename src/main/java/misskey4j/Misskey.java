@@ -10,6 +10,7 @@ import misskey4j.api.FollowingResource;
 import misskey4j.api.HashtagsResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MessagesResource;
+import misskey4j.api.MetaResource;
 import misskey4j.api.MutesResource;
 import misskey4j.api.NotesResource;
 import misskey4j.api.PollsResource;
@@ -17,6 +18,8 @@ import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
 
 public interface Misskey {
+
+    MetaResource meta();
 
     AppResource app();
 

@@ -17,6 +17,9 @@ public class FilesResourceImpl extends AbstractResourceImpl implements FilesReso
         super(uri, i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<FilesCreateResponse> create(
             FilesCreateRequest request) {

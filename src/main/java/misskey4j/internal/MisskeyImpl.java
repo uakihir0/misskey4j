@@ -11,6 +11,7 @@ import misskey4j.api.FollowingResource;
 import misskey4j.api.HashtagsResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MessagesResource;
+import misskey4j.api.MetaResource;
 import misskey4j.api.MutesResource;
 import misskey4j.api.NotesResource;
 import misskey4j.api.PollsResource;
@@ -26,6 +27,7 @@ import misskey4j.internal.api.FollowingResourceImpl;
 import misskey4j.internal.api.HashtagsResourceImpl;
 import misskey4j.internal.api.ListsResourceImpl;
 import misskey4j.internal.api.MessagesResourceImpl;
+import misskey4j.internal.api.MetaResourceImpl;
 import misskey4j.internal.api.MutesResourceImpl;
 import misskey4j.internal.api.NotesResourceImpl;
 import misskey4j.internal.api.PollsResourceImpl;
@@ -36,6 +38,7 @@ import java.net.URL;
 
 public class MisskeyImpl implements Misskey {
 
+    private MetaResource meta;
     private AppResource app;
     private AuthResource auth;
     private AccountsResource accounts;
@@ -57,6 +60,7 @@ public class MisskeyImpl implements Misskey {
     public MisskeyImpl(String url, String i) {
         this.url = url;
 
+        meta = new MetaResourceImpl(url);
         app = new AppResourceImpl(url);
         auth = new AuthResourceImpl(url);
 
@@ -75,6 +79,11 @@ public class MisskeyImpl implements Misskey {
         messages = new MessagesResourceImpl(url, i);
         files = new FilesResourceImpl(url, i);
         hashtags = new HashtagsResourceImpl(url, i);
+    }
+
+    @Override
+    public MetaResource meta() {
+        return meta;
     }
 
     @Override

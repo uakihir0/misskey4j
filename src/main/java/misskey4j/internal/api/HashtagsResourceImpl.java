@@ -12,6 +12,9 @@ public class HashtagsResourceImpl extends AbstractResourceImpl implements Hashta
         super(uri, i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<HashtagsTrendResponse[]> trend(
             HashtagsTrendRequest request) {

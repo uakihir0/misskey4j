@@ -12,12 +12,18 @@ public class FavoritesResourceImpl extends AbstractResourceImpl implements Favor
         super(uri, i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> create(
             FavoritesCreateRequest request) {
         return post(MisskeyAPI.FavoritesCreate.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> delete(
             FavoritesDeleteRequest request) {

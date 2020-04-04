@@ -38,6 +38,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
         super(uri, i);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<UsersNotesResponse[]> users(
             UsersNotesRequest request) {
@@ -45,6 +48,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.UsersNotes.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesResponse[]> notes(
             NotesRequest request) {
@@ -52,6 +58,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.Notes.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesChildrenResponse[]> children(
             NotesChildrenRequest request) {
@@ -66,6 +75,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesConversation.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesCreateResponse> create(
             NotesCreateRequest request) {
@@ -73,12 +85,18 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesCreate.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> delete(
             NotesDeleteRequest request) {
         return post(MisskeyAPI.NotesDelete.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesMentionsResponse[]> mentions(
             NotesMentionsRequest request) {
@@ -86,6 +104,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesMentions.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesGlobalTimelineResponse[]> globalTimeline(
             NotesGlobalTimelineRequest request) {
@@ -93,6 +114,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesGlobalTimeline.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesHybridTimelineResponse[]> hybridTimeline(
             NotesHybridTimelineRequest request) {
@@ -100,6 +124,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesHybridTimeline.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesLocalTimelineResponse[]> localTimeline(
             NotesLocalTimelineRequest request) {
@@ -107,6 +134,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesLocalTimeline.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesTimelineResponse[]> timeline(
             NotesTimelineRequest request) {
@@ -114,6 +144,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesTimeline.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesShowResponse> show(
             NotesShowRequest request) {
@@ -121,6 +154,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesShow.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesSearchResponse[]> search(
             NotesSearchRequest request) {
@@ -128,6 +164,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesSearch.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesUserListTimelineResponse[]> userListTimeline(
             NotesUserListTimelineRequest request) {
@@ -135,6 +174,9 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesUserListTimeline.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<Void> unrenote(
             NoteUnrenoteRequest request) {
