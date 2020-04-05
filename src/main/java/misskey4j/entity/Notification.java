@@ -10,6 +10,8 @@ public class Notification {
     private User user;
     private Note note;
 
+    private String reaction;
+
     // region
     public String getId() {
         return id;
@@ -57,6 +59,14 @@ public class Notification {
 
     public void setNote(Note note) {
         this.note = note;
+    }
+
+    public String getReaction() {
+        return reaction;
+    }
+
+    public void setReaction(String reaction) {
+        this.reaction = reaction;
     }
     // endregion
 }
