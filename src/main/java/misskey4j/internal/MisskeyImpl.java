@@ -33,6 +33,7 @@ import misskey4j.internal.api.NotesResourceImpl;
 import misskey4j.internal.api.PollsResourceImpl;
 import misskey4j.internal.api.ReactionsResourceImpl;
 import misskey4j.internal.api.UsersResourceImpl;
+import misskey4j.stream.MisskeyStream;
 
 import java.net.URL;
 
@@ -56,9 +57,11 @@ public class MisskeyImpl implements Misskey {
     private HashtagsResource hashtags;
 
     private String url;
+    private String i;
 
     public MisskeyImpl(String url, String i) {
         this.url = url;
+        this.i = i;
 
         meta = new MetaResourceImpl(url);
         app = new AppResourceImpl(url);
@@ -161,6 +164,9 @@ public class MisskeyImpl implements Misskey {
         return hashtags;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getHost() {
         try {
@@ -168,5 +174,21 @@ public class MisskeyImpl implements Misskey {
         } catch (Throwable e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getAuthToken() {
+        return i;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MisskeyStream stream() {
+        return new MisskeyStream(this);
     }
 }
