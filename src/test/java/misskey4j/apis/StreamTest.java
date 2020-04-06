@@ -14,9 +14,18 @@ public class StreamTest extends AbstractTest {
         MisskeyStream stream = misskey.stream();
 
         stream.connectBlocking();
-        stream.homeTimeLine((Note) -> {
+        stream.homeTimeLine(NotesTest::print);
 
-        });
+        Thread.sleep(100 * 1000L);
+    }
+
+    @Test
+    public void testGlobalTimeLineStream() throws InterruptedException {
+        Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
+        MisskeyStream stream = misskey.stream();
+
+        stream.connectBlocking();
+        stream.globalTimeline(NotesTest::print);
 
         Thread.sleep(100 * 1000L);
     }

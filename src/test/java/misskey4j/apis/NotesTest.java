@@ -25,7 +25,7 @@ public class NotesTest extends AbstractTest {
         }
     }
 
-    public void print(Note note) {
+    public static void print(Note note) {
         System.out.println("// ------------------------------ //");
 
         if (note.getRenote() != null) {

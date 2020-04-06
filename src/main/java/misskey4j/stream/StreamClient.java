@@ -1,13 +1,18 @@
 package misskey4j.stream;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import misskey4j.entity.Note;
 import misskey4j.internal.api.AbstractResourceImpl;
 import misskey4j.stream.callback.EventCallback;
+import misskey4j.stream.callback.NoteCallback;
 import misskey4j.stream.model.StreamRequest;
+import misskey4j.stream.model.StreamResponse;
 import net.socialhub.logger.Logger;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -38,9 +43,10 @@ public class StreamClient extends WebSocketClient {
         StreamRequest<T> request = new StreamRequest<>();
 
         String id = UUID.randomUUID().toString();
-        this.addCallback(id, callbacks);
+        addCallback(id, callbacks);
 
         request.getBody().setChannel(type);
+        request.getBody().setParams(params);
         request.getBody().setId(id);
         request.setType("connect");
 
@@ -58,6 +64,31 @@ public class StreamClient extends WebSocketClient {
 
     @Override
     public void onMessage(String message) {
+        Gson gson = AbstractResourceImpl.getGsonInstance();
+        Type genericType = new TypeToken<StreamResponse<Object>>() {
+        }.getType();
+
+        StreamResponse<Object> generic = gson.fromJson(message, genericType);
+        if (generic.getType().equals("channel")) {
+
+            if (generic.getBody().getType().equals("note")) {
+                Type noteType = new TypeToken<StreamResponse<Note>>() {
+                }.getType();
+
+                StreamResponse<Note> note = gson.fromJson(message, noteType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof NoteCallback) {
+                            Note body = note.getBody().getBody();
+                            ((NoteCallback) event).onNoteUpdate(body);
+                        }
+                    }
+                }
+            }
+        }
+
         logger.debug(message);
     }
 

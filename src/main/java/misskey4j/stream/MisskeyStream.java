@@ -57,4 +57,25 @@ public class MisskeyStream {
     public void homeTimeLine(NoteCallback callback) {
         client.subscribe("homeTimeline", null, Collections.singletonList(callback));
     }
+
+    /**
+     * LocalTimeline Events
+     */
+    public void localTimeline(NoteCallback callback) {
+        client.subscribe("localTimeline", null, Collections.singletonList(callback));
+    }
+
+    /**
+     * HybridTimeline Events
+     */
+    public void hybridTimeline(NoteCallback callback) {
+        client.subscribe("hybridTimeline", null, Collections.singletonList(callback));
+    }
+
+    /**
+     * GlobalTimeline Events
+     */
+    public void globalTimeline(NoteCallback callback) {
+        client.subscribe("globalTimeline", null, Collections.singletonList(callback));
+    }
 }
