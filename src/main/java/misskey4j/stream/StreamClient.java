@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import misskey4j.entity.Note;
 import misskey4j.internal.api.AbstractResourceImpl;
+import misskey4j.stream.callback.ClosedCallback;
+import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.EventCallback;
 import misskey4j.stream.callback.NoteCallback;
+import misskey4j.stream.callback.OpenedCallback;
 import misskey4j.stream.model.StreamRequest;
 import misskey4j.stream.model.StreamResponse;
 import net.socialhub.logger.Logger;
@@ -24,6 +27,11 @@ public class StreamClient extends WebSocketClient {
     private static Logger logger = Logger.getLogger(StreamClient.class);
 
     private Map<String, List<EventCallback>> callbackMap = new HashMap<>();
+
+    private OpenedCallback openedCallback;
+    private ClosedCallback closedCallback;
+    private ErrorCallback errorCallback;
+
 
     public StreamClient(URI serverURI) {
         super(serverURI);
@@ -60,6 +68,9 @@ public class StreamClient extends WebSocketClient {
     @Override
     public void onOpen(ServerHandshake handshake) {
         logger.debug("Opened connection.");
+        if (openedCallback != null) {
+            openedCallback.onOpened();
+        }
     }
 
     @Override
@@ -97,10 +108,31 @@ public class StreamClient extends WebSocketClient {
         logger.debug("Connection closed by "
                 + (remote ? "remote peer" : "us")
                 + " Code: " + code + " Reason: " + reason);
+
+        if (closedCallback != null) {
+            closedCallback.onClosed(code, reason, remote);
+        }
     }
 
     @Override
     public void onError(Exception e) {
-        e.printStackTrace();
+        if (errorCallback != null) {
+            errorCallback.onError(e);
+        }
+
     }
+
+    // region
+    public void setOpenedCallback(OpenedCallback openedCallback) {
+        this.openedCallback = openedCallback;
+    }
+
+    public void setClosedCallback(ClosedCallback closedCallback) {
+        this.closedCallback = closedCallback;
+    }
+
+    public void setErrorCallback(ErrorCallback errorCallback) {
+        this.errorCallback = errorCallback;
+    }
+    // endregion
 }

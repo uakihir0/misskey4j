@@ -1,7 +1,10 @@
 package misskey4j.stream;
 
 import misskey4j.Misskey;
+import misskey4j.stream.callback.ClosedCallback;
+import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.NoteCallback;
+import misskey4j.stream.callback.OpenedCallback;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,6 +27,13 @@ public class MisskeyStream {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+    }
+    
+    /**
+     * Is connection opened?
+     */
+    public boolean isOpen() {
+        return client.isOpen();
     }
 
     /**
@@ -77,5 +87,17 @@ public class MisskeyStream {
      */
     public void globalTimeline(NoteCallback callback) {
         client.subscribe("globalTimeline", null, Collections.singletonList(callback));
+    }
+
+    public void setOpenedCallback(OpenedCallback openedCallback) {
+        client.setOpenedCallback(openedCallback);
+    }
+
+    public void setClosedCallback(ClosedCallback closedCallback) {
+        client.setClosedCallback(closedCallback);
+    }
+
+    public void setErrorCallback(ErrorCallback errorCallback) {
+        client.setErrorCallback(errorCallback);
     }
 }
