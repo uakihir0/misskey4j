@@ -1,6 +1,7 @@
 package misskey4j;
 
 import misskey4j.internal.MisskeyImpl;
+import misskey4j.search.SearchInstances;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -24,5 +25,9 @@ public class MisskeyFactory {
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    public static SearchInstances getSearchInstances() {
+        return new SearchInstances("https://join.misskey.page/instances.json");
     }
 }
