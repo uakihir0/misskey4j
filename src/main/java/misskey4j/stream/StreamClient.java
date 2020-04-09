@@ -116,10 +116,14 @@ public class StreamClient extends WebSocketClient {
 
     @Override
     public void onError(Exception e) {
+        if (e != null) {
+            logger.debug("Exception: " + e.getClass().getName()
+                    + " message: " + e.getMessage());
+        }
+        
         if (errorCallback != null) {
             errorCallback.onError(e);
         }
-
     }
 
     // region
