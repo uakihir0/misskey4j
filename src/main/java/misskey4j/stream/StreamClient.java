@@ -15,8 +15,11 @@ import net.socialhub.logger.Logger;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
+import javax.net.ssl.SSLContext;
 import java.lang.reflect.Type;
 import java.net.URI;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +38,18 @@ public class StreamClient extends WebSocketClient {
 
     public StreamClient(URI serverURI) {
         super(serverURI);
+
+        if (serverURI.toString().startsWith("wss:")) {
+            try {
+                SSLContext sslContext = SSLContext.getInstance("TLS");
+                sslContext.init(null, null, null);
+                setSocketFactory(sslContext.getSocketFactory());
+
+            } catch (NoSuchAlgorithmException
+                    | KeyManagementException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     /**
@@ -120,7 +135,7 @@ public class StreamClient extends WebSocketClient {
             logger.debug("Exception: " + e.getClass().getName()
                     + " message: " + e.getMessage());
         }
-        
+
         if (errorCallback != null) {
             errorCallback.onError(e);
         }
