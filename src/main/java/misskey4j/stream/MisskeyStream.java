@@ -6,12 +6,13 @@ import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.NoteCallback;
 import misskey4j.stream.callback.OpenedCallback;
 import net.socialhub.logger.Logger;
-import org.java_websocket.AbstractWebSocket;
 
 import java.net.InetAddress;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class MisskeyStream {
 
@@ -23,21 +24,42 @@ public class MisskeyStream {
     public MisskeyStream(Misskey misskey) {
         this.misskey = misskey;
 
+
         try {
             String host = misskey.getHost();
             String i = misskey.getAuthToken();
             String url = "wss://" + host + "/streaming?i=" + i;
+
             this.client = new StreamClient(new URI(url));
             this.client.setReuseAddr(true);
-            this.client.setTcpNoDelay(true);
             this.client.setDnsResolver(uri -> {
-                InetAddress address = InetAddress.getByName(uri.getHost());
-                log.trace("URI: {}, Address: {}", uri.getHost(), address.getHostAddress());
+                InetAddress address = getFixedAddress(uri.getHost());
+                log.trace("Use Address: {}", address.getHostAddress());
                 return address;
             });
 
-        } catch (URISyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private InetAddress getFixedAddress(String host) {
+        try {
+            InetAddress[] addresses = InetAddress.getAllByName(host);
+            for (InetAddress address : addresses) {
+                log.trace("Found Address: {}", address.getHostAddress());
+            }
+
+            Optional<InetAddress> result = Stream.of(addresses)
+                    .filter(a -> a.getHostAddress().contains("."))
+                    .min(Comparator.comparing(InetAddress::getHostAddress));
+
+            return result.orElseGet(() -> Stream.of(addresses)
+                    .min(Comparator.comparing(InetAddress::getHostAddress))
+                    .orElseThrow(IllegalStateException::new));
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
