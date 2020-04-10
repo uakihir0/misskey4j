@@ -19,7 +19,8 @@ dependencies {
 
     // Library
     compile("com.google.code.gson", "gson", "2.8.6")
-    compile("com.github.uakihir0", "Java-WebSocket", "1.4.1.1")
+    //compile("com.github.uakihir0", "Java-WebSocket", "1.4.1.1")
+    compile("com.neovisionaries", "nv-websocket-client", "2.9")
 
     // Test
     testCompile("junit", "junit", "4.12")

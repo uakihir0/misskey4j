@@ -2,6 +2,11 @@ package misskey4j.stream;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.neovisionaries.ws.client.WebSocket;
+import com.neovisionaries.ws.client.WebSocketAdapter;
+import com.neovisionaries.ws.client.WebSocketException;
+import com.neovisionaries.ws.client.WebSocketFactory;
+import com.neovisionaries.ws.client.WebSocketFrame;
 import misskey4j.entity.Note;
 import misskey4j.internal.api.AbstractResourceImpl;
 import misskey4j.stream.callback.ClosedCallback;
@@ -12,22 +17,20 @@ import misskey4j.stream.callback.OpenedCallback;
 import misskey4j.stream.model.StreamRequest;
 import misskey4j.stream.model.StreamResponse;
 import net.socialhub.logger.Logger;
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
 
 import javax.net.ssl.SSLContext;
 import java.lang.reflect.Type;
 import java.net.URI;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class StreamClient extends WebSocketClient {
+public class StreamClient extends WebSocketAdapter {
 
     private static Logger logger = Logger.getLogger(StreamClient.class);
+
+    private WebSocket webSocket;
 
     private Map<String, List<EventCallback>> callbackMap = new HashMap<>();
 
@@ -36,20 +39,39 @@ public class StreamClient extends WebSocketClient {
     private ErrorCallback errorCallback;
 
 
-    public StreamClient(URI serverURI) {
-        super(serverURI);
+    public StreamClient(String uri) {
 
-        if (serverURI.toString().startsWith("wss:")) {
-            try {
-                SSLContext sslContext = SSLContext.getInstance("TLS");
-                sslContext.init(null, null, null);
-                setSocketFactory(sslContext.getSocketFactory());
+        try {
+            WebSocketFactory factory = new WebSocketFactory();
+            factory.setServerName(new URI(uri).getHost());
+            factory.setVerifyHostname(false);
 
-            } catch (NoSuchAlgorithmException
-                    | KeyManagementException e) {
-                throw new RuntimeException(e);
-            }
+            webSocket = factory.createSocket(uri);
+            webSocket.addListener(this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+
+    public void connect() {
+        webSocket.connectAsynchronously();
+    }
+
+    public void connectBlocking() {
+        try {
+            webSocket.connect();
+        } catch (WebSocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void close() {
+        webSocket.sendClose();
+    }
+
+    public boolean isOpen() {
+        return webSocket.isOpen();
     }
 
     /**
@@ -77,31 +99,32 @@ public class StreamClient extends WebSocketClient {
         String text = gson.toJson(request);
 
         logger.debug("Send: " + text);
-        send(text);
+        webSocket.sendText(text);
     }
 
     @Override
-    public void onOpen(ServerHandshake handshake) {
+    public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
         logger.debug("Opened connection.");
         if (openedCallback != null) {
             openedCallback.onOpened();
         }
     }
 
+
     @Override
-    public void onMessage(String message) {
+    public void onTextMessage(WebSocket websocket, String text) throws Exception {
         Gson gson = AbstractResourceImpl.getGsonInstance();
         Type genericType = new TypeToken<StreamResponse<Object>>() {
         }.getType();
 
-        StreamResponse<Object> generic = gson.fromJson(message, genericType);
+        StreamResponse<Object> generic = gson.fromJson(text, genericType);
         if (generic.getType().equals("channel")) {
 
             if (generic.getBody().getType().equals("note")) {
                 Type noteType = new TypeToken<StreamResponse<Note>>() {
                 }.getType();
 
-                StreamResponse<Note> note = gson.fromJson(message, noteType);
+                StreamResponse<Note> note = gson.fromJson(text, noteType);
                 List<EventCallback> events = callbackMap.get(generic.getBody().getId());
 
                 if (events != null && events.size() > 0) {
@@ -115,29 +138,33 @@ public class StreamClient extends WebSocketClient {
             }
         }
 
-        logger.debug(message);
+        logger.debug(text);
     }
 
     @Override
-    public void onClose(int code, String reason, boolean remote) {
+    public void onDisconnected(
+            WebSocket websocket,
+            WebSocketFrame serverCloseFrame,
+            WebSocketFrame clientCloseFrame,
+            boolean closedByServer) throws Exception {
+
         logger.debug("Connection closed by "
-                + (remote ? "remote peer" : "us")
-                + " Code: " + code + " Reason: " + reason);
+                + (closedByServer ? "remote peer" : "us"));
 
         if (closedCallback != null) {
-            closedCallback.onClosed(code, reason, remote);
+            closedCallback.onClosed(closedByServer);
         }
     }
 
     @Override
-    public void onError(Exception e) {
-        if (e != null) {
-            logger.debug("Exception: " + e.getClass().getName()
-                    + " message: " + e.getMessage());
+    public void onError(WebSocket websocket, WebSocketException cause) throws Exception {
+        if (cause != null) {
+            logger.debug("Exception: " + cause.getClass().getName()
+                    + " message: " + cause.getMessage());
         }
 
         if (errorCallback != null) {
-            errorCallback.onError(e);
+            errorCallback.onError(cause);
         }
     }
 

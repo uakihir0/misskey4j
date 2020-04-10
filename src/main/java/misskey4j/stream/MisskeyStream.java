@@ -8,7 +8,6 @@ import misskey4j.stream.callback.OpenedCallback;
 import net.socialhub.logger.Logger;
 
 import java.net.InetAddress;
-import java.net.URI;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
@@ -24,19 +23,11 @@ public class MisskeyStream {
     public MisskeyStream(Misskey misskey) {
         this.misskey = misskey;
 
-
         try {
             String host = misskey.getHost();
             String i = misskey.getAuthToken();
             String url = "wss://" + host + "/streaming?i=" + i;
-
-            this.client = new StreamClient(new URI(url));
-            this.client.setReuseAddr(true);
-            this.client.setDnsResolver(uri -> {
-                InetAddress address = getFixedAddress(uri.getHost());
-                log.trace("Use Address: {}", address.getHostAddress());
-                return address;
-            });
+            client = new StreamClient(url);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,11 +72,7 @@ public class MisskeyStream {
      * Connect (blocking)
      */
     public void connectBlocking() {
-        try {
-            client.connectBlocking();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        client.connectBlocking();
     }
 
     /**
