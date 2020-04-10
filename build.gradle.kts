@@ -14,7 +14,7 @@ repositories {
 dependencies {
 
     // J2ObjC
-    compile("com.github.uakihir0", "JLogger", "1.3")
+    compile("com.github.uakihir0", "JLogger", "1.4")
     compile("com.github.uakihir0", "JHttpClient", "1.1.6")
 
     // Library
