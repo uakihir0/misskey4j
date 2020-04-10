@@ -5,7 +5,10 @@ import misskey4j.stream.callback.ClosedCallback;
 import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.NoteCallback;
 import misskey4j.stream.callback.OpenedCallback;
+import net.socialhub.logger.Logger;
+import org.java_websocket.AbstractWebSocket;
 
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Collections;
@@ -15,6 +18,8 @@ public class MisskeyStream {
     private Misskey misskey;
     private StreamClient client;
 
+    private final Logger log = Logger.getLogger(MisskeyStream.class);
+
     public MisskeyStream(Misskey misskey) {
         this.misskey = misskey;
 
@@ -23,12 +28,19 @@ public class MisskeyStream {
             String i = misskey.getAuthToken();
             String url = "wss://" + host + "/streaming?i=" + i;
             this.client = new StreamClient(new URI(url));
+            this.client.setReuseAddr(true);
+            this.client.setTcpNoDelay(true);
+            this.client.setDnsResolver(uri -> {
+                InetAddress address = InetAddress.getByName(uri.getHost());
+                log.trace("URI: {}, Address: {}", uri.getHost(), address.getHostAddress());
+                return address;
+            });
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Is connection opened?
      */
