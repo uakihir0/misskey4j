@@ -1,5 +1,7 @@
 package misskey4j.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +47,9 @@ public class Note {
 
     private Map<String, Long> reactions;
     private String myReaction;
+
+    @SerializedName("_featuredId_")
+    private String featuredId;
 
     // region
     public String getId() {
@@ -237,6 +242,14 @@ public class Note {
 
     public void setMyReaction(String myReaction) {
         this.myReaction = myReaction;
+    }
+
+    public String getFeaturedId() {
+        return featuredId;
+    }
+
+    public void setFeaturedId(String featuredId) {
+        this.featuredId = featuredId;
     }
     // endregion
 }

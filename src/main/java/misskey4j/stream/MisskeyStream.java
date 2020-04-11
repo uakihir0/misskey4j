@@ -5,20 +5,13 @@ import misskey4j.stream.callback.ClosedCallback;
 import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.NoteCallback;
 import misskey4j.stream.callback.OpenedCallback;
-import net.socialhub.logger.Logger;
 
-import java.net.InetAddress;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 public class MisskeyStream {
 
     private Misskey misskey;
     private StreamClient client;
-
-    private final Logger log = Logger.getLogger(MisskeyStream.class);
 
     public MisskeyStream(Misskey misskey) {
         this.misskey = misskey;
@@ -31,26 +24,6 @@ public class MisskeyStream {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    private InetAddress getFixedAddress(String host) {
-        try {
-            InetAddress[] addresses = InetAddress.getAllByName(host);
-            for (InetAddress address : addresses) {
-                log.trace("Found Address: {}", address.getHostAddress());
-            }
-
-            Optional<InetAddress> result = Stream.of(addresses)
-                    .filter(a -> a.getHostAddress().contains("."))
-                    .min(Comparator.comparing(InetAddress::getHostAddress));
-
-            return result.orElseGet(() -> Stream.of(addresses)
-                    .min(Comparator.comparing(InetAddress::getHostAddress))
-                    .orElseThrow(IllegalStateException::new));
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 

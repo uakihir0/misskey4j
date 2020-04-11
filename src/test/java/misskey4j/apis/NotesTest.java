@@ -27,6 +27,9 @@ public class NotesTest extends AbstractTest {
 
     public static void print(Note note) {
         System.out.println("// ------------------------------ //");
+        if (note.getFeaturedId() != null) {
+            System.out.println("!!!!!!!Featured!!!!!!!");
+        }
 
         if (note.getRenote() != null) {
             System.out.println("!!Renote!!");
@@ -37,5 +40,6 @@ public class NotesTest extends AbstractTest {
             System.out.println("User: " + note.getUser().getName());
             System.out.println("Text: " + note.getText());
         }
+
     }
 }

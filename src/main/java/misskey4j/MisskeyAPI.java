@@ -22,6 +22,7 @@ public enum MisskeyAPI {
     NotesSearch("notes/search"),
     NotesTimeline("notes/timeline"),
     NotesMentions("notes/mentions"),
+    NotesFeatured("notes/featured"),
     NotesLocalTimeline("notes/local-timeline"),
     NotesHybridTimeline("notes/hybrid-timeline"),
     NotesGlobalTimeline("notes/global-timeline"),

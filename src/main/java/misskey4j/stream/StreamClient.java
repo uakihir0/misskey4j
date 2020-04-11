@@ -18,7 +18,6 @@ import misskey4j.stream.model.StreamRequest;
 import misskey4j.stream.model.StreamResponse;
 import net.socialhub.logger.Logger;
 
-import javax.net.ssl.SSLContext;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.HashMap;
@@ -30,14 +29,12 @@ public class StreamClient extends WebSocketAdapter {
 
     private static Logger logger = Logger.getLogger(StreamClient.class);
 
-    private WebSocket webSocket;
-
     private Map<String, List<EventCallback>> callbackMap = new HashMap<>();
-
     private OpenedCallback openedCallback;
     private ClosedCallback closedCallback;
     private ErrorCallback errorCallback;
 
+    private WebSocket webSocket;
 
     public StreamClient(String uri) {
 

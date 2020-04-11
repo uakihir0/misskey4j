@@ -5,6 +5,7 @@ import misskey4j.api.request.notes.NotesChildrenRequest;
 import misskey4j.api.request.notes.NotesConversationRequest;
 import misskey4j.api.request.notes.NotesCreateRequest;
 import misskey4j.api.request.notes.NotesDeleteRequest;
+import misskey4j.api.request.notes.NotesFeaturedRequest;
 import misskey4j.api.request.notes.NotesGlobalTimelineRequest;
 import misskey4j.api.request.notes.NotesHybridTimelineRequest;
 import misskey4j.api.request.notes.NotesLocalTimelineRequest;
@@ -18,6 +19,7 @@ import misskey4j.api.request.notes.UsersNotesRequest;
 import misskey4j.api.response.notes.NotesChildrenResponse;
 import misskey4j.api.response.notes.NotesConversationResponse;
 import misskey4j.api.response.notes.NotesCreateResponse;
+import misskey4j.api.response.notes.NotesFeaturedResponse;
 import misskey4j.api.response.notes.NotesGlobalTimelineResponse;
 import misskey4j.api.response.notes.NotesHybridTimelineResponse;
 import misskey4j.api.response.notes.NotesLocalTimelineResponse;
@@ -80,6 +82,13 @@ public interface NotesResource {
      */
     Response<NotesMentionsResponse[]> mentions(
             NotesMentionsRequest request);
+
+    /**
+     * Featured な投稿を取得します。
+     * https://misskey.io/api-doc#operation/notes/featured
+     */
+    Response<NotesFeaturedResponse[]> featured(
+            NotesFeaturedRequest request);
 
     /**
      * グローバルタイムラインを取得します。
