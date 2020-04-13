@@ -180,6 +180,7 @@ public class StreamClient extends WebSocketAdapter {
         if (cause != null) {
             logger.debug("Exception: " + cause.getClass().getName()
                     + " message: " + cause.getMessage());
+            logger.debug("Trace: ", cause);
         }
 
         if (errorCallback != null) {
