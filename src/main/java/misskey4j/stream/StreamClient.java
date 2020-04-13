@@ -2,6 +2,7 @@ package misskey4j.stream;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.neovisionaries.ws.client.ThreadType;
 import com.neovisionaries.ws.client.WebSocket;
 import com.neovisionaries.ws.client.WebSocketAdapter;
 import com.neovisionaries.ws.client.WebSocketException;
@@ -35,6 +36,8 @@ public class StreamClient extends WebSocketAdapter {
     private ErrorCallback errorCallback;
 
     private WebSocket webSocket;
+    private boolean isReading = false;
+    private boolean isWriting = false;
 
     public StreamClient(String uri) {
 
@@ -44,6 +47,7 @@ public class StreamClient extends WebSocketAdapter {
             factory.setVerifyHostname(false);
 
             webSocket = factory.createSocket(uri);
+            webSocket.setPingInterval(5000);
             webSocket.addListener(this);
 
         } catch (Exception e) {
@@ -102,11 +106,29 @@ public class StreamClient extends WebSocketAdapter {
     @Override
     public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
         logger.debug("Opened connection.");
-        if (openedCallback != null) {
-            openedCallback.onOpened();
-        }
+        //if (openedCallback != null) {
+        //    openedCallback.onOpened();
+        //}
     }
 
+    @Override
+    public void onThreadStarted(WebSocket websocket, ThreadType threadType, Thread thread) throws Exception {
+        String message = "Start: " + threadType.name();
+        logger.debug(message);
+
+        if (threadType == ThreadType.READING_THREAD) {
+            isReading = true;
+        }
+        if (threadType == ThreadType.WRITING_THREAD) {
+            isWriting = true;
+        }
+        if (isReading && isWriting) {
+            logger.debug("Thread ready.");
+            if (openedCallback != null) {
+                openedCallback.onOpened();
+            }
+        }
+    }
 
     @Override
     public void onTextMessage(WebSocket websocket, String text) throws Exception {
