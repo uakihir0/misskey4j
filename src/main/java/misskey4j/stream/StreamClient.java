@@ -19,6 +19,7 @@ import misskey4j.stream.model.StreamRequest;
 import misskey4j.stream.model.StreamResponse;
 import net.socialhub.logger.Logger;
 
+import javax.net.ssl.SSLContext;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.HashMap;
@@ -42,9 +43,13 @@ public class StreamClient extends WebSocketAdapter {
     public StreamClient(String uri) {
 
         try {
+            SSLContext context = SSLContext.getInstance("TLS");
+            context.init(null, null, null);
+
             WebSocketFactory factory = new WebSocketFactory();
             factory.setServerName(new URI(uri).getHost());
             factory.setVerifyHostname(false);
+            factory.setSSLContext(context);
 
             webSocket = factory.createSocket(uri);
             webSocket.setAutoFlush(false);
