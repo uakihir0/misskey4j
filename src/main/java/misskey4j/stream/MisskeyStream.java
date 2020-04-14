@@ -19,7 +19,7 @@ public class MisskeyStream {
         try {
             String host = misskey.getHost();
             String i = misskey.getAuthToken();
-            String url = "wss://" + host + "/streaming?i=" + i;
+            String url = "https://" + host + "/streaming?i=" + i;
             client = new StreamClient(url);
 
         } catch (Exception e) {

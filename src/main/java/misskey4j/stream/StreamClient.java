@@ -47,7 +47,7 @@ public class StreamClient extends WebSocketAdapter {
             factory.setVerifyHostname(false);
 
             webSocket = factory.createSocket(uri);
-            webSocket.setPingInterval(5000);
+            webSocket.setAutoFlush(false);
             webSocket.addListener(this);
 
         } catch (Exception e) {
