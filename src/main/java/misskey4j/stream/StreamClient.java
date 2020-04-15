@@ -2,12 +2,6 @@ package misskey4j.stream;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.neovisionaries.ws.client.ThreadType;
-import com.neovisionaries.ws.client.WebSocket;
-import com.neovisionaries.ws.client.WebSocketAdapter;
-import com.neovisionaries.ws.client.WebSocketException;
-import com.neovisionaries.ws.client.WebSocketFactory;
-import com.neovisionaries.ws.client.WebSocketFrame;
 import misskey4j.entity.Note;
 import misskey4j.internal.api.AbstractResourceImpl;
 import misskey4j.stream.callback.ClosedCallback;
@@ -15,17 +9,20 @@ import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.EventCallback;
 import misskey4j.stream.callback.NoteCallback;
 import misskey4j.stream.callback.OpenedCallback;
+import misskey4j.stream.client.WebSocketClient;
+import misskey4j.stream.client.WebSocketListener;
 import misskey4j.stream.model.StreamRequest;
 import misskey4j.stream.model.StreamResponse;
 import net.socialhub.logger.Logger;
 
 import java.lang.reflect.Type;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class StreamClient extends WebSocketAdapter {
+public class StreamClient implements WebSocketListener {
 
     private static Logger logger = Logger.getLogger(StreamClient.class);
 
@@ -34,43 +31,28 @@ public class StreamClient extends WebSocketAdapter {
     private ClosedCallback closedCallback;
     private ErrorCallback errorCallback;
 
-    private WebSocket webSocket;
-    private boolean isReading = false;
-    private boolean isWriting = false;
+    private WebSocketClient client;
 
     public StreamClient(String uri) {
+        logger.debug("Uri: " + uri);
 
         try {
-            WebSocketFactory factory = new WebSocketFactory();
-            factory.setVerifyHostname(false);
-
-            webSocket = factory.createSocket(uri);
-            webSocket.setPingInterval(1000);
-            webSocket.addListener(this);
-
+            client = new WebSocketClient(new URI(uri), this);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void connect() {
-        webSocket.connectAsynchronously();
-    }
-
-    public void connectBlocking() {
-        try {
-            webSocket.connect();
-        } catch (WebSocketException e) {
-            e.printStackTrace();
-        }
+        client.connect();
     }
 
     public void close() {
-        webSocket.sendClose();
+        client.disconnect();
     }
 
     public boolean isOpen() {
-        return webSocket.isOpen();
+        return false;
     }
 
     /**
@@ -98,50 +80,31 @@ public class StreamClient extends WebSocketAdapter {
         String text = gson.toJson(request);
 
         logger.debug("Send: " + text);
-        webSocket.sendText(text);
+        client.send(text);
     }
 
     @Override
-    public void onConnected(WebSocket websocket, Map<String, List<String>> headers) throws Exception {
+    public void onConnect() {
         logger.debug("Opened connection.");
-        //if (openedCallback != null) {
-        //    openedCallback.onOpened();
-        //}
-    }
-
-    @Override
-    public void onThreadStarted(WebSocket websocket, ThreadType threadType, Thread thread) throws Exception {
-        String message = "Start: " + threadType.name();
-        logger.debug(message);
-
-        if (threadType == ThreadType.READING_THREAD) {
-            isReading = true;
-        }
-        if (threadType == ThreadType.WRITING_THREAD) {
-            isWriting = true;
-        }
-        if (isReading && isWriting) {
-            logger.debug("Thread ready.");
-            if (openedCallback != null) {
-                openedCallback.onOpened();
-            }
+        if (openedCallback != null) {
+            openedCallback.onOpened();
         }
     }
 
     @Override
-    public void onTextMessage(WebSocket websocket, String text) throws Exception {
+    public void onMessage(String message) {
         Gson gson = AbstractResourceImpl.getGsonInstance();
         Type genericType = new TypeToken<StreamResponse<Object>>() {
         }.getType();
 
-        StreamResponse<Object> generic = gson.fromJson(text, genericType);
+        StreamResponse<Object> generic = gson.fromJson(message, genericType);
         if (generic.getType().equals("channel")) {
 
             if (generic.getBody().getType().equals("note")) {
                 Type noteType = new TypeToken<StreamResponse<Note>>() {
                 }.getType();
 
-                StreamResponse<Note> note = gson.fromJson(text, noteType);
+                StreamResponse<Note> note = gson.fromJson(message, noteType);
                 List<EventCallback> events = callbackMap.get(generic.getBody().getId());
 
                 if (events != null && events.size() > 0) {
@@ -155,26 +118,20 @@ public class StreamClient extends WebSocketAdapter {
             }
         }
 
-        logger.debug(text);
+        logger.debug(message);
     }
 
     @Override
-    public void onDisconnected(
-            WebSocket websocket,
-            WebSocketFrame serverCloseFrame,
-            WebSocketFrame clientCloseFrame,
-            boolean closedByServer) throws Exception {
-
-        logger.debug("Connection closed by "
-                + (closedByServer ? "remote peer" : "us"));
+    public void onDisconnect(int code, String reason) {
+        logger.debug("Connection closed, code: " + code + " reason: " + reason);
 
         if (closedCallback != null) {
-            closedCallback.onClosed(closedByServer);
+            closedCallback.onClosed(false);
         }
     }
 
     @Override
-    public void onError(WebSocket websocket, WebSocketException cause) throws Exception {
+    public void onError(Exception cause) {
         if (cause != null) {
             logger.debug("Exception: " + cause.getClass().getName()
                     + " message: " + cause.getMessage());
@@ -184,6 +141,10 @@ public class StreamClient extends WebSocketAdapter {
         if (errorCallback != null) {
             errorCallback.onError(cause);
         }
+    }
+
+    @Override
+    public void onMessage(byte[] data) {
     }
 
     // region
