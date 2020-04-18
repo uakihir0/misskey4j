@@ -12,12 +12,15 @@ import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 import net.socialhub.http.HttpResponse;
 import net.socialhub.http.HttpResponseCode;
+import net.socialhub.logger.Logger;
 
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.Map;
 
 public abstract class AbstractResourceImpl {
+
+    private static final Logger logger = Logger.getLogger(AbstractResourceImpl.class);
 
     private static final Gson gson = new Gson();
 
@@ -45,7 +48,8 @@ public abstract class AbstractResourceImpl {
     protected Response<Void> proceed(RequestInterface function) {
         try {
             HttpResponse response = function.proceed();
-            if (response.getStatusCode() == HttpResponseCode.OK) {
+            if ((response.getStatusCode() >= 200) &&
+                    (response.getStatusCode() < 300)) {
                 Response<Void> result = new Response<>();
                 result.setRateLimit(RateLimit.of(response));
                 return result;
@@ -65,7 +69,8 @@ public abstract class AbstractResourceImpl {
     protected <T> Response<T> proceed(Class<T> clazz, RequestInterface function) {
         try {
             HttpResponse response = function.proceed();
-            if (response.getStatusCode() == HttpResponseCode.OK) {
+            if ((response.getStatusCode() >= 200) &&
+                    (response.getStatusCode() < 300)) {
                 Response<T> result = new Response<>();
                 result.set(gson.fromJson(response.asString(), clazz));
                 result.setRateLimit(RateLimit.of(response));
@@ -177,7 +182,9 @@ public abstract class AbstractResourceImpl {
     }
 
     static String toJson(Object object) {
-        return getGsonInstance().toJson(object);
+        String json = getGsonInstance().toJson(object);
+        logger.debug("Params: {}", json);
+        return json;
     }
 
     interface RequestInterface {

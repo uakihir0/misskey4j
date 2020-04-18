@@ -135,6 +135,10 @@ public class WebSocketClient {
         sendFrame(mParser.frame(data));
     }
 
+    public void sendPing() {
+        sendFrame(mParser.pingFrame());
+    }
+
     // Can't use BufferedReader because it buffers past the HTTP data.
     private String readLine(HybiParser.HappyDataInputStream reader) throws IOException {
         int readChar = reader.read();

@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 public class HybiParser {
 
@@ -188,6 +189,11 @@ public class HybiParser {
 
     public byte[] frame(byte[] data) {
         return frame(data, OP_BINARY, -1);
+    }
+
+    public byte[] pingFrame() {
+        String uuid = UUID.randomUUID().toString();
+        return frame(uuid, OP_PING, -1);
     }
 
     private byte[] frame(byte[] data, int opcode, int errorCode) {

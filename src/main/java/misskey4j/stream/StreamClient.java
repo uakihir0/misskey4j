@@ -20,6 +20,8 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 public class StreamClient implements WebSocketListener {
@@ -32,6 +34,8 @@ public class StreamClient implements WebSocketListener {
     private ErrorCallback errorCallback;
 
     private WebSocketClient client;
+    private boolean isOpen = false;
+    private Timer timer = new Timer(false);
 
     public StreamClient(String uri) {
         logger.debug("Uri: " + uri);
@@ -49,10 +53,11 @@ public class StreamClient implements WebSocketListener {
 
     public void close() {
         client.disconnect();
+        this.isOpen = false;
     }
 
     public boolean isOpen() {
-        return false;
+        return isOpen;
     }
 
     /**
@@ -86,9 +91,24 @@ public class StreamClient implements WebSocketListener {
     @Override
     public void onConnect() {
         logger.debug("Opened connection.");
+        this.isOpen = true;
+
         if (openedCallback != null) {
             openedCallback.onOpened();
         }
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                if (!isOpen) {
+                    timer.cancel();
+                    return;
+                }
+                client.sendPing();
+            }
+        };
+
+        timer.schedule(task, 1000, 10000);
     }
 
     @Override
