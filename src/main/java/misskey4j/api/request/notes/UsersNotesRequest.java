@@ -1,10 +1,11 @@
 package misskey4j.api.request.notes;
 
+import misskey4j.api.model.TokenRequest;
 import misskey4j.api.request.protocol.FullPagingBuilder;
 
 import java.util.List;
 
-public class UsersNotesRequest {
+public class UsersNotesRequest extends TokenRequest {
 
     public static UsersNotesRequestBuilder builder() {
         return new UsersNotesRequestBuilder();
