@@ -7,10 +7,13 @@ import misskey4j.api.request.i.IRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
 import misskey4j.api.request.users.UsersRelationRequest;
 import misskey4j.api.request.users.UsersSearchRequest;
+import misskey4j.api.request.users.UsersShowMultipleRequest;
+import misskey4j.api.request.users.UsersShowSingleRequest;
 import misskey4j.api.response.i.IResponse;
 import misskey4j.api.response.users.UsersFollowingsResponse;
 import misskey4j.api.response.users.UsersRelationResponse;
 import misskey4j.api.response.users.UsersSearchResponse;
+import misskey4j.api.response.users.UsersShowResponse;
 import misskey4j.entity.share.Response;
 import org.junit.Test;
 
@@ -59,6 +62,41 @@ public class UsersTest extends AbstractTest {
 
         for (UsersSearchResponse user : users.get()) {
             System.out.println(user.getUsername());
+        }
+    }
+
+    @Test
+    public void testShowUsers() {
+        Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
+
+        Response<UsersShowResponse[]> users =
+                misskey.users().show(UsersShowMultipleRequest.builder()
+                        .userIds(Arrays.asList("7rkrarq81i", "7rkrg1wo1a"))
+                        .build());
+
+        System.out.println(users.get()[0].getUsername());
+    }
+
+    @Test
+    public void testShowUser() {
+        Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
+
+        {
+            Response<UsersShowResponse> users =
+                    misskey.users().show(UsersShowSingleRequest.builder()
+                            .username("U_Akihir0")
+                            .host("misskey.io")
+                            .build());
+
+            System.out.println(users.get().getUsername());
+        }
+        {
+            Response<UsersShowResponse> users =
+                    misskey.users().show(UsersShowSingleRequest.builder()
+                            .userId("7rkrarq81i")
+                            .build());
+
+            System.out.println(users.get().getUsername());
         }
     }
 }

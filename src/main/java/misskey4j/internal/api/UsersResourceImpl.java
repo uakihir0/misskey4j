@@ -6,7 +6,8 @@ import misskey4j.api.request.users.UsersFollowersRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
 import misskey4j.api.request.users.UsersRelationRequest;
 import misskey4j.api.request.users.UsersSearchRequest;
-import misskey4j.api.request.users.UsersShowRequest;
+import misskey4j.api.request.users.UsersShowMultipleRequest;
+import misskey4j.api.request.users.UsersShowSingleRequest;
 import misskey4j.api.response.users.UsersFollowersResponse;
 import misskey4j.api.response.users.UsersFollowingsResponse;
 import misskey4j.api.response.users.UsersRelationResponse;
@@ -44,8 +45,18 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
      * {@inheritDoc}
      */
     @Override
+    public Response<UsersShowResponse> show(
+            UsersShowSingleRequest request) {
+        return post(UsersShowResponse.class,
+                MisskeyAPI.UsersShow.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Response<UsersShowResponse[]> show(
-            UsersShowRequest request) {
+            UsersShowMultipleRequest request) {
         return post(UsersShowResponse[].class,
                 MisskeyAPI.UsersShow.code(), request);
     }

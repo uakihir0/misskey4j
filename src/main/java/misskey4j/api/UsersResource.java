@@ -4,7 +4,8 @@ import misskey4j.api.request.users.UsersFollowersRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
 import misskey4j.api.request.users.UsersRelationRequest;
 import misskey4j.api.request.users.UsersSearchRequest;
-import misskey4j.api.request.users.UsersShowRequest;
+import misskey4j.api.request.users.UsersShowMultipleRequest;
+import misskey4j.api.request.users.UsersShowSingleRequest;
 import misskey4j.api.response.users.UsersFollowersResponse;
 import misskey4j.api.response.users.UsersFollowingsResponse;
 import misskey4j.api.response.users.UsersRelationResponse;
@@ -29,11 +30,18 @@ public interface UsersResource {
             UsersFollowingsRequest request);
 
     /**
-     * 指定したユーザーの情報を取得します。
+     * 指定したユーザーの情報を取得します。(単数)
+     * https://misskey.io/api-doc#operation/users/show
+     */
+    Response<UsersShowResponse> show(
+            UsersShowSingleRequest request);
+
+    /**
+     * 指定したユーザーの情報を取得します。(複数)
      * https://misskey.io/api-doc#operation/users/show
      */
     Response<UsersShowResponse[]> show(
-            UsersShowRequest request);
+            UsersShowMultipleRequest request);
 
     /**
      * ユーザー間のリレーションを取得します。
