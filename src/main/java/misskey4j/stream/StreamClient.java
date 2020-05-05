@@ -3,12 +3,19 @@ package misskey4j.stream;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import misskey4j.entity.Note;
+import misskey4j.entity.Notification;
+import misskey4j.entity.User;
 import misskey4j.internal.api.AbstractResourceImpl;
 import misskey4j.stream.callback.ClosedCallback;
 import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.EventCallback;
+import misskey4j.stream.callback.FollowedCallback;
+import misskey4j.stream.callback.MentionCallback;
 import misskey4j.stream.callback.NoteCallback;
+import misskey4j.stream.callback.NotificationCallback;
 import misskey4j.stream.callback.OpenedCallback;
+import misskey4j.stream.callback.RenoteCallback;
+import misskey4j.stream.callback.ReplayCallback;
 import misskey4j.stream.client.WebSocketClient;
 import misskey4j.stream.client.WebSocketListener;
 import misskey4j.stream.model.StreamRequest;
@@ -120,6 +127,7 @@ public class StreamClient implements WebSocketListener {
         StreamResponse<Object> generic = gson.fromJson(message, genericType);
         if (generic.getType().equals("channel")) {
 
+            // NOTE
             if (generic.getBody().getType().equals("note")) {
                 Type noteType = new TypeToken<StreamResponse<Note>>() {
                 }.getType();
@@ -132,6 +140,96 @@ public class StreamClient implements WebSocketListener {
                         if (event instanceof NoteCallback) {
                             Note body = note.getBody().getBody();
                             ((NoteCallback) event).onNoteUpdate(body);
+                        }
+                    }
+                }
+            }
+
+            // REPLY
+            if (generic.getBody().getType().equals("reply")) {
+                Type noteType = new TypeToken<StreamResponse<Note>>() {
+                }.getType();
+
+                StreamResponse<Note> note = gson.fromJson(message, noteType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof ReplayCallback) {
+                            Note body = note.getBody().getBody();
+                            ((ReplayCallback) event).onReply(body);
+                        }
+                    }
+                }
+            }
+
+            // MENTION
+            if (generic.getBody().getType().equals("mention")) {
+                Type noteType = new TypeToken<StreamResponse<Note>>() {
+                }.getType();
+
+                StreamResponse<Note> note = gson.fromJson(message, noteType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof MentionCallback) {
+                            Note body = note.getBody().getBody();
+                            ((MentionCallback) event).onMention(body);
+                        }
+                    }
+                }
+            }
+
+            // RENOTE
+            if (generic.getBody().getType().equals("renote")) {
+                Type noteType = new TypeToken<StreamResponse<Note>>() {
+                }.getType();
+
+                StreamResponse<Note> note = gson.fromJson(message, noteType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof RenoteCallback) {
+                            Note body = note.getBody().getBody();
+                            ((RenoteCallback) event).onRenote(body);
+                        }
+                    }
+                }
+            }
+
+            // FOLLOWED
+            if (generic.getBody().getType().equals("followed")) {
+                Type userType = new TypeToken<StreamResponse<User>>() {
+                }.getType();
+
+                StreamResponse<User> user = gson.fromJson(message, userType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof FollowedCallback) {
+                            User body = user.getBody().getBody();
+                            ((FollowedCallback) event).onFollowed(body);
+                        }
+                    }
+                }
+            }
+
+            // Notification
+            if (generic.getBody().getType().equals("notification")) {
+                Type notificationType = new TypeToken<StreamResponse<Notification>>() {
+                }.getType();
+
+                StreamResponse<Notification> notification = gson.fromJson(message, notificationType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof NotificationCallback) {
+                            Notification body = notification.getBody().getBody();
+                            ((NotificationCallback) event).onNotification(body);
                         }
                     }
                 }

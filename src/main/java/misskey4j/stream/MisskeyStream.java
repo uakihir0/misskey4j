@@ -3,6 +3,7 @@ package misskey4j.stream;
 import misskey4j.Misskey;
 import misskey4j.stream.callback.ClosedCallback;
 import misskey4j.stream.callback.ErrorCallback;
+import misskey4j.stream.callback.EventCallback;
 import misskey4j.stream.callback.NoteCallback;
 import misskey4j.stream.callback.OpenedCallback;
 
@@ -46,6 +47,13 @@ public class MisskeyStream {
      */
     public void close() {
         client.close();
+    }
+
+    /**
+     * Notifications
+     */
+    public void main(EventCallback callback) {
+        client.subscribe("main", null, Collections.singletonList(callback));
     }
 
     /**
