@@ -1,4 +1,4 @@
-# Sample Date of MisskeyStream 
+# Sample Data of MisskeyStream 
 
 ## Main Channel
 
