@@ -103,6 +103,7 @@ public class WebSocketClient {
 
             } catch (Exception ex) {
                 mListener.onError(ex);
+                mListener.onDisconnect(0, "UNEXPECTED");
             }
         });
         mThread.start();

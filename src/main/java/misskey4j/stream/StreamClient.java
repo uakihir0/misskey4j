@@ -242,6 +242,7 @@ public class StreamClient implements WebSocketListener {
     @Override
     public void onDisconnect(int code, String reason) {
         logger.debug("Connection closed, code: " + code + " reason: " + reason);
+        this.isOpen = false;
 
         if (closedCallback != null) {
             closedCallback.onClosed(false);
