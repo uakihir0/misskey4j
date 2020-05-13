@@ -133,6 +133,12 @@ public enum MisskeyAPI {
     // ------------------------------------------ //
 
     HashtagsTrend("hashtags/trend"),
+
+    // ------------------------------------------ //
+    // Other
+    // ------------------------------------------ //
+
+    ServiceWorkerRegister("sw/register"),
     ;
 
     private String code;

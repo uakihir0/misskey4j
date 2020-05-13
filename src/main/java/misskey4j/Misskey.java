@@ -13,6 +13,7 @@ import misskey4j.api.MessagesResource;
 import misskey4j.api.MetaResource;
 import misskey4j.api.MutesResource;
 import misskey4j.api.NotesResource;
+import misskey4j.api.OtherResource;
 import misskey4j.api.PollsResource;
 import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
@@ -51,6 +52,8 @@ public interface Misskey {
     FilesResource files();
 
     HashtagsResource hashtags();
+
+    OtherResource other();
 
     /**
      * Get host to access.
