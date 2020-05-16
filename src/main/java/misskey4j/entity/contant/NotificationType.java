@@ -5,7 +5,7 @@ public enum NotificationType {
     FOLLOW("follow"),
     MENTION("mention"),
     REPLY("reply"),
-    REMOTE("renote"),
+    RENOTE("renote"),
     QUOTE("quote"),
     REACTION("reaction"),
     POLL_VOTE("pollVote"),

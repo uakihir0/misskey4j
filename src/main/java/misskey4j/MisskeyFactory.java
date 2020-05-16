@@ -13,14 +13,17 @@ public class MisskeyFactory {
     }
 
     public static Misskey getInstance(String uri) {
-        return new MisskeyImpl(uri, null);
+        return new MisskeyImpl(absorbUrlExpression(uri), null);
     }
 
     public static Misskey getInstance(String uri, String clientSecret, String userAccessToken) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] result = digest.digest((userAccessToken + clientSecret).getBytes());
-            return new MisskeyImpl(uri, String.format("%040x", new BigInteger(1, result)));
+
+            return new MisskeyImpl(
+                    absorbUrlExpression(uri),
+                    String.format("%040x", new BigInteger(1, result)));
 
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException(e);
@@ -29,5 +32,23 @@ public class MisskeyFactory {
 
     public static SearchInstances getSearchInstances() {
         return new SearchInstances("https://join.misskey.page/instances.json");
+    }
+
+    private static String absorbUrlExpression(String url) {
+        String result = url;
+
+        // ホスト名だけで指定してきた場合
+        if (!result.startsWith("https://")) {
+            result = "https://" + result;
+        }
+
+        // API ディレクトリが抜けていた場合
+        if (!result.endsWith("/api/")) {
+            result = result + "/api/";
+        }
+        if (!result.endsWith("api/")) {
+            result = result + "api/";
+        }
+        return result;
     }
 }
