@@ -115,7 +115,7 @@ public class StreamClient implements WebSocketListener {
             }
         };
 
-        timer.schedule(task, 1000, 10000);
+        timer.schedule(task, 10, 10000);
     }
 
     @Override
