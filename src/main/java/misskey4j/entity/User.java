@@ -13,9 +13,9 @@ public class User {
     private String name;
     private String url;
     private String avatarUrl;
-    private String avatarColor;
+    private Color avatarColor;
     private String bannerUrl;
-    private String bannerColor;
+    private Color bannerColor;
 
     private String host;
     private String description;
@@ -85,11 +85,11 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
-    public String getAvatarColor() {
+    public Color getAvatarColor() {
         return avatarColor;
     }
 
-    public void setAvatarColor(String avatarColor) {
+    public void setAvatarColor(Color avatarColor) {
         this.avatarColor = avatarColor;
     }
 
@@ -101,11 +101,11 @@ public class User {
         this.bannerUrl = bannerUrl;
     }
 
-    public String getBannerColor() {
+    public Color getBannerColor() {
         return bannerColor;
     }
 
-    public void setBannerColor(String bannerColor) {
+    public void setBannerColor(Color bannerColor) {
         this.bannerColor = bannerColor;
     }
 

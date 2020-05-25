@@ -1,17 +1,19 @@
 package misskey4j.internal.api;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import misskey4j.MisskeyException;
 import misskey4j.api.model.TokenRequest;
+import misskey4j.entity.Color;
 import misskey4j.entity.Error;
 import misskey4j.entity.share.RateLimit;
 import misskey4j.entity.share.Response;
 import misskey4j.internal.model.StreamFile;
+import misskey4j.util.ColorDeserializer;
 import net.socialhub.http.HttpException;
 import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 import net.socialhub.http.HttpResponse;
-import net.socialhub.http.HttpResponseCode;
 import net.socialhub.logger.Logger;
 
 import java.io.File;
@@ -22,7 +24,9 @@ public abstract class AbstractResourceImpl {
 
     private static final Logger logger = Logger.getLogger(AbstractResourceImpl.class);
 
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Color.class, new ColorDeserializer())
+            .create();
 
     public static Gson getGsonInstance() {
         return gson;
