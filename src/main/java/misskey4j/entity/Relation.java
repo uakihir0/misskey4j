@@ -23,7 +23,7 @@ public class Relation {
     }
 
     public Boolean getHasPendingFollowRequestFromYou() {
-        return hasPendingFollowRequestFromYou;
+        return hasPendingFollowRequestFromYou != null ? hasPendingFollowRequestFromYou : false;
     }
 
     public void setHasPendingFollowRequestFromYou(Boolean hasPendingFollowRequestFromYou) {
@@ -31,7 +31,7 @@ public class Relation {
     }
 
     public Boolean getHasPendingFollowRequestToYou() {
-        return hasPendingFollowRequestToYou;
+        return hasPendingFollowRequestToYou != null ? hasPendingFollowRequestToYou : false;
     }
 
     public void setHasPendingFollowRequestToYou(Boolean hasPendingFollowRequestToYou) {
@@ -39,7 +39,7 @@ public class Relation {
     }
 
     public Boolean getFollowing() {
-        return isFollowing;
+        return isFollowing != null ? isFollowing : false;
     }
 
     public void setFollowing(Boolean following) {
@@ -47,7 +47,7 @@ public class Relation {
     }
 
     public Boolean getFollowed() {
-        return isFollowed;
+        return isFollowed != null ? isFollowed : false;
     }
 
     public void setFollowed(Boolean followed) {
@@ -55,7 +55,7 @@ public class Relation {
     }
 
     public Boolean getBlocking() {
-        return isBlocking;
+        return isBlocking != null ? isBlocking : false;
     }
 
     public void setBlocking(Boolean blocking) {
@@ -63,7 +63,7 @@ public class Relation {
     }
 
     public Boolean getBlocked() {
-        return isBlocked;
+        return isBlocked != null ? isBlocked : false;
     }
 
     public void setBlocked(Boolean blocked) {
@@ -71,7 +71,7 @@ public class Relation {
     }
 
     public Boolean getMuted() {
-        return isMuted;
+        return isMuted != null ? isMuted : false;
     }
 
     public void setMuted(Boolean muted) {

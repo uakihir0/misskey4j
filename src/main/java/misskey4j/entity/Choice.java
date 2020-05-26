@@ -24,7 +24,7 @@ public class Choice {
     }
 
     public Boolean getVoted() {
-        return isVoted;
+        return (isVoted != null) ? isVoted : false;
     }
 
     public void setVoted(Boolean voted) {

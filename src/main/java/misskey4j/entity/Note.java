@@ -133,7 +133,7 @@ public class Note {
     }
 
     public Boolean getViaMobile() {
-        return viaMobile;
+        return viaMobile != null ? viaMobile : false;
     }
 
     public void setViaMobile(Boolean viaMobile) {
@@ -141,7 +141,7 @@ public class Note {
     }
 
     public Boolean getHidden() {
-        return isHidden;
+        return isHidden != null ? isHidden : false;
     }
 
     public void setHidden(Boolean hidden) {

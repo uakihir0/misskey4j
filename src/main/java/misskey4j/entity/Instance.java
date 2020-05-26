@@ -44,7 +44,7 @@ public class Instance {
     }
 
     public Boolean getAlive() {
-        return isAlive;
+        return isAlive != null ? isAlive : false;
     }
 
     public void setAlive(Boolean alive) {
@@ -52,7 +52,7 @@ public class Instance {
     }
 
     public Boolean getNotSuspended() {
-        return notSuspended;
+        return notSuspended != null ? notSuspended : false;
     }
 
     public void setNotSuspended(Boolean notSuspended) {

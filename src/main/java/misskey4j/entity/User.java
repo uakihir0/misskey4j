@@ -198,7 +198,7 @@ public class User {
     }
 
     public Boolean getBot() {
-        return isBot;
+        return isBot != null ? isBot : false;
     }
 
     public void setBot(Boolean bot) {
@@ -206,7 +206,7 @@ public class User {
     }
 
     public Boolean getCat() {
-        return isCat;
+        return isCat != null ? isCat : false;
     }
 
     public void setCat(Boolean cat) {
@@ -214,7 +214,7 @@ public class User {
     }
 
     public Boolean getAdmin() {
-        return isAdmin;
+        return isAdmin != null ? isAdmin : false;
     }
 
     public void setAdmin(Boolean admin) {
@@ -222,7 +222,7 @@ public class User {
     }
 
     public Boolean getModerator() {
-        return isModerator;
+        return isModerator != null ? isModerator : false;
     }
 
     public void setModerator(Boolean moderator) {
@@ -230,7 +230,7 @@ public class User {
     }
 
     public Boolean getLocked() {
-        return isLocked;
+        return isLocked != null ? isLocked : false;
     }
 
     public void setLocked(Boolean locked) {
@@ -238,7 +238,7 @@ public class User {
     }
 
     public Boolean getHasUnreadSpecifiedNotes() {
-        return hasUnreadSpecifiedNotes;
+        return hasUnreadSpecifiedNotes != null ? hasUnreadSpecifiedNotes : false;
     }
 
     public void setHasUnreadSpecifiedNotes(Boolean hasUnreadSpecifiedNotes) {
@@ -246,7 +246,7 @@ public class User {
     }
 
     public Boolean getHasUnreadMentions() {
-        return hasUnreadMentions;
+        return hasUnreadMentions != null ? hasUnreadMentions : false;
     }
 
     public void setHasUnreadMentions(Boolean hasUnreadMentions) {

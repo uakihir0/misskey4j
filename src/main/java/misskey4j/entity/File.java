@@ -81,7 +81,7 @@ public class File {
     }
 
     public Boolean getSensitive() {
-        return isSensitive;
+        return isSensitive != null ? isSensitive : false;
     }
 
     public void setSensitive(Boolean sensitive) {

@@ -10,7 +10,7 @@ public class Poll {
 
     // region
     public Boolean getMultiple() {
-        return multiple;
+        return multiple != null ? multiple : false;
     }
 
     public void setMultiple(Boolean multiple) {

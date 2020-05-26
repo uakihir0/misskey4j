@@ -114,7 +114,7 @@ public class Message {
     }
 
     public Boolean getRead() {
-        return isRead;
+        return isRead != null ? isRead : false;
     }
 
     public void setRead(Boolean read) {
