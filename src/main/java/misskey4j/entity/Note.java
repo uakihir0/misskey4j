@@ -51,6 +51,9 @@ public class Note {
     @SerializedName("_featuredId_")
     private String featuredId;
 
+    @SerializedName("_prId_")
+    private String prId;
+
     // region
     public String getId() {
         return id;
@@ -250,6 +253,14 @@ public class Note {
 
     public void setFeaturedId(String featuredId) {
         this.featuredId = featuredId;
+    }
+
+    public String getPrId() {
+        return prId;
+    }
+
+    public void setPrId(String prId) {
+        this.prId = prId;
     }
     // endregion
 }
