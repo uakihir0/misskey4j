@@ -1,10 +1,13 @@
 package misskey4j.entity;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.net.URI;
 import java.util.List;
 
 /**
  * Join Misskey のインスタンスリストのオブジェクト
- * (https://join.misskey.page/instances.json)
+ * (https://instanceapp.misskey.page/instances.json)
  */
 public class Instance {
 
@@ -82,8 +85,9 @@ public class Instance {
         private String uri;
 
         private String iconUrl;
-        private String bannerUrl;
         private String errorImageUrl;
+        @SerializedName("bannerUrl")
+        private String originalBannerUrl;
 
         private Long maxNoteTextLength;
 
@@ -113,11 +117,16 @@ public class Instance {
         }
 
         public String getBannerUrl() {
-            return bannerUrl;
-        }
-
-        public void setBannerUrl(String bannerUrl) {
-            this.bannerUrl = bannerUrl;
+            String original = getOriginalBannerUrl();
+            if (original != null && !original.isEmpty()) {
+                try {
+                    String host = new URI(getUri()).getHost();
+                    return "https://instanceapp.misskey.page/instance-banners/" + host + ".jpeg";
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+            return null;
         }
 
         public String getErrorImageUrl() {
@@ -134,6 +143,15 @@ public class Instance {
 
         public void setMaxNoteTextLength(Long maxNoteTextLength) {
             this.maxNoteTextLength = maxNoteTextLength;
+        }
+
+        public String getOriginalBannerUrl() {
+            return ((originalBannerUrl != null) && (originalBannerUrl.isEmpty())) //
+                    ? null : originalBannerUrl;
+        }
+
+        public void setOriginalBannerUrl(String originalBannerUrl) {
+            this.originalBannerUrl = originalBannerUrl;
         }
         // endregion
     }

@@ -20,7 +20,8 @@ public class InstancesTest {
             System.out.println("DESC   > " + instance.getDescription());
 
             if (instance.getMeta() != null) {
-                System.out.println("BANNER > " + instance.getMeta().getBannerUrl());
+                System.out.println("S BANNER > " + instance.getMeta().getBannerUrl());
+                System.out.println("O BANNER > " + instance.getMeta().getOriginalBannerUrl());
             }
             if (instance.getStats() != null) {
                 System.out.println("USERS  > " + instance.getStats().getOriginalUsersCount());
