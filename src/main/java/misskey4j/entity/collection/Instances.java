@@ -1,12 +1,15 @@
 package misskey4j.entity.collection;
 
+import com.google.gson.annotations.SerializedName;
 import misskey4j.entity.Instance;
 
 import java.util.List;
 
 public class Instances {
 
+    @SerializedName("date")
     private String timestamp;
+    @SerializedName("instancesInfos")
     private List<Instance> instances;
 
     // region

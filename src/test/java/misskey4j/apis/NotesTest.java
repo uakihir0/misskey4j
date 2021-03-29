@@ -4,7 +4,6 @@ import misskey4j.AbstractTest;
 import misskey4j.Misskey;
 import misskey4j.MisskeyFactory;
 import misskey4j.api.request.notes.NotesTimelineRequest;
-import misskey4j.api.request.reactions.ReactionsCreateRequest;
 import misskey4j.api.response.notes.NotesTimelineResponse;
 import misskey4j.entity.Color;
 import misskey4j.entity.Note;

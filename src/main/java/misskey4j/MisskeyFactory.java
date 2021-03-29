@@ -31,7 +31,7 @@ public class MisskeyFactory {
     }
 
     public static SearchInstances getSearchInstances() {
-        return new SearchInstances("https://join.misskey.page/instances.json");
+        return new SearchInstances("https://instanceapp.misskey.page/instances.json");
     }
 
     private static String absorbUrlExpression(String url) {
