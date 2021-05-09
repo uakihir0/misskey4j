@@ -18,7 +18,7 @@ dependencies {
     compile("com.github.uakihir0", "JHttpClient", "1.1.8")
 
     // Library
-    compile("com.google.code.gson", "gson", "2.8.6")
+    compile("com.google.code.gson", "gson", "2.8.2")
 
     // Test
     testCompile("junit", "junit", "4.12")
