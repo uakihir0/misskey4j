@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
 /**
  * Color オブジェクトは Misskey のバージョン依存で表現方法が異なる
  * v11: [255, 255, 255] : 数値の配列
- * v12: rgb(255,255,255) :文字列
+ * v12: rgb(255,255,255) : 文字列
+ * v12: #FFFFFF : 文字列
  */
 public class ColorDeserializer implements JsonDeserializer<Color> {
 
@@ -38,19 +39,28 @@ public class ColorDeserializer implements JsonDeserializer<Color> {
 
         } else if (je.isJsonPrimitive()) {
             if (je.getAsJsonPrimitive().isString()) {
+                String str = je.getAsString();
 
-                Pattern p = Pattern.compile("rgb\\(([0-9]+),([0-9]+),([0-9]+)\\)");
-                Matcher m = p.matcher(je.getAsString());
-                Color color = new Color();
-
-                if (m.find()) {
-                    color.setR(Integer.parseInt(m.group(1)));
-                    color.setG(Integer.parseInt(m.group(2)));
-                    color.setB(Integer.parseInt(m.group(3)));
+                if (str.startsWith("#")) {
+                    Color color = new Color();
+                    color.setR(Integer.parseInt(str.substring(1, 3), 16));
+                    color.setG(Integer.parseInt(str.substring(3, 5), 16));
+                    color.setB(Integer.parseInt(str.substring(5, 7), 16));
                     return color;
+
+                } else {
+                    Pattern p = Pattern.compile("rgb\\(([0-9]+),([0-9]+),([0-9]+)\\)");
+                    Matcher m = p.matcher(str);
+                    Color color = new Color();
+
+                    if (m.find()) {
+                        color.setR(Integer.parseInt(m.group(1)));
+                        color.setG(Integer.parseInt(m.group(2)));
+                        color.setB(Integer.parseInt(m.group(3)));
+                        return color;
+                    }
                 }
             }
-
             return null;
 
         } else if (je.isJsonNull()) {

@@ -1,7 +1,7 @@
 package misskey4j.entity.collection;
 
 import com.google.gson.annotations.SerializedName;
-import misskey4j.entity.Instance;
+import misskey4j.entity.join.Instance;
 
 import java.util.List;
 

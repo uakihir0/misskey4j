@@ -6,6 +6,7 @@ import misskey4j.MisskeyFactory;
 import misskey4j.api.request.notes.NotesTimelineRequest;
 import misskey4j.api.response.notes.NotesTimelineResponse;
 import misskey4j.entity.Color;
+import misskey4j.entity.Instance;
 import misskey4j.entity.Note;
 import misskey4j.entity.share.Response;
 import org.junit.Test;
@@ -42,6 +43,12 @@ public class NotesTest extends AbstractTest {
             System.out.println("User: " + note.getUser().getName());
             System.out.println("Text: " + note.getText());
             printColor(note.getUser().getAvatarColor());
+
+            if (note.getUser().getInstance() != null) {
+                Instance instance = note.getUser().getInstance();
+                System.out.println("Instance Name: " + instance.getName());
+                System.out.println("Instance Color R: " + instance.getThemeColor().getR());
+            }
         }
     }
 

@@ -1,7 +1,6 @@
 package misskey4j;
 
-import misskey4j.entity.Instance;
-import misskey4j.entity.List;
+import misskey4j.entity.join.Instance;
 import misskey4j.entity.collection.Instances;
 import misskey4j.search.SearchInstances;
 import org.junit.Test;
