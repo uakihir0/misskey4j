@@ -81,7 +81,7 @@ after that, you can access to any endpoints. If you want to need more informatio
 This software is released under the MIT License, see LICENSE.txt.
 
 ## Author
-[@U_Akihir0](https://twitter.com/U_Akihir0)
+[Twitter: @uakihir0](https://twitter.com/uakihir0)
 
 
   [google/j2objc]: https://github.com/google/j2objc
