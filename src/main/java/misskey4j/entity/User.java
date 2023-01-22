@@ -1,5 +1,7 @@
 package misskey4j.entity;
 
+import misskey4j.util.BlurHashDecoder;
+
 import java.util.List;
 
 /**
@@ -89,6 +91,16 @@ public class User {
     }
 
     public Color getAvatarColor() {
+        if (avatarColor == null && avatarBlurhash != null) {
+            BlurHashDecoder decoder = BlurHashDecoder.getInstance();
+            int[][][] ary = decoder.decode(avatarBlurhash, 1, 1, 1, false);
+
+            Color color = new Color();
+            color.setR(ary[0][0][0]);
+            color.setG(ary[0][0][1]);
+            color.setB(ary[0][0][2]);
+            return color;
+        }
         return avatarColor;
     }
 
