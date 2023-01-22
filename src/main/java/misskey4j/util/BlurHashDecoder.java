@@ -149,7 +149,6 @@ public class BlurHashDecoder {
                     }
                 }
 
-                System.out.println(b);
                 imageArray[x][y][0] = linearToSRGB(r);
                 imageArray[x][y][1] = linearToSRGB(g);
                 imageArray[x][y][2] = linearToSRGB(b);
