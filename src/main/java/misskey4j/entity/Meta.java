@@ -5,6 +5,12 @@ import java.util.List;
 public class Meta {
 
     private Long maxNoteTextLength;
+
+    /**
+     * available up to v12
+     * use /emojis endpoint.
+     */
+    @Deprecated
     private List<Emoji> emojis;
 
     // region

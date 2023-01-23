@@ -1,13 +1,20 @@
 package misskey4j.entity;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Emoji {
 
+    /** up to v12 */
+    @Deprecated
     private String id;
-    private String name;
+    /** up to v12 */
+    @Deprecated
     private String host;
+    private String name;
     private String url;
     private String category;
-    private String[] aliases;
+    private List<String> aliases;
 
     // region
     public String getId() {
@@ -50,11 +57,15 @@ public class Emoji {
         this.category = category;
     }
 
-    public String[] getAliases() {
-        return aliases;
+    public List<String> getAliases() {
+
+        // 空文字列が含まれるバグが存在するため対応
+        return aliases.stream()
+                .filter(e -> !e.isEmpty())
+                .collect(Collectors.toList());
     }
 
-    public void setAliases(String[] aliases) {
+    public void setAliases(List<String> aliases) {
         this.aliases = aliases;
     }
     // endregion
