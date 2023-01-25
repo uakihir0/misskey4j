@@ -1,16 +1,15 @@
-package misskey4j.entity.collection;
+package misskey4j.entity.search;
 
 import com.google.gson.annotations.SerializedName;
-import misskey4j.entity.join.Instance;
 
 import java.util.List;
 
-public class Instances {
+public class JoinInstances {
 
     @SerializedName("date")
     private String timestamp;
     @SerializedName("instancesInfos")
-    private List<Instance> instances;
+    private List<JoinInstance> instances;
 
     // region
     public String getTimestamp() {
@@ -21,11 +20,11 @@ public class Instances {
         this.timestamp = timestamp;
     }
 
-    public List<Instance> getInstances() {
+    public List<JoinInstance> getInstances() {
         return instances;
     }
 
-    public void setInstances(List<Instance> instances) {
+    public void setInstances(List<JoinInstance> instances) {
         this.instances = instances;
     }
     // endregion

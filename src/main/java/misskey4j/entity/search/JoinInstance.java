@@ -1,4 +1,4 @@
-package misskey4j.entity.join;
+package misskey4j.entity.search;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * Join Misskey のインスタンスリストのオブジェクト
  * (https://instanceapp.misskey.page/instances.json)
  */
-public class Instance {
+public class JoinInstance {
 
     private String url;
     private String description;
@@ -203,6 +203,32 @@ public class Instance {
 
         public void setInstances(Long instances) {
             this.instances = instances;
+        }
+        // endregion
+    }
+
+    public static class Instances {
+
+        @SerializedName("date")
+        private String timestamp;
+        @SerializedName("instancesInfos")
+        private List<JoinInstance> joinInstances;
+
+        // region
+        public String getTimestamp() {
+            return timestamp;
+        }
+
+        public void setTimestamp(String timestamp) {
+            this.timestamp = timestamp;
+        }
+
+        public List<JoinInstance> getInstances() {
+            return joinInstances;
+        }
+
+        public void setInstances(List<JoinInstance> joinInstances) {
+            this.joinInstances = joinInstances;
         }
         // endregion
     }
