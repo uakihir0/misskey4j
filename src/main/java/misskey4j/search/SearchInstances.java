@@ -2,7 +2,7 @@ package misskey4j.search;
 
 import com.google.gson.Gson;
 import misskey4j.MisskeyException;
-import misskey4j.entity.collection.Instances;
+import misskey4j.entity.search.JoinInstances;
 import misskey4j.internal.api.AbstractResourceImpl;
 import net.socialhub.http.HttpRequestBuilder;
 import net.socialhub.http.HttpResponse;
@@ -20,13 +20,13 @@ public class SearchInstances {
         this.apiPath = apiPath;
     }
 
-    public Instances getMisskeyInstanceList() {
+    public JoinInstances getMisskeyInstanceList() {
         try {
             HttpResponse response = new HttpRequestBuilder()
                     .target(apiPath).request(APPLICATION_JSON).get();
 
             Gson gson = AbstractResourceImpl.getGsonInstance();
-            Instances results = gson.fromJson(response.asString(), Instances.class);
+            JoinInstances results = gson.fromJson(response.asString(), JoinInstances.class);
 
             results.getInstances().forEach(instance -> {
                 String desc = instance.getDescription();

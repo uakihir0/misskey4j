@@ -13,6 +13,7 @@ public class User {
     private String name;
     private String url;
     private String avatarUrl;
+    private String avatarBlurhash;
     private Color avatarColor;
     private String bannerUrl;
     private Color bannerColor;
@@ -40,6 +41,8 @@ public class User {
     private Boolean isLocked;
     private Boolean hasUnreadSpecifiedNotes;
     private Boolean hasUnreadMentions;
+    private String onlineStatus;
+    private Instance instance;
 
     private List<Emoji> emojis;
     private List<Field> fields;
@@ -268,5 +271,30 @@ public class User {
     public void setFields(List<Field> fields) {
         this.fields = fields;
     }
+
+    public String getAvatarBlurhash() {
+        return avatarBlurhash;
+    }
+
+    public void setAvatarBlurhash(String avatarBlurhash) {
+        this.avatarBlurhash = avatarBlurhash;
+    }
+
+    public String getOnlineStatus() {
+        return onlineStatus;
+    }
+
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
+
+    public Instance getInstance() {
+        return instance;
+    }
+
+    public void setInstance(Instance instance) {
+        this.instance = instance;
+    }
+
     // endregion
 }
