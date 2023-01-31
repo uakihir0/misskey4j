@@ -43,7 +43,7 @@ public class Note {
     private List<File> files;
 
     private Poll poll;
-    private List<Emoji> emojis;
+    private Emojis emojis;
 
     private Map<String, Long> reactions;
     private String myReaction;
@@ -224,11 +224,11 @@ public class Note {
     }
 
     public List<Emoji> getEmojis() {
-        return emojis;
+        return emojis.getList();
     }
 
     public void setEmojis(List<Emoji> emojis) {
-        this.emojis = emojis;
+        this.emojis.setList(emojis);
     }
 
     public Map<String, Long> getReactions() {

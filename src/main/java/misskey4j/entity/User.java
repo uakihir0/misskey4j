@@ -46,7 +46,7 @@ public class User {
     private String onlineStatus;
     private Instance instance;
 
-    private List<Emoji> emojis;
+    private Emojis emojis;
     private List<Field> fields;
 
     // region
@@ -269,11 +269,11 @@ public class User {
     }
 
     public List<Emoji> getEmojis() {
-        return emojis;
+        return emojis.getList();
     }
 
     public void setEmojis(List<Emoji> emojis) {
-        this.emojis = emojis;
+        this.emojis.setList(emojis);
     }
 
     public List<Field> getFields() {

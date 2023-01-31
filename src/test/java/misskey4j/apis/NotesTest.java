@@ -49,6 +49,11 @@ public class NotesTest extends AbstractTest {
                 System.out.println("Instance Name: " + instance.getName());
                 System.out.println("Instance Color R: " + instance.getThemeColor().getR());
             }
+
+            note.getEmojis().forEach(e -> {
+                System.out.println("Emoji Name: " + e.getName());
+                System.out.println("Emoji URL: " + e.getUrl());
+            });
         }
     }
 
