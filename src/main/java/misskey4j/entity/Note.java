@@ -224,10 +224,12 @@ public class Note {
     }
 
     public List<Emoji> getEmojis() {
+        if (emojis == null) return null;
         return emojis.getList();
     }
 
     public void setEmojis(List<Emoji> emojis) {
+        this.emojis = new Emojis();
         this.emojis.setList(emojis);
     }
 
