@@ -3,7 +3,10 @@ package misskey4j.apis;
 import misskey4j.AbstractTest;
 import misskey4j.Misskey;
 import misskey4j.MisskeyFactory;
+import misskey4j.api.FavoritesResource;
+import misskey4j.api.request.i.IFavoritesRequest;
 import misskey4j.api.request.notes.NotesTimelineRequest;
+import misskey4j.api.response.i.IFavoritesResponse;
 import misskey4j.api.response.notes.NotesTimelineResponse;
 import misskey4j.entity.Color;
 import misskey4j.entity.Instance;
@@ -26,6 +29,21 @@ public class NotesTest extends AbstractTest {
             print(note);
         }
     }
+
+    @Test
+    public void testFavorites() {
+        Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
+
+        Response<IFavoritesResponse[]> favorites =
+                misskey.accounts().iFavorites(IFavoritesRequest.builder()
+                        .limit(100L)
+                        .build());
+
+        for (IFavoritesResponse favorite : favorites.get()) {
+            print(favorite.getNote());
+        }
+    }
+
 
     public static void print(Note note) {
         System.out.println("// ------------------------------ //");
@@ -50,10 +68,17 @@ public class NotesTest extends AbstractTest {
                 System.out.println("Instance Color R: " + instance.getThemeColor().getR());
             }
 
-            note.getEmojis().forEach(e -> {
-                System.out.println("Emoji Name: " + e.getName());
-                System.out.println("Emoji URL: " + e.getUrl());
+            note.getFiles().forEach(e -> {
+                System.out.println("File OriginalURL: " + e.getOriginalUrl());
+                System.out.println("File URL: " + e.getUrl());
             });
+            
+            if (note.getEmojis() != null) {
+                note.getEmojis().forEach(e -> {
+                    System.out.println("Emoji Name: " + e.getName());
+                    System.out.println("Emoji URL: " + e.getUrl());
+                });
+            }
         }
     }
 
