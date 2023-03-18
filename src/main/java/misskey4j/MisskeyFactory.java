@@ -38,7 +38,7 @@ public class MisskeyFactory {
      * Create an instance using the AccessToken obtained from the Web UI.
      * Web UI で発行した自身の AccessToken を使用する場合に用います。
      */
-    public static Misskey getInstanceByAccessTokenFromWeb(String uri, String ownedAccessToken) {
+    public static Misskey getInstanceWithOwnedAccessToken(String uri, String ownedAccessToken) {
         return new MisskeyImpl(absorbUrlExpression(uri), ownedAccessToken);
     }
 

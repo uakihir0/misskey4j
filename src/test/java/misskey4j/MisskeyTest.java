@@ -69,7 +69,7 @@ public class MisskeyTest extends AbstractTest {
 
     @Test
     public void testGetIFromWebUIAccessToken() {
-        Misskey misskey = MisskeyFactory.getInstanceByAccessTokenFromWeb(HOST, "");
+        Misskey misskey = MisskeyFactory.getInstanceWithOwnedAccessToken(HOST, OWNED_USER_TOKEN);
         Response<IResponse> response = misskey.accounts().i(IRequest.builder().build());
 
         System.out.println("NAME: " + response.get().getName());

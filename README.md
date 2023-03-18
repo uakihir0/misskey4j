@@ -28,6 +28,8 @@ dependencies {
 
 ## How To Use
 
+### User Authentication
+
 First, you must register your application to Misskey instance server (like as [misskey.io](https://misskey.io/)).
 
 ```java
@@ -75,13 +77,26 @@ System.out.println("USER TOKEN: " + response.get().getAccessToken());
 System.out.println("NAME: " + response.get().getUser().getName());
 ```
 
-after that, you can access to any endpoints. If you want to need more information see [misskey api document](https://misskey.io/api-doc) or test codes in this repository.
+### Request API in your own account
+
+First, issue an access token from the Misskey Web UI's Configuration > API.
+
+```java
+Misskey misskey = MisskeyFactory.getInstanceWithOwnedAccessToken(HOST, OWNED_ACCESS_TOKEN);
+
+Response<IResponse> response = misskey.accounts().i(IRequest.builder().build());
+
+System.out.println("NAME: " + response.get().getName());
+```
+
+after that, you can access to any endpoints. If you want to need more information see [misskey api document](https://misskey-hub.net/docs/api/endpoints.html) or test codes in this repository.
 
 ## License
 This software is released under the MIT License, see LICENSE.txt.
 
 ## Author
-[Twitter: @uakihir0](https://twitter.com/uakihir0)
+[Twitter: @uakihir0](https://twitter.com/uakihir0)  
+[Misskey: @uakihir0@misskey.io](https://misskey.io/@uakihir0)
 
 
   [google/j2objc]: https://github.com/google/j2objc

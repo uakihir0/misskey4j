@@ -12,6 +12,8 @@ public class AbstractTest {
     public final static String CLIENT_SECRET = "";
 
     public final static String USER_TOKEN = "";
+    
+    public final static String OWNED_USER_TOKEN = "";
 
     @Before
     public void before() {
