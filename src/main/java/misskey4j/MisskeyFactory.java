@@ -16,6 +16,10 @@ public class MisskeyFactory {
         return new MisskeyImpl(absorbUrlExpression(uri), null);
     }
 
+    /**
+     * Used for user access by specifying the application.
+     * アプリケーションを発行して、第三者の AccessToken を使用する場合に用います。
+     */
     public static Misskey getInstance(String uri, String clientSecret, String userAccessToken) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -28,6 +32,14 @@ public class MisskeyFactory {
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    /**
+     * Create an instance using the AccessToken obtained from the Web UI.
+     * Web UI で発行した自身の AccessToken を使用する場合に用います。
+     */
+    public static Misskey getInstanceByAccessTokenFromWeb(String uri, String ownedAccessToken) {
+        return new MisskeyImpl(absorbUrlExpression(uri), ownedAccessToken);
     }
 
     public static SearchInstances getSearchInstances() {

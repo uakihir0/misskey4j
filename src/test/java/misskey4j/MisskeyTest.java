@@ -68,7 +68,15 @@ public class MisskeyTest extends AbstractTest {
     }
 
     @Test
-    public void testGetHost(){
+    public void testGetIFromWebUIAccessToken() {
+        Misskey misskey = MisskeyFactory.getInstanceByAccessTokenFromWeb(HOST, "");
+        Response<IResponse> response = misskey.accounts().i(IRequest.builder().build());
+
+        System.out.println("NAME: " + response.get().getName());
+    }
+
+    @Test
+    public void testGetHost() {
         Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
         System.out.println("NAME: " + misskey.getHost());
     }
