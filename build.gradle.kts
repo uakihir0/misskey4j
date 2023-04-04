@@ -1,6 +1,6 @@
 plugins {
-    java
-    maven
+    // Apply the java-library plugin for API and implementation separation.
+    `java-library`
 }
 
 group = "net.socialhub.misskey4j"
@@ -14,16 +14,18 @@ repositories {
 dependencies {
 
     // J2ObjC
-    compile("com.github.uakihir0", "JLogger", "1.4")
-    compile("com.github.uakihir0", "JHttpClient", "1.1.8")
+    implementation("com.github.uakihir0", "JLogger", "1.4")
+    implementation("com.github.uakihir0", "JHttpClient", "1.1.8")
 
     // Library
-    compile("com.google.code.gson", "gson", "2.8.2")
+    implementation("com.google.code.gson", "gson", "2.8.2")
 
     // Test
-    testCompile("junit", "junit", "4.12")
+    testImplementation("junit:junit:4.13.2")
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
