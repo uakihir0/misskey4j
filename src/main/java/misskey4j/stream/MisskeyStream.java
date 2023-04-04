@@ -21,7 +21,7 @@ public class MisskeyStream {
             String host = misskey.getHost();
             String i = misskey.getAuthToken();
             String url = "wss://" + host + "/streaming?i=" + i;
-            client = new StreamClient(url);
+            client = new StreamClient(url, misskey.logLevel());
 
         } catch (Exception e) {
             e.printStackTrace();

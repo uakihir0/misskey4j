@@ -44,7 +44,8 @@ public class StreamClient implements WebSocketListener {
     private boolean isOpen = false;
     private Timer timer = new Timer(false);
 
-    public StreamClient(String uri) {
+    public StreamClient(String uri, Logger.LogLevel logLevel) {
+        logger.setLogLevel(logLevel);
         logger.debug("Uri: " + uri);
 
         try {

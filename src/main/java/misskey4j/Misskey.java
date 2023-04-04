@@ -18,6 +18,7 @@ import misskey4j.api.PollsResource;
 import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
 import misskey4j.stream.MisskeyStream;
+import net.socialhub.logger.Logger;
 
 public interface Misskey {
 
@@ -54,6 +55,10 @@ public interface Misskey {
     HashtagsResource hashtags();
 
     OtherResource other();
+
+    Logger.LogLevel logLevel();
+
+    void setLogLevel(String logLevel);
 
     /**
      * Get host to access.

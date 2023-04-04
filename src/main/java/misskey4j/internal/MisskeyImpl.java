@@ -36,6 +36,7 @@ import misskey4j.internal.api.PollsResourceImpl;
 import misskey4j.internal.api.ReactionsResourceImpl;
 import misskey4j.internal.api.UsersResourceImpl;
 import misskey4j.stream.MisskeyStream;
+import net.socialhub.logger.Logger;
 
 import java.net.URL;
 
@@ -62,9 +63,12 @@ public class MisskeyImpl implements Misskey {
     private String url;
     private String i;
 
-    public MisskeyImpl(String url, String i) {
+    private Logger.LogLevel logLevel;
+
+    public MisskeyImpl(String url, String i, String logLevel) {
         this.url = url;
         this.i = i;
+        this.logLevel = Logger.LogLevel.valueOf(logLevel);
 
         meta = new MetaResourceImpl(url);
         app = new AppResourceImpl(url);
@@ -172,6 +176,13 @@ public class MisskeyImpl implements Misskey {
     public OtherResource other() {
         return other;
     }
+    @Override
+    public Logger.LogLevel logLevel() {
+        return logLevel;
+    }
+
+    @Override
+    public void setLogLevel(String logLevel){this.logLevel = Logger.LogLevel.valueOf(logLevel);}
 
     /**
      * {@inheritDoc}
