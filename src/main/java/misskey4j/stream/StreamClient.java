@@ -91,7 +91,7 @@ public class StreamClient implements WebSocketListener {
         Gson gson = AbstractResourceImpl.getGsonInstance();
         String text = gson.toJson(request);
 
-        logger.debug("Send: " + text);
+        logger.trace("Send: " + text);
         client.send(text);
     }
 
@@ -236,7 +236,7 @@ public class StreamClient implements WebSocketListener {
             }
         }
 
-        logger.debug(message);
+        logger.trace(message);
     }
 
     @Override
