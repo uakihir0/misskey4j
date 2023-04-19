@@ -209,7 +209,7 @@ public class HybiParser {
             return null;
         }
 
-        logger.debug("Creating frame for: " + data + " op: " + opcode + " err: " + errorCode);
+        logger.trace("Creating frame for: " + data + " op: " + opcode + " err: " + errorCode);
 
         byte[] buffer = (data instanceof String) ? decode((String) data) : (byte[]) data;
         int insert = (errorCode > 0) ? 2 : 0;
@@ -315,13 +315,13 @@ public class HybiParser {
             if (payload.length > 125) {
                 throw new ProtocolError("Ping payload too large");
             }
-            logger.debug("Sending pong!!");
+            logger.trace("Sending pong!!");
             mClient.sendFrame(frame(payload, OP_PONG, -1));
 
         } else if (opcode == OP_PONG) {
             String message = encode(payload);
             // FIXME: Fire callback...
-            logger.debug("Got pong! " + message);
+            logger.trace("Got pong! " + message);
         }
     }
 
