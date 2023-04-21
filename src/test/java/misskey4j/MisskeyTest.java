@@ -2,6 +2,7 @@ package misskey4j;
 
 import misskey4j.api.request.CreateAppRequest;
 import misskey4j.api.request.GenerateAuthSessionRequest;
+import misskey4j.api.request.GetMiAuthUriRequest;
 import misskey4j.api.request.UserKeyAuthSessionRequest;
 import misskey4j.api.request.i.IRequest;
 import misskey4j.api.response.CreateAppResponse;
@@ -15,6 +16,21 @@ import org.junit.Test;
 public class MisskeyTest extends AbstractTest {
 
     @Test
+    public void testGetMiAuthUri() {
+        Misskey misskey = MisskeyFactory.getInstance(HOST);
+
+        Response<String> response =
+                misskey.auth().getMiAuthUri(
+                        GetMiAuthUriRequest.builder()
+                                .name("Misskey4J")
+                                .callbackUrl("https://socialhub.work/")
+                                .permission(Scope.ALL)
+                                .build());
+
+        System.out.println("URL:" + response.get());
+    }
+
+    @Test
     public void testCreateApp() {
         Misskey misskey = MisskeyFactory.getInstance(HOST);
 
@@ -23,7 +39,7 @@ public class MisskeyTest extends AbstractTest {
                         CreateAppRequest.builder()
                                 .name("Misskey4J")
                                 .description("Misskey4J Test")
-                                .callbackUrl("http://localhost:8080/")
+                                .callbackUrl("https://socialhub.work/")
                                 .permission(Scope.ALL)
                                 .build());
 
@@ -35,13 +51,22 @@ public class MisskeyTest extends AbstractTest {
     public void testGenerateSession() {
         Misskey misskey = MisskeyFactory.getInstance(HOST);
 
-        Response<GenerateAuthSessionResponse> response =
-                misskey.auth().sessionGenerate(
-                        GenerateAuthSessionRequest.builder()
-                                .appSecret(CLIENT_SECRET)
+        Response<CreateAppResponse> response1 =
+                misskey.app().createApp(
+                        CreateAppRequest.builder()
+                                .name("Misskey4J")
+                                .description("Misskey4J Test")
+                                .callbackUrl("https://socialhub.work/")
+                                .permission(Scope.ALL)
                                 .build());
 
-        System.out.println("URL: " + response.get().getUrl());
+        Response<GenerateAuthSessionResponse> response2 =
+                misskey.auth().sessionGenerate(
+                        GenerateAuthSessionRequest.builder()
+                                .appSecret(response1.get().getSecret())
+                                .build());
+
+        System.out.println("URL: " + response2.get().getUrl());
     }
 
     @Test

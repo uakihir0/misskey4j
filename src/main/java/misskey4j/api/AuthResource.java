@@ -1,6 +1,7 @@
 package misskey4j.api;
 
 import misskey4j.api.request.GenerateAuthSessionRequest;
+import misskey4j.api.request.GetMiAuthUriRequest;
 import misskey4j.api.request.UserKeyAuthSessionRequest;
 import misskey4j.api.response.GenerateAuthSessionResponse;
 import misskey4j.api.response.UserKeyAuthSessionResponse;
@@ -24,4 +25,9 @@ public interface AuthResource {
      */
     Response<UserKeyAuthSessionResponse> sessionUserKey(
             UserKeyAuthSessionRequest request);
+
+    /**
+     * MiAuth の認証ページのアドレスを生成します。
+     */
+    Response<String> getMiAuthUri(GetMiAuthUriRequest request);
 }

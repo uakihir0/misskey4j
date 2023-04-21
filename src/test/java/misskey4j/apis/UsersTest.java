@@ -84,7 +84,7 @@ public class UsersTest extends AbstractTest {
         {
             Response<UsersShowResponse> users =
                     misskey.users().show(UsersShowSingleRequest.builder()
-                            .username("U_Akihir0")
+                            .username("uakihir0")
                             .host("misskey.io")
                             .build());
 

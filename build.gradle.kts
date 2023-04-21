@@ -14,11 +14,11 @@ repositories {
 dependencies {
 
     // J2ObjC
-    implementation("com.github.uakihir0", "JLogger", "1.4")
-    implementation("com.github.uakihir0", "JHttpClient", "1.1.8")
+    implementation("com.github.uakihir0:JLogger:1.4")
+    implementation("com.github.uakihir0:JHttpClient:1.1.8")
 
     // Library
-    implementation("com.google.code.gson", "gson", "2.8.2")
+    implementation("com.google.code.gson:gson:2.8.2")
 
     // Test
     testImplementation("junit:junit:4.13.2")
