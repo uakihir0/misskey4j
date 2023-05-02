@@ -11,6 +11,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Emojis オブジェクトは Misskey のバージョン依存で表現方法が異なる
@@ -40,9 +41,22 @@ public class EmojisDeserializer implements JsonDeserializer<Emojis> {
 
         } else if (je.isJsonObject()) {
 
-            // Object の場合でも内容は null
+            // Object の場合は name:url のペアが並ぶ
             Emojis emojis = new Emojis();
-            emojis.setList(null);
+
+            List<Emoji> list = new ArrayList<>();
+
+            for (Map.Entry<String, JsonElement> entry : je.getAsJsonObject().entrySet()) {
+                String name = entry.getKey();
+                String url = entry.getValue().getAsString();
+
+                Emoji emoji = new Emoji();
+                emoji.setName(name);
+                emoji.setUrl(url);
+                list.add(emoji);
+            }
+
+            emojis.setList(list);
             return emojis;
 
         } else if (je.isJsonNull()) {
