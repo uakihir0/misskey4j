@@ -1,5 +1,7 @@
 package misskey4j.internal;
 
+import java.net.URL;
+
 import misskey4j.Misskey;
 import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
@@ -18,6 +20,7 @@ import misskey4j.api.OtherResource;
 import misskey4j.api.PollsResource;
 import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
+import misskey4j.api.WebhooksResource;
 import misskey4j.internal.api.AccountsResourceImpl;
 import misskey4j.internal.api.AppResourceImpl;
 import misskey4j.internal.api.AuthResourceImpl;
@@ -35,9 +38,8 @@ import misskey4j.internal.api.OtherResourceImpl;
 import misskey4j.internal.api.PollsResourceImpl;
 import misskey4j.internal.api.ReactionsResourceImpl;
 import misskey4j.internal.api.UsersResourceImpl;
+import misskey4j.internal.api.WebhooksResourceImpl;
 import misskey4j.stream.MisskeyStream;
-
-import java.net.URL;
 
 public class MisskeyImpl implements Misskey {
 
@@ -58,6 +60,7 @@ public class MisskeyImpl implements Misskey {
     private FilesResource files;
     private HashtagsResource hashtags;
     private OtherResource other;
+    private WebhooksResource webhooks;
 
     private String url;
     private String i;
@@ -86,6 +89,7 @@ public class MisskeyImpl implements Misskey {
         files = new FilesResourceImpl(url, i);
         hashtags = new HashtagsResourceImpl(url, i);
         other = new OtherResourceImpl(url, i);
+        webhooks = new WebhooksResourceImpl(url, i);
     }
 
     @Override
@@ -200,4 +204,10 @@ public class MisskeyImpl implements Misskey {
     public MisskeyStream stream() {
         return new MisskeyStream(this);
     }
+
+	@Override
+	public WebhooksResource webhook() {
+		// TODO 自動生成されたメソッド・スタブ
+		return webhooks;
+	}
 }
