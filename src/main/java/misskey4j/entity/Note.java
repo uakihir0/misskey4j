@@ -46,6 +46,7 @@ public class Note {
     private Emojis emojis;
 
     private Map<String, Long> reactions;
+    private Emojis reactionEmojis;
     private String myReaction;
 
     @SerializedName("_featuredId_")
@@ -239,6 +240,16 @@ public class Note {
 
     public void setReactions(Map<String, Long> reactions) {
         this.reactions = reactions;
+    }
+
+    public List<Emoji> getReactionEmojis() {
+        if (reactionEmojis == null) return null;
+        return reactionEmojis.getList();
+    }
+
+    public void setReactionEmojis(List<Emoji> reactionEmojis) {
+        this.reactionEmojis = new Emojis();
+        this.reactionEmojis.setList(reactionEmojis);
     }
 
     public String getMyReaction() {
