@@ -1,7 +1,5 @@
 package misskey4j.internal;
 
-import java.net.URL;
-
 import misskey4j.Misskey;
 import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
@@ -42,6 +40,8 @@ import misskey4j.internal.api.ReactionsResourceImpl;
 import misskey4j.internal.api.UsersResourceImpl;
 import misskey4j.internal.api.WebhooksResourceImpl;
 import misskey4j.stream.MisskeyStream;
+
+import java.net.URL;
 
 public class MisskeyImpl implements Misskey {
 
@@ -102,7 +102,9 @@ public class MisskeyImpl implements Misskey {
     }
 
     @Override
-    public FederationResource federation() { return federation; }
+    public FederationResource federation() {
+        return federation;
+    }
 
     @Override
     public AppResource app() {
