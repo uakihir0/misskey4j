@@ -17,6 +17,7 @@ import misskey4j.api.OtherResource;
 import misskey4j.api.PollsResource;
 import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
+import misskey4j.api.WebhooksResource;
 import misskey4j.stream.MisskeyStream;
 
 public interface Misskey {
@@ -71,4 +72,6 @@ public interface Misskey {
      * Stream Objects.
      */
     MisskeyStream stream();
+
+    WebhooksResource webhook();
 }

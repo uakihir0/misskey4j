@@ -50,6 +50,12 @@ public enum MisskeyAPI {
     I("i"),
     IFavorites("i/favorites"),
     INotifications("i/notifications"),
+    IWebhooksUpdate("i/webhooks/update"),
+    IWebhooksShow("i/webhooks/show"),
+    IWebhooksList("i/webhooks/list"),
+    IWebhooksDelete("i/webhooks/delete"),
+    IWebhooksCreate("i/webhooks/create"),
+
 
     // ------------------------------------------ //
     // Auth
