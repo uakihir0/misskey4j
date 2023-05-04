@@ -18,6 +18,7 @@ import misskey4j.api.OtherResource;
 import misskey4j.api.PollsResource;
 import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
+import misskey4j.api.WebhooksResource;
 import misskey4j.internal.api.AccountsResourceImpl;
 import misskey4j.internal.api.AppResourceImpl;
 import misskey4j.internal.api.AuthResourceImpl;
@@ -35,32 +36,34 @@ import misskey4j.internal.api.OtherResourceImpl;
 import misskey4j.internal.api.PollsResourceImpl;
 import misskey4j.internal.api.ReactionsResourceImpl;
 import misskey4j.internal.api.UsersResourceImpl;
+import misskey4j.internal.api.WebhooksResourceImpl;
 import misskey4j.stream.MisskeyStream;
 
 import java.net.URL;
 
 public class MisskeyImpl implements Misskey {
 
-    private MetaResource meta;
-    private AppResource app;
-    private AuthResource auth;
-    private AccountsResource accounts;
-    private UsersResource users;
-    private ListsResource lists;
-    private NotesResource notes;
-    private MutesResource mutes;
-    private BlocksResource blocks;
-    private ReactionsResource reactions;
-    private FavoritesResource favorites;
-    private FollowingResource following;
-    private PollsResource polls;
-    private MessagesResource messages;
-    private FilesResource files;
-    private HashtagsResource hashtags;
-    private OtherResource other;
+    private final MetaResource meta;
+    private final AppResource app;
+    private final AuthResource auth;
+    private final AccountsResource accounts;
+    private final UsersResource users;
+    private final ListsResource lists;
+    private final NotesResource notes;
+    private final MutesResource mutes;
+    private final BlocksResource blocks;
+    private final ReactionsResource reactions;
+    private final FavoritesResource favorites;
+    private final FollowingResource following;
+    private final PollsResource polls;
+    private final MessagesResource messages;
+    private final FilesResource files;
+    private final HashtagsResource hashtags;
+    private final WebhooksResource webhooks;
+    private final OtherResource other;
 
-    private String url;
-    private String i;
+    private final String url;
+    private final String i;
 
     public MisskeyImpl(String url, String i) {
         this.url = url;
@@ -85,6 +88,7 @@ public class MisskeyImpl implements Misskey {
         messages = new MessagesResourceImpl(url, i);
         files = new FilesResourceImpl(url, i);
         hashtags = new HashtagsResourceImpl(url, i);
+        webhooks = new WebhooksResourceImpl(url, i);
         other = new OtherResourceImpl(url, i);
     }
 
@@ -172,6 +176,12 @@ public class MisskeyImpl implements Misskey {
     public OtherResource other() {
         return other;
     }
+
+    @Override
+    public WebhooksResource webhook() {
+        return webhooks;
+    }
+
 
     /**
      * {@inheritDoc}

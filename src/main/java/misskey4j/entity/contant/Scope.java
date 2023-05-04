@@ -1,8 +1,5 @@
 package misskey4j.entity.contant;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * 認可スコープを表現するクラス
  */

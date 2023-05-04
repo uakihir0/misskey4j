@@ -1,6 +1,7 @@
 package misskey4j.entity;
 
 import java.util.List;
+
 public class Emojis {
 
     private List<Emoji> list;

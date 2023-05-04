@@ -31,6 +31,6 @@ public class MetaResourceImpl extends AbstractResourceImpl implements MetaResour
     public Response<EmojisResponse> emojis(
             EmojisRequest request) {
         return post(EmojisResponse.class,
-            MisskeyAPI.Emojis.code(), request);
+                MisskeyAPI.Emojis.code(), request);
     }
 }

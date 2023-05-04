@@ -57,7 +57,7 @@ public class NotesLocalTimelineRequest extends TokenRequest {
 
     public static final class NotesLocalTimelineRequestBuilder
             implements FullPagingBuilder<NotesLocalTimelineRequestBuilder> {
-        
+
         private Boolean withFiles;
         private List<String> fileType;
         private Boolean excludeNsfw;

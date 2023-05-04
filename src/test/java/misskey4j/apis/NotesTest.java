@@ -3,7 +3,6 @@ package misskey4j.apis;
 import misskey4j.AbstractTest;
 import misskey4j.Misskey;
 import misskey4j.MisskeyFactory;
-import misskey4j.api.FavoritesResource;
 import misskey4j.api.request.i.IFavoritesRequest;
 import misskey4j.api.request.notes.NotesTimelineRequest;
 import misskey4j.api.response.i.IFavoritesResponse;
@@ -72,7 +71,7 @@ public class NotesTest extends AbstractTest {
                 System.out.println("File OriginalURL: " + e.getOriginalUrl());
                 System.out.println("File URL: " + e.getUrl());
             });
-            
+
             if (note.getEmojis() != null) {
                 note.getEmojis().forEach(e -> {
                     System.out.println("Emoji Name: " + e.getName());

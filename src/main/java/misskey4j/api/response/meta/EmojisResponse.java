@@ -7,7 +7,7 @@ import java.util.List;
 public class EmojisResponse {
 
     private List<Emoji> emojis;
-    
+
     public List<Emoji> getEmojis() {
         return emojis;
     }

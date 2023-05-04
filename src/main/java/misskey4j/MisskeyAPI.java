@@ -50,6 +50,7 @@ public enum MisskeyAPI {
     I("i"),
     IFavorites("i/favorites"),
     INotifications("i/notifications"),
+    IWebhooksUpdate("i/webhooks/update"),
 
     // ------------------------------------------ //
     // Auth
@@ -136,13 +137,22 @@ public enum MisskeyAPI {
     HashtagsTrend("hashtags/trend"),
 
     // ------------------------------------------ //
+    // Webhooks
+    // ------------------------------------------ //
+
+    IWebhooksShow("i/webhooks/show"),
+    IWebhooksList("i/webhooks/list"),
+    IWebhooksDelete("i/webhooks/delete"),
+    IWebhooksCreate("i/webhooks/create"),
+
+    // ------------------------------------------ //
     // Other
     // ------------------------------------------ //
 
     ServiceWorkerRegister("sw/register"),
     ;
 
-    private String code;
+    private final String code;
 
     MisskeyAPI(String code) {
         this.code = code;

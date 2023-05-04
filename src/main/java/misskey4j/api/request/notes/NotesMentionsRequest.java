@@ -39,7 +39,7 @@ public class NotesMentionsRequest extends TokenRequest {
 
     public static final class NotesMentionsRequestBuilder
             implements PagingBuilder<NotesMentionsRequestBuilder> {
-        
+
         private Boolean following;
         private Long limit;
         private String sinceId;

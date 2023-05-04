@@ -7,7 +7,6 @@ import misskey4j.api.response.files.FilesCreateResponse;
 import misskey4j.entity.share.Response;
 import misskey4j.internal.model.StreamFile;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

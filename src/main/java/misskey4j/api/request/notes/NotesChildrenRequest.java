@@ -33,7 +33,7 @@ public class NotesChildrenRequest extends TokenRequest {
 
     public static final class NotesChildrenRequestBuilder
             implements PagingBuilder<NotesChildrenRequestBuilder> {
-        
+
         private String noteId;
         private Long limit;
         private String sinceId;

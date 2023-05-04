@@ -45,7 +45,7 @@ public class NotesGlobalTimelineRequest extends TokenRequest {
 
     public static final class NotesGlobalTimelineRequestBuilder
             implements FullPagingBuilder<NotesGlobalTimelineRequestBuilder> {
-        
+
         private Boolean withFiles;
         private Long limit;
         private String sinceId;

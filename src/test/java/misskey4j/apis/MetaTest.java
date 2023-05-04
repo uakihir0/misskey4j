@@ -12,12 +12,13 @@ import org.junit.Test;
 public class MetaTest extends AbstractTest {
 
     @Test
-    public void testGetMeta(){
+    public void testGetMeta() {
         Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
         misskey.meta().meta(MetaRequest.builder().detail(true).build());
     }
+
     @Test
-    public void testGetEmojis(){
+    public void testGetEmojis() {
         Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
         Response<EmojisResponse> response = misskey.meta().emojis(EmojisRequest.builder().build());
 
