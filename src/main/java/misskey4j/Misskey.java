@@ -5,6 +5,7 @@ import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.BlocksResource;
 import misskey4j.api.FavoritesResource;
+import misskey4j.api.FederationResource;
 import misskey4j.api.FilesResource;
 import misskey4j.api.FollowingResource;
 import misskey4j.api.HashtagsResource;
@@ -23,6 +24,8 @@ import misskey4j.stream.MisskeyStream;
 public interface Misskey {
 
     MetaResource meta();
+
+    FederationResource federation();
 
     AppResource app();
 
