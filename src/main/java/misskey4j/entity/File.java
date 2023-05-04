@@ -13,10 +13,16 @@ public class File {
     private String name;
     private String type;
     private Long size;
+    private Boolean isSensitive;
+    private String blurhash;
+
+    // TODO properties
+
     private String url;
     private String thumbnailUrl;
+    private String comment;
     private String folderId;
-    private Boolean isSensitive;
+    private String userId;
 
     private String extractForwardUrl(String u) {
         try {
@@ -97,12 +103,36 @@ public class File {
         this.size = size;
     }
 
+    public Boolean getSensitive() {
+        return isSensitive != null ? isSensitive : false;
+    }
+
+    public void setSensitive(Boolean sensitive) {
+        isSensitive = sensitive;
+    }
+
+    public String getBlurhash() {
+        return blurhash;
+    }
+
+    public void setBlurhash(String blurhash) {
+        this.blurhash = blurhash;
+    }
+
     public void setUrl(String url) {
         this.url = url;
     }
 
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public String getFolderId() {
@@ -113,12 +143,12 @@ public class File {
         this.folderId = folderId;
     }
 
-    public Boolean getSensitive() {
-        return isSensitive != null ? isSensitive : false;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setSensitive(Boolean sensitive) {
-        isSensitive = sensitive;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     // endregion
 }
