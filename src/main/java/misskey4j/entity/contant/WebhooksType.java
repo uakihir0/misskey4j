@@ -2,7 +2,7 @@ package misskey4j.entity.contant;
 
 public enum WebhooksType {
 
-	MENTION("mention"),
+    MENTION("mention"),
     UNFOLLOW("unfollow"),
     FOLLOW("follow"),
     FOLLOWED("followed"),
@@ -12,7 +12,7 @@ public enum WebhooksType {
     REACTION("reaction"),
     ;
 
-    private String code;
+    private final String code;
 
     WebhooksType(String code) {
         this.code = code;

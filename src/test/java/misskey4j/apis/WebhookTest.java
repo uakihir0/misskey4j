@@ -1,9 +1,6 @@
 package misskey4j.apis;
 
-import org.junit.Test;
-
 import com.google.gson.Gson;
-
 import misskey4j.AbstractTest;
 import misskey4j.Misskey;
 import misskey4j.MisskeyFactory;
@@ -18,78 +15,81 @@ import misskey4j.api.response.webhooks.ShowWebhooksResponse;
 import misskey4j.api.response.webhooks.UpdateWebhooksResponse;
 import misskey4j.entity.contant.WebhooksType;
 import misskey4j.entity.share.Response;
+import org.junit.Test;
 
 public class WebhookTest extends AbstractTest {
-	Gson gson = new Gson();
-	Misskey misskey;
 
-	public String testCreate() {
-		WebhooksType[] on = { WebhooksType.FOLLOW, WebhooksType.NOTE };
-		CreateWebhooksRequest request1 = CreateWebhooksRequest.builder()
-				.name("WehookTEst")
-				.on(on)
-				.secret("qazwsx")
-				.url("https://socialhub.work/")
-				.build();
-		Response<CreateWebhooksResponse> response = misskey.webhook().create(request1);
+    Gson gson = new Gson();
 
-		System.out.println(gson.toJson(response.get()));
-		return response.get().getId();
-	}
+    public String createWebhook(Misskey misskey) {
 
-	public void testUpdate(String webhookid) {
-		WebhooksType[] on = { WebhooksType.FOLLOW, WebhooksType.NOTE, WebhooksType.UNFOLLOW };
-		UpdateWebhooksRequest request = UpdateWebhooksRequest.builder()
-				.webhookId(webhookid)
-				.name("WehookTEstRename")
-				.secret("qazwsxRename")
-				.url("https://socialhub.workRname/")
-				.active(false)
-				.on(on)
-				.build();
-		Response<UpdateWebhooksResponse> response = misskey.webhook().update(request);
+        WebhooksType[] on = {WebhooksType.FOLLOW, WebhooksType.NOTE};
+        CreateWebhooksRequest request = CreateWebhooksRequest.builder()
+                .name("WebhookTest")
+                .on(on)
+                .secret("qazwsx")
+                .url("https://socialhub.work/")
+                .build();
 
-		System.out.println(gson.toJson(response.get()));
-	}
+        Response<CreateWebhooksResponse> response = misskey.webhook().create(request);
+        System.out.println(gson.toJson(response.get()));
+        return response.get().getId();
+    }
 
-	public String testShow(String webhookid) {
-		ShowWebhooksRequest request = ShowWebhooksRequest.builder()
-				.webhookId(webhookid)
-				.build();
-		Response<ShowWebhooksResponse> response = misskey.webhook().show(request);
+    public void updateWebhook(Misskey misskey, String webhookId) {
 
-		System.out.println(gson.toJson(response.get()));
-		return response.get().getId();
-	}
+        WebhooksType[] on = {WebhooksType.FOLLOW, WebhooksType.NOTE, WebhooksType.UNFOLLOW};
+        UpdateWebhooksRequest request = UpdateWebhooksRequest.builder()
+                .webhookId(webhookId)
+                .name("WebhookTestRename")
+                .secret("qazwsx")
+                .url("https://socialhub.work/")
+                .active(false)
+                .on(on)
+                .build();
 
-	public void testList() {
+        Response<UpdateWebhooksResponse> response = misskey.webhook().update(request);
+        System.out.println(gson.toJson(response.get()));
+    }
 
-		ListWebhooksRequest request1 = ListWebhooksRequest.builder()
-				.build();
-		Response<ShowWebhooksResponse[]> response = misskey.webhook().list(request1);
+    public String showWebhook(Misskey misskey, String webhookId) {
 
-		for (ShowWebhooksResponse showWebhooksResponse : response.get()) {
-			System.out.println(gson.toJson(showWebhooksResponse));
-		}
-	}
+        ShowWebhooksRequest request = ShowWebhooksRequest.builder()
+                .webhookId(webhookId)
+                .build();
 
-	public void testDelete(String webhookid) {
-		DeleteWebhooksRequest deleteRequest = DeleteWebhooksRequest.builder()
-				.webhookId(webhookid)
-				.build();
+        Response<ShowWebhooksResponse> response = misskey.webhook().show(request);
+        System.out.println(gson.toJson(response.get()));
+        return response.get().getId();
+    }
 
-		Response<DeleteWebhooksResponse> deleteWebhooksResponse = misskey.webhook().delete(deleteRequest);
-		System.out.println(gson.toJson(deleteWebhooksResponse.get()));
+    public void listWebhook(Misskey misskey) {
 
-	}
+        ListWebhooksRequest request = ListWebhooksRequest.builder().build();
+        Response<ShowWebhooksResponse[]> response = misskey.webhook().list(request);
 
-	@Test
-	public void test() {
-		misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
-		String webhookid = testCreate();
-		testUpdate(webhookid);
-		webhookid = testShow(webhookid);
-		testList();
-		testDelete(webhookid);
-	}
+        for (ShowWebhooksResponse showWebhooksResponse : response.get()) {
+            System.out.println(gson.toJson(showWebhooksResponse));
+        }
+    }
+
+    public void deleteWebhook(Misskey misskey, String webhookId) {
+
+        DeleteWebhooksRequest deleteRequest = DeleteWebhooksRequest.builder()
+                .webhookId(webhookId)
+                .build();
+
+        Response<DeleteWebhooksResponse> deleteWebhooksResponse = misskey.webhook().delete(deleteRequest);
+        System.out.println(gson.toJson(deleteWebhooksResponse.get()));
+    }
+
+    @Test
+    public void testWebhookScenario() {
+        Misskey misskey = MisskeyFactory.getInstance(HOST, CLIENT_SECRET, USER_TOKEN);
+        String webhookId = createWebhook(misskey);
+        updateWebhook(misskey, webhookId);
+        webhookId = showWebhook(misskey, webhookId);
+        listWebhook(misskey);
+        deleteWebhook(misskey, webhookId);
+    }
 }

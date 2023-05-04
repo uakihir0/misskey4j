@@ -2,7 +2,7 @@ package misskey4j.api.request.webhooks;
 
 import misskey4j.api.model.TokenRequest;
 
-public class ListWebhooksRequest extends TokenRequest  {
+public class ListWebhooksRequest extends TokenRequest {
 
     public static DeleteWebhooksBuilder builder() {
         return new DeleteWebhooksBuilder();

@@ -59,7 +59,7 @@ public class NotesHybridTimelineRequest extends TokenRequest {
 
     public static final class NotesHybridTimelineRequestBuilder
             implements FullPagingBuilder<NotesHybridTimelineRequestBuilder> {
-        
+
         private Long limit;
         private String sinceId;
         private String untilId;

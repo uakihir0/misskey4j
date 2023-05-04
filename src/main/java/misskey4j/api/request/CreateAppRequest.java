@@ -1,10 +1,10 @@
 package misskey4j.api.request;
 
+import misskey4j.entity.contant.Scope;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import misskey4j.entity.contant.Scope;
 
 public class CreateAppRequest {
 

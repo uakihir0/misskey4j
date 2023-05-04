@@ -1,16 +1,16 @@
 package misskey4j.api.request.webhooks;
 
+import misskey4j.api.model.TokenRequest;
+import misskey4j.entity.contant.WebhooksType;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import misskey4j.api.model.TokenRequest;
-import misskey4j.entity.contant.WebhooksType;
+public class UpdateWebhooksRequest extends TokenRequest {
 
-public class UpdateWebhooksRequest extends TokenRequest  {
-
-    public static CreateWebhooksBuilder builder() {
-        return new CreateWebhooksBuilder();
+    public static CreateWebhooksRequestBuilder builder() {
+        return new CreateWebhooksRequestBuilder();
     }
 
     private String webhookId;
@@ -21,77 +21,77 @@ public class UpdateWebhooksRequest extends TokenRequest  {
     private Boolean active;
 
     // region
+    public String getWebhookId() {
+        return webhookId;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String geturl() {
+    public String getUrl() {
         return url;
     }
 
-    public List<String> geton() {
+    public List<String> getOn() {
         return on;
     }
 
-    public String getsecret() {
+    public String getSecret() {
         return secret;
     }
 
-    public String getWebhookId() {
-		return webhookId;
-	}
+    public Boolean getActive() {
+        return active;
+    }
 
-	public Boolean getActive() {
-		return active;
-	}
-
-	public static final class CreateWebhooksBuilder {
-	    private String webhookId;
+    public static final class CreateWebhooksRequestBuilder {
+        private String webhookId;
         private String name;
         private String url;
         private List<String> on;
         private String secret;
         private Boolean active;
 
-        private CreateWebhooksBuilder() {
+        private CreateWebhooksRequestBuilder() {
         }
 
-        public CreateWebhooksBuilder name(String name) {
+        public CreateWebhooksRequestBuilder name(String name) {
             this.name = name;
             return this;
         }
 
-        public CreateWebhooksBuilder url(String url) {
+        public CreateWebhooksRequestBuilder url(String url) {
             this.url = url;
             return this;
         }
 
-        public CreateWebhooksBuilder on(List<String> on) {
+        public CreateWebhooksRequestBuilder on(List<String> on) {
             this.on = on;
             return this;
         }
 
-        public CreateWebhooksBuilder on(WebhooksType[] on) {
+        public CreateWebhooksRequestBuilder on(WebhooksType[] on) {
             this.on = Stream.of(on)
                     .map(WebhooksType::code)
                     .collect(Collectors.toList());
             return this;
         }
 
-        public CreateWebhooksBuilder secret(String secret) {
+        public CreateWebhooksRequestBuilder secret(String secret) {
             this.secret = secret;
             return this;
         }
-        public CreateWebhooksBuilder webhookId(String webhookId) {
+
+        public CreateWebhooksRequestBuilder webhookId(String webhookId) {
             this.webhookId = webhookId;
             return this;
         }
 
-        public CreateWebhooksBuilder active(Boolean active) {
+        public CreateWebhooksRequestBuilder active(Boolean active) {
             this.active = active;
             return this;
         }
-
 
         public UpdateWebhooksRequest build() {
             UpdateWebhooksRequest createAppRequest = new UpdateWebhooksRequest();
@@ -101,7 +101,6 @@ public class UpdateWebhooksRequest extends TokenRequest  {
             createAppRequest.url = this.url;
             createAppRequest.webhookId = this.webhookId;
             createAppRequest.active = this.active;
-
             return createAppRequest;
         }
     }

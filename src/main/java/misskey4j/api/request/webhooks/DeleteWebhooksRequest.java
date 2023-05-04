@@ -2,27 +2,26 @@ package misskey4j.api.request.webhooks;
 
 import misskey4j.api.model.TokenRequest;
 
-public class DeleteWebhooksRequest extends TokenRequest  {
+public class DeleteWebhooksRequest extends TokenRequest {
 
-    public static DeleteWebhooksBuilder builder() {
-        return new DeleteWebhooksBuilder();
+    public static DeleteWebhooksRequestBuilder builder() {
+        return new DeleteWebhooksRequestBuilder();
     }
 
     private String webhookId;
-
 
     // region
     public String getWebhookId() {
         return webhookId;
     }
 
-    public static final class DeleteWebhooksBuilder {
+    public static final class DeleteWebhooksRequestBuilder {
         private String webhookId;
 
-        private DeleteWebhooksBuilder() {
+        private DeleteWebhooksRequestBuilder() {
         }
 
-        public DeleteWebhooksBuilder webhookId(String webhookId) {
+        public DeleteWebhooksRequestBuilder webhookId(String webhookId) {
             this.webhookId = webhookId;
             return this;
         }

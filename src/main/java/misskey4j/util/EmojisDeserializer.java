@@ -7,11 +7,10 @@ import com.google.gson.reflect.TypeToken;
 import misskey4j.entity.Emoji;
 import misskey4j.entity.Emojis;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Emojis オブジェクトは Misskey のバージョン依存で表現方法が異なる

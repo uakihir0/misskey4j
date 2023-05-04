@@ -15,44 +15,58 @@ import misskey4j.entity.share.Response;
 
 public class WebhooksResourceImpl extends AbstractResourceImpl implements WebhooksResource {
 
-	public WebhooksResourceImpl(String uri, String i) {
-		super(uri, i);
-		// TODO 自動生成されたコンストラクター・スタブ
-	}
+    public WebhooksResourceImpl(String uri, String i) {
+        super(uri, i);
+    }
 
-	@Override
-	public Response<CreateWebhooksResponse> create(CreateWebhooksRequest request) {
-		// TODO 自動生成されたメソッド・スタブ
-		return post(CreateWebhooksResponse.class,
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<CreateWebhooksResponse> create(
+            CreateWebhooksRequest request) {
+        return post(CreateWebhooksResponse.class,
                 MisskeyAPI.IWebhooksCreate.code(), request);
-	}
+    }
 
-	@Override
-	public Response<DeleteWebhooksResponse> delete(DeleteWebhooksRequest request) {
-		// TODO 自動生成されたメソッド・スタブ
-		return post(DeleteWebhooksResponse.class,
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<DeleteWebhooksResponse> delete(
+            DeleteWebhooksRequest request) {
+        return post(DeleteWebhooksResponse.class,
                 MisskeyAPI.IWebhooksDelete.code(), request);
-	}
+    }
 
-	@Override
-	public Response<ShowWebhooksResponse[]> list(ListWebhooksRequest request) {
-		// TODO 自動生成されたメソッド・スタブ
-		return post(ShowWebhooksResponse[].class,
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<ShowWebhooksResponse[]> list(
+            ListWebhooksRequest request) {
+        return post(ShowWebhooksResponse[].class,
                 MisskeyAPI.IWebhooksList.code(), request);
-	}
+    }
 
-	@Override
-	public Response<ShowWebhooksResponse> show(ShowWebhooksRequest request) {
-		// TODO 自動生成されたメソッド・スタブ
-		return post(ShowWebhooksResponse.class,
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<ShowWebhooksResponse> show(
+            ShowWebhooksRequest request) {
+        return post(ShowWebhooksResponse.class,
                 MisskeyAPI.IWebhooksShow.code(), request);
-	}
+    }
 
-	@Override
-	public Response<UpdateWebhooksResponse> update(UpdateWebhooksRequest request) {
-		// TODO 自動生成されたメソッド・スタブ
-		return post(UpdateWebhooksResponse.class,
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UpdateWebhooksResponse> update(
+            UpdateWebhooksRequest request) {
+        return post(UpdateWebhooksResponse.class,
                 MisskeyAPI.IWebhooksUpdate.code(), request);
-	}
+    }
 
 }

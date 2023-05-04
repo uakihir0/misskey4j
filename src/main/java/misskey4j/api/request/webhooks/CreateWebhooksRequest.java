@@ -1,16 +1,16 @@
 package misskey4j.api.request.webhooks;
 
+import misskey4j.api.model.TokenRequest;
+import misskey4j.entity.contant.WebhooksType;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import misskey4j.api.model.TokenRequest;
-import misskey4j.entity.contant.WebhooksType;
+public class CreateWebhooksRequest extends TokenRequest {
 
-public class CreateWebhooksRequest extends TokenRequest  {
-
-    public static CreateWebhooksBuilder builder() {
-        return new CreateWebhooksBuilder();
+    public static CreateWebhooksRequestBuilder builder() {
+        return new CreateWebhooksRequestBuilder();
     }
 
     private String name;
@@ -23,50 +23,50 @@ public class CreateWebhooksRequest extends TokenRequest  {
         return name;
     }
 
-    public String geturl() {
+    public String getUrl() {
         return url;
     }
 
-    public List<String> geton() {
+    public List<String> getOn() {
         return on;
     }
 
-    public String getsecret() {
+    public String getSecret() {
         return secret;
     }
 
-    public static final class CreateWebhooksBuilder {
+    public static final class CreateWebhooksRequestBuilder {
         private String name;
         private String url;
         private List<String> on;
         private String secret;
 
-        private CreateWebhooksBuilder() {
+        private CreateWebhooksRequestBuilder() {
         }
 
-        public CreateWebhooksBuilder name(String name) {
+        public CreateWebhooksRequestBuilder name(String name) {
             this.name = name;
             return this;
         }
 
-        public CreateWebhooksBuilder url(String url) {
+        public CreateWebhooksRequestBuilder url(String url) {
             this.url = url;
             return this;
         }
 
-        public CreateWebhooksBuilder on(List<String> on) {
+        public CreateWebhooksRequestBuilder on(List<String> on) {
             this.on = on;
             return this;
         }
 
-        public CreateWebhooksBuilder on(WebhooksType[] on) {
+        public CreateWebhooksRequestBuilder on(WebhooksType[] on) {
             this.on = Stream.of(on)
                     .map(WebhooksType::code)
                     .collect(Collectors.toList());
             return this;
         }
 
-        public CreateWebhooksBuilder secret(String secret) {
+        public CreateWebhooksRequestBuilder secret(String secret) {
             this.secret = secret;
             return this;
         }

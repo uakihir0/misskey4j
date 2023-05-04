@@ -45,7 +45,7 @@ public class MessagingMessagesRequest extends TokenRequest {
 
     public static final class MessagingMessagesRequestBuilder
             implements PagingBuilder<MessagingMessagesRequestBuilder> {
-        
+
         private String userId;
         private String groupId;
         private Long limit;

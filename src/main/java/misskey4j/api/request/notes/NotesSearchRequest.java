@@ -43,7 +43,7 @@ public class NotesSearchRequest extends TokenRequest {
 
     public static final class NotesSearchRequestBuilder
             implements PagingBuilder<NotesSearchRequestBuilder> {
-        
+
         private String query;
         private String sinceId;
         private String untilId;

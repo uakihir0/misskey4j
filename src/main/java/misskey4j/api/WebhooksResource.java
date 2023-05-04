@@ -14,35 +14,35 @@ import misskey4j.entity.share.Response;
 public interface WebhooksResource {
 
     /**
-     * Webhookを作成します。
+     * Webhook を作成します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/create
      */
     Response<CreateWebhooksResponse> create(
-    		CreateWebhooksRequest request);
+            CreateWebhooksRequest request);
 
     /**
-     * Webhookを削除します。
+     * Webhook を削除します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/delete
      */
     Response<DeleteWebhooksResponse> delete(
-    		DeleteWebhooksRequest request);
+            DeleteWebhooksRequest request);
 
     /**
-     * ログイン中のユーザーが設定しているWebhookの一覧を取得します。
+     * ログイン中のユーザーが設定している Webhook の一覧を取得します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/list
      */
     Response<ShowWebhooksResponse[]> list(
             ListWebhooksRequest request);
 
     /**
-     * 与えられたidに対応するWebhookを取得します。
+     * 与えられた id に対応する Webhook を取得します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/show
      */
     Response<ShowWebhooksResponse> show(
-    		ShowWebhooksRequest request);
+            ShowWebhooksRequest request);
 
     /**
-     * Webhookの設定を更新します。
+     * Webhook の設定を更新します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/update
      */
     Response<UpdateWebhooksResponse> update(

@@ -2,7 +2,6 @@ package misskey4j.entity;
 
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.Objects;
 
 /**
  * ファイルオブジェクト
