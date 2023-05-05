@@ -2,6 +2,8 @@ package misskey4j.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 import java.util.Map;
 
@@ -15,16 +17,25 @@ public class Note {
     private String id;
     private String createdAt;
 
+    @Nullable
     private String text;
+
+    @Nullable
     private String cw;
 
     private String userId;
     private User user;
 
+    @Nullable
     private String replyId;
+
+    @Nullable
     private Note reply;
 
+    @Nullable
     private String renoteId;
+
+    @Nullable
     private Note renote;
 
     private Long renoteCount;
@@ -38,20 +49,32 @@ public class Note {
 
     private Boolean localOnly;
 
+    @Nullable
     private List<String> mentions;
+
+    @Nullable
     private List<String> tags;
 
     private List<String> fileIds;
     private List<File> files;
 
     private Poll poll;
+
+    @Nullable
     private Emojis emojis;
 
+    @Nullable
     private Map<String, Long> reactions;
+
+    @Nullable
     private Emojis reactionEmojis;
+
     private String myReaction;
 
+    @Nullable
     private String url;
+
+    @Nullable
     private String uri;
 
     @SerializedName("_featuredId_")
@@ -77,19 +100,21 @@ public class Note {
         this.createdAt = createdAt;
     }
 
+    @Nullable
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public void setText(@Nullable String text) {
         this.text = text;
     }
 
+    @Nullable
     public String getCw() {
         return cw;
     }
 
-    public void setCw(String cw) {
+    public void setCw(@Nullable String cw) {
         this.cw = cw;
     }
 
@@ -109,35 +134,39 @@ public class Note {
         this.user = user;
     }
 
+    @Nullable
     public String getReplyId() {
         return replyId;
     }
 
-    public void setReplyId(String replyId) {
+    public void setReplyId(@Nullable String replyId) {
         this.replyId = replyId;
     }
 
+    @Nullable
     public Note getReply() {
         return reply;
     }
 
-    public void setReply(Note reply) {
+    public void setReply(@Nullable Note reply) {
         this.reply = reply;
     }
 
+    @Nullable
     public String getRenoteId() {
         return renoteId;
     }
 
-    public void setRenoteId(String renoteId) {
+    public void setRenoteId(@Nullable String renoteId) {
         this.renoteId = renoteId;
     }
 
+    @Nullable
     public Note getRenote() {
         return renote;
     }
 
-    public void setRenote(Note renote) {
+    public void setRenote(@Nullable Note renote) {
         this.renote = renote;
     }
 
@@ -181,6 +210,7 @@ public class Note {
         this.localOnly = localOnly;
     }
 
+    @Nullable
     public List<String> getMentions() {
         return mentions;
     }
@@ -189,6 +219,7 @@ public class Note {
         this.mentions = mentions;
     }
 
+    @Nullable
     public List<String> getTags() {
         return tags;
     }
@@ -237,6 +268,7 @@ public class Note {
         this.poll = poll;
     }
 
+    @Nullable
     public List<Emoji> getEmojis() {
         if (emojis == null) return null;
         return emojis.getList();
@@ -247,20 +279,22 @@ public class Note {
         this.emojis.setList(emojis);
     }
 
+    @Nullable
     public Map<String, Long> getReactions() {
         return reactions;
     }
 
-    public void setReactions(Map<String, Long> reactions) {
+    public void setReactions(@Nullable Map<String, Long> reactions) {
         this.reactions = reactions;
     }
 
+    @Nullable
     public List<Emoji> getReactionEmojis() {
         if (reactionEmojis == null) return null;
         return reactionEmojis.getList();
     }
 
-    public void setReactionEmojis(List<Emoji> reactionEmojis) {
+    public void setReactionEmojis(@Nullable List<Emoji> reactionEmojis) {
         this.reactionEmojis = new Emojis();
         this.reactionEmojis.setList(reactionEmojis);
     }
@@ -273,19 +307,21 @@ public class Note {
         this.myReaction = myReaction;
     }
 
+    @Nullable
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(@Nullable String url) {
         this.url = url;
     }
 
+    @Nullable
     public String getUri() {
         return uri;
     }
 
-    public void setUri(String uri) {
+    public void setUri(@Nullable String uri) {
         this.uri = uri;
     }
 
