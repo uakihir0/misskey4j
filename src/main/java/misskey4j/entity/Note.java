@@ -48,6 +48,9 @@ public class Note {
     private Map<String, Long> reactions;
     private String myReaction;
 
+    private String url;
+    private String uri;
+
     @SerializedName("_featuredId_")
     private String featuredId;
 
@@ -247,6 +250,22 @@ public class Note {
 
     public void setMyReaction(String myReaction) {
         this.myReaction = myReaction;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public String getFeaturedId() {
