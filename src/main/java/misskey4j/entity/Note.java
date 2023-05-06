@@ -36,6 +36,8 @@ public class Note {
     private String visibility;
     private List<String> visibleUserIds;
 
+    private Boolean localOnly;
+
     private List<String> mentions;
     private List<String> tags;
 
@@ -168,6 +170,14 @@ public class Note {
 
     public void setVisibleUserIds(List<String> visibleUserIds) {
         this.visibleUserIds = visibleUserIds;
+    }
+
+    public Boolean getLocalOnly() {
+        return localOnly;
+    }
+
+    public void setLocalOnly(Boolean localOnly) {
+        this.localOnly = localOnly;
     }
 
     public List<String> getMentions() {
