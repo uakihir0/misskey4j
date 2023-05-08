@@ -11,6 +11,21 @@ public class Relation {
     private Boolean isFollowed;
     private Boolean isBlocking;
     private Boolean isBlocked;
+
+    @Override
+    public String toString() {
+        return "Relation{" +
+                "id='" + id + '\'' +
+                ", hasPendingFollowRequestFromYou=" + hasPendingFollowRequestFromYou +
+                ", hasPendingFollowRequestToYou=" + hasPendingFollowRequestToYou +
+                ", isFollowing=" + isFollowing +
+                ", isFollowed=" + isFollowed +
+                ", isBlocking=" + isBlocking +
+                ", isBlocked=" + isBlocked +
+                ", isMuted=" + isMuted +
+                '}';
+    }
+
     private Boolean isMuted;
 
     // region

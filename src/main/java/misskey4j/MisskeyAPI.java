@@ -26,6 +26,7 @@ public enum MisskeyAPI {
     NotesShow("notes/show"),
     UsersNotes("users/notes"),
     NotesSearch("notes/search"),
+    NotesReactions("notes/reactions"),
     NotesTimeline("notes/timeline"),
     NotesMentions("notes/mentions"),
     NotesFeatured("notes/featured"),

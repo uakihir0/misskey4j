@@ -12,6 +12,7 @@ import misskey4j.api.request.notes.NotesGlobalTimelineRequest;
 import misskey4j.api.request.notes.NotesHybridTimelineRequest;
 import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
+import misskey4j.api.request.notes.NotesReactionsRequest;
 import misskey4j.api.request.notes.NotesRequest;
 import misskey4j.api.request.notes.NotesSearchRequest;
 import misskey4j.api.request.notes.NotesShowRequest;
@@ -26,6 +27,7 @@ import misskey4j.api.response.notes.NotesGlobalTimelineResponse;
 import misskey4j.api.response.notes.NotesHybridTimelineResponse;
 import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
+import misskey4j.api.response.notes.NotesReactionsResponse;
 import misskey4j.api.response.notes.NotesResponse;
 import misskey4j.api.response.notes.NotesSearchResponse;
 import misskey4j.api.response.notes.NotesShowResponse;
@@ -144,6 +146,16 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
             NotesLocalTimelineRequest request) {
         return post(NotesLocalTimelineResponse[].class,
                 MisskeyAPI.NotesLocalTimeline.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<NotesReactionsResponse[]> reactions(
+            NotesReactionsRequest request) {
+        return post(NotesReactionsResponse[].class,
+                MisskeyAPI.NotesReactions.code(), request);
     }
 
     /**
