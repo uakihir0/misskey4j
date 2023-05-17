@@ -11,6 +11,7 @@ import misskey4j.api.request.notes.NotesHybridTimelineRequest;
 import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesReactionsRequest;
+import misskey4j.api.request.notes.NotesRenotesRequest;
 import misskey4j.api.request.notes.NotesRequest;
 import misskey4j.api.request.notes.NotesSearchRequest;
 import misskey4j.api.request.notes.NotesShowRequest;
@@ -26,6 +27,7 @@ import misskey4j.api.response.notes.NotesHybridTimelineResponse;
 import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesReactionsResponse;
+import misskey4j.api.response.notes.NotesRenotesResponse;
 import misskey4j.api.response.notes.NotesResponse;
 import misskey4j.api.response.notes.NotesSearchResponse;
 import misskey4j.api.response.notes.NotesShowResponse;
@@ -155,5 +157,12 @@ public interface NotesResource {
     Response<Void> unrenote(
             NoteUnrenoteRequest request);
 
+    /**
+     * ノートに対するRenote一覧を取得します。
+     *
+     * @see "https://misskey.io/api-doc#tag/notes/operation/notes/renotes"
+     */
+    Response<NotesRenotesResponse[]> renotes(
+            NotesRenotesRequest request);
 
 }
