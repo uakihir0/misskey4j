@@ -19,6 +19,15 @@ public class Emoji {
     @Nullable
     private List<String> aliases;
 
+    /** added in calckey.jp/Misskey v14.0.0-rc-ni-jp1) */
+
+    @Nullable
+    private Long width;
+
+    @Nullable
+    private Long height;
+
+
     // region
     public String getId() {
         return id;
@@ -74,6 +83,25 @@ public class Emoji {
     public void setAliases(@Nullable List<String> aliases) {
         this.aliases = aliases;
     }
+
+    @Nullable
+    public Long getWidth() {
+        return width;
+    }
+
+    public void setWidth(@Nullable Long width) {
+        this.width = width;
+    }
+
+    @Nullable
+    public Long getHeight() {
+        return height;
+    }
+
+    public void setHeight(@Nullable Long height) {
+        this.height = height;
+    }
+
     // endregion
 }
 
