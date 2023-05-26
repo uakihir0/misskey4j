@@ -3,6 +3,7 @@ package misskey4j.api;
 import misskey4j.api.request.users.UsersFollowersRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
 import misskey4j.api.request.users.UsersReactionsRequest;
+import misskey4j.api.request.users.UsersRecommendationRequest;
 import misskey4j.api.request.users.UsersRelationRequest;
 import misskey4j.api.request.users.UsersSearchRequest;
 import misskey4j.api.request.users.UsersShowMultipleRequest;
@@ -10,6 +11,7 @@ import misskey4j.api.request.users.UsersShowSingleRequest;
 import misskey4j.api.response.notes.UsersReactionsResponse;
 import misskey4j.api.response.users.UsersFollowersResponse;
 import misskey4j.api.response.users.UsersFollowingsResponse;
+import misskey4j.api.response.users.UsersRecommendationResponse;
 import misskey4j.api.response.users.UsersRelationResponse;
 import misskey4j.api.response.users.UsersSearchResponse;
 import misskey4j.api.response.users.UsersShowResponse;
@@ -30,6 +32,13 @@ public interface UsersResource {
      */
     Response<UsersFollowingsResponse[]> followings(
             UsersFollowingsRequest request);
+
+    /**
+     * おすすめのユーザーを取得します。
+     * https://misskey.io/api-doc#operation/users/recommendation
+     */
+    Response<UsersRecommendationResponse[]> recommendation(
+            UsersRecommendationRequest request);
 
     /**
      * 指定したユーザーの情報を取得します。(単数)
