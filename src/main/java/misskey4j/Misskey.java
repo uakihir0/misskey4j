@@ -4,6 +4,7 @@ import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.BlocksResource;
+import misskey4j.api.ChannelsResource;
 import misskey4j.api.FavoritesResource;
 import misskey4j.api.FederationResource;
 import misskey4j.api.FilesResource;
@@ -36,6 +37,8 @@ public interface Misskey {
     UsersResource users();
 
     ListsResource lists();
+
+    ChannelsResource channels();
 
     NotesResource notes();
 

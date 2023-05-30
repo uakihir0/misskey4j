@@ -5,6 +5,7 @@ import misskey4j.api.AccountsResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.BlocksResource;
+import misskey4j.api.ChannelsResource;
 import misskey4j.api.FavoritesResource;
 import misskey4j.api.FederationResource;
 import misskey4j.api.FilesResource;
@@ -24,6 +25,7 @@ import misskey4j.internal.api.AccountsResourceImpl;
 import misskey4j.internal.api.AppResourceImpl;
 import misskey4j.internal.api.AuthResourceImpl;
 import misskey4j.internal.api.BlocksResourceImpl;
+import misskey4j.internal.api.ChannelsResourceImpl;
 import misskey4j.internal.api.FavoritesResourceImpl;
 import misskey4j.internal.api.FederationResourceImpl;
 import misskey4j.internal.api.FilesResourceImpl;
@@ -52,6 +54,7 @@ public class MisskeyImpl implements Misskey {
     private final AccountsResource accounts;
     private final UsersResource users;
     private final ListsResource lists;
+    private final ChannelsResource channels;
     private final NotesResource notes;
     private final MutesResource mutes;
     private final BlocksResource blocks;
@@ -81,6 +84,7 @@ public class MisskeyImpl implements Misskey {
         accounts = new AccountsResourceImpl(url, i);
         users = new UsersResourceImpl(url, i);
         lists = new ListsResourceImpl(url, i);
+        channels = new ChannelsResourceImpl(url, i);
         notes = new NotesResourceImpl(url, i);
 
         reactions = new ReactionsResourceImpl(url, i);
@@ -129,6 +133,11 @@ public class MisskeyImpl implements Misskey {
     @Override
     public ListsResource lists() {
         return lists;
+    }
+
+    @Override
+    public ChannelsResource channels() {
+        return channels;
     }
 
     @Override
