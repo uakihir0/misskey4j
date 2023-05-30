@@ -3,10 +3,10 @@ package misskey4j.api.request;
 import misskey4j.api.model.TokenRequest;
 import misskey4j.api.request.protocol.PagingBuilder;
 
-public class ChannelsFollowedRequest extends TokenRequest {
+public class ChannelsOwnedRequest extends TokenRequest {
 
-    public static ChannelsFollowedRequestBuilder builder() {
-        return new ChannelsFollowedRequestBuilder();
+    public static ChannelsOwnedRequestBuilder builder() {
+        return new ChannelsOwnedRequestBuilder();
     }
 
     private Long limit;
@@ -26,35 +26,35 @@ public class ChannelsFollowedRequest extends TokenRequest {
         return untilId;
     }
 
-    public static final class ChannelsFollowedRequestBuilder implements PagingBuilder<ChannelsFollowedRequestBuilder> {
+    public static final class ChannelsOwnedRequestBuilder implements PagingBuilder<ChannelsOwnedRequestBuilder> {
 
         private Long limit;
         private String sinceId;
         private String untilId;
 
-        private ChannelsFollowedRequestBuilder() {
+        private ChannelsOwnedRequestBuilder() {
         }
 
         @Override
-        public ChannelsFollowedRequestBuilder limit(Long limit) {
+        public ChannelsOwnedRequestBuilder limit(Long limit) {
             this.limit = limit;
             return this;
         }
 
         @Override
-        public ChannelsFollowedRequestBuilder sinceId(String sinceId) {
+        public ChannelsOwnedRequestBuilder sinceId(String sinceId) {
             this.sinceId = sinceId;
             return this;
         }
 
         @Override
-        public ChannelsFollowedRequestBuilder untilId(String untilId) {
+        public ChannelsOwnedRequestBuilder untilId(String untilId) {
             this.untilId = untilId;
             return this;
         }
 
-        public ChannelsFollowedRequest build() {
-            ChannelsFollowedRequest request = new ChannelsFollowedRequest();
+        public ChannelsOwnedRequest build() {
+            ChannelsOwnedRequest request = new ChannelsOwnedRequest();
             request.sinceId = this.sinceId;
             request.limit = this.limit;
             request.untilId = this.untilId;
