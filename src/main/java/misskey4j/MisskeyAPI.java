@@ -84,6 +84,7 @@ public enum MisskeyAPI {
     // ------------------------------------------ //
 
     ChannelsFollowed("channels/followed"),
+    ChannelsTimeline("channels/timeline"),
 //    ChannelsMyFavorites("channels/my-favorites"), etc...
 
     // ------------------------------------------ //
