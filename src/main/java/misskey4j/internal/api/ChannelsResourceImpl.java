@@ -4,9 +4,11 @@ import misskey4j.MisskeyAPI;
 import misskey4j.api.ChannelsResource;
 import misskey4j.api.request.ChannelsFollowedRequest;
 import misskey4j.api.request.ChannelsOwnedRequest;
+import misskey4j.api.request.ChannelsShowRequest;
 import misskey4j.api.request.ChannelsTimelineRequest;
 import misskey4j.api.response.ChannelsFollowedResponse;
 import misskey4j.api.response.ChannelsOwnedResponse;
+import misskey4j.api.response.ChannelsShowResponse;
 import misskey4j.api.response.ChannelsTimelineResponse;
 import misskey4j.entity.share.Response;
 
@@ -42,4 +44,14 @@ public class ChannelsResourceImpl extends AbstractResourceImpl implements Channe
         return post(ChannelsTimelineResponse[].class,
                 MisskeyAPI.ChannelsTimeline.code(), request);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<ChannelsShowResponse> show(ChannelsShowRequest request) {
+        return post(ChannelsShowResponse.class,
+                MisskeyAPI.ChannelsShow.code(), request);
+    }
+
 }

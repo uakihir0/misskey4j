@@ -2,9 +2,11 @@ package misskey4j.api;
 
 import misskey4j.api.request.ChannelsFollowedRequest;
 import misskey4j.api.request.ChannelsOwnedRequest;
+import misskey4j.api.request.ChannelsShowRequest;
 import misskey4j.api.request.ChannelsTimelineRequest;
 import misskey4j.api.response.ChannelsFollowedResponse;
 import misskey4j.api.response.ChannelsOwnedResponse;
+import misskey4j.api.response.ChannelsShowResponse;
 import misskey4j.api.response.ChannelsTimelineResponse;
 import misskey4j.entity.share.Response;
 
@@ -31,4 +33,10 @@ public interface ChannelsResource {
      */
     Response<ChannelsTimelineResponse[]> timeline(ChannelsTimelineRequest request);
 
+    /**
+     * 指定したチャンネルの情報を取得します。
+     *
+     * @see "https://misskey.io/api-doc#tag/notes/operation/channels/show"
+     */
+    Response<ChannelsShowResponse> show(ChannelsShowRequest request);
 }
