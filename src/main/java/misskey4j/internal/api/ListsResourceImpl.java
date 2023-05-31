@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import misskey4j.MisskeyAPI;
 import misskey4j.api.ListsResource;
 import misskey4j.api.request.UsersListsListRequest;
+import misskey4j.api.request.UsersListsPullRequest;
 import misskey4j.api.request.UsersListsPushRequest;
 import misskey4j.api.request.UsersListsShowRequest;
 import misskey4j.api.response.UsersListsListResponse;
@@ -45,5 +46,15 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
                         .listId(listId)
                         .build();
         post(MisskeyAPI.ListsPush.code(), request);
+    }
+
+    @Override
+    public void pull(@NotNull String listId, @NotNull String userId) {
+
+        UsersListsPullRequest request = UsersListsPullRequest.builder()
+                        .userId(userId)
+                        .listId(listId)
+                        .build();
+        post(MisskeyAPI.ListsPull.code(), request);
     }
 }

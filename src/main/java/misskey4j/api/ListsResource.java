@@ -30,4 +30,11 @@ public interface ListsResource {
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/push"
      */
     void push(@NotNull String listId, @NotNull String userId);
+
+    /**
+     * 指定したユーザーをリストから削除します。
+     *
+     * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/pull"
+     */
+    void pull(@NotNull String listId, @NotNull String userId);
 }
