@@ -1,10 +1,12 @@
 package misskey4j.api;
 
 import misskey4j.api.request.ChannelsFollowedRequest;
+import misskey4j.api.request.ChannelsMyFavoritesRequest;
 import misskey4j.api.request.ChannelsOwnedRequest;
 import misskey4j.api.request.ChannelsShowRequest;
 import misskey4j.api.request.ChannelsTimelineRequest;
 import misskey4j.api.response.ChannelsFollowedResponse;
+import misskey4j.api.response.ChannelsMyFavoritesResponse;
 import misskey4j.api.response.ChannelsOwnedResponse;
 import misskey4j.api.response.ChannelsShowResponse;
 import misskey4j.api.response.ChannelsTimelineResponse;
@@ -18,6 +20,13 @@ public interface ChannelsResource {
      * @see "https://misskey.io/api-doc#tag/channels/operation/channels/owned"
      */
     Response<ChannelsOwnedResponse[]> owned(ChannelsOwnedRequest request);
+
+    /**
+     * お気に入りのチャンネル一覧を取得します。
+     *
+     * @see "https://misskey.io/api-doc#tag/channels/operation/channels/my-favorites"
+     */
+    Response<ChannelsMyFavoritesResponse[]> myFavorites(ChannelsMyFavoritesRequest request);
 
     /**
      * フォローしているチャンネル一覧を取得します。

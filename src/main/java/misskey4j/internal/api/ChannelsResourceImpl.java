@@ -3,10 +3,12 @@ package misskey4j.internal.api;
 import misskey4j.MisskeyAPI;
 import misskey4j.api.ChannelsResource;
 import misskey4j.api.request.ChannelsFollowedRequest;
+import misskey4j.api.request.ChannelsMyFavoritesRequest;
 import misskey4j.api.request.ChannelsOwnedRequest;
 import misskey4j.api.request.ChannelsShowRequest;
 import misskey4j.api.request.ChannelsTimelineRequest;
 import misskey4j.api.response.ChannelsFollowedResponse;
+import misskey4j.api.response.ChannelsMyFavoritesResponse;
 import misskey4j.api.response.ChannelsOwnedResponse;
 import misskey4j.api.response.ChannelsShowResponse;
 import misskey4j.api.response.ChannelsTimelineResponse;
@@ -25,6 +27,15 @@ public class ChannelsResourceImpl extends AbstractResourceImpl implements Channe
     public Response<ChannelsOwnedResponse[]> owned(ChannelsOwnedRequest request) {
         return post(ChannelsOwnedResponse[].class,
                 MisskeyAPI.ChannelsOwned.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<ChannelsMyFavoritesResponse[]> myFavorites(ChannelsMyFavoritesRequest request) {
+        return post(ChannelsMyFavoritesResponse[].class,
+                MisskeyAPI.ChannelsMyFavorites.code(), request);
     }
 
     /**
