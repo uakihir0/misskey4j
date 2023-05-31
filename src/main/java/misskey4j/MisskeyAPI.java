@@ -78,6 +78,7 @@ public enum MisskeyAPI {
 
     Lists("users/lists/list"),
     ListsShow("users/lists/show"),
+    ListsPush("users/lists/push"),
 
     // ------------------------------------------ //
     // Following

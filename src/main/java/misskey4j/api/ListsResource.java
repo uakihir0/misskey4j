@@ -1,5 +1,7 @@
 package misskey4j.api;
 
+import org.jetbrains.annotations.NotNull;
+
 import misskey4j.api.request.UsersListsListRequest;
 import misskey4j.api.request.UsersListsShowRequest;
 import misskey4j.api.response.UsersListsListResponse;
@@ -21,4 +23,11 @@ public interface ListsResource {
      */
     Response<UsersListsShowResponse> show(
             UsersListsShowRequest request);
+
+    /**
+     * 指定したユーザーをリストに追加します。
+     *
+     * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/push"
+     */
+    void push(@NotNull String listId, @NotNull String userId);
 }
