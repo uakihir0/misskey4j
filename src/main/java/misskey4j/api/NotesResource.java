@@ -12,6 +12,7 @@ import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesReactionsRequest;
 import misskey4j.api.request.notes.NotesRenotesRequest;
+import misskey4j.api.request.notes.NotesRepliesRequest;
 import misskey4j.api.request.notes.NotesRequest;
 import misskey4j.api.request.notes.NotesSearchRequest;
 import misskey4j.api.request.notes.NotesShowRequest;
@@ -28,6 +29,7 @@ import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesReactionsResponse;
 import misskey4j.api.response.notes.NotesRenotesResponse;
+import misskey4j.api.response.notes.NotesRepliesResponse;
 import misskey4j.api.response.notes.NotesResponse;
 import misskey4j.api.response.notes.NotesSearchResponse;
 import misskey4j.api.response.notes.NotesShowResponse;
@@ -58,6 +60,13 @@ public interface NotesResource {
      */
     Response<NotesChildrenResponse[]> children(
             NotesChildrenRequest request);
+
+    /**
+     * 指定した投稿への返信を取得します。
+     * https://misskey.io/api-doc#operation/notes/replies
+     */
+    Response<NotesRepliesResponse[]> replies(
+            NotesRepliesRequest request);
 
     /**
      * 指定した投稿の文脈を取得します。

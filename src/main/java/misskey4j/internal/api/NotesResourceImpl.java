@@ -14,6 +14,7 @@ import misskey4j.api.request.notes.NotesLocalTimelineRequest;
 import misskey4j.api.request.notes.NotesMentionsRequest;
 import misskey4j.api.request.notes.NotesReactionsRequest;
 import misskey4j.api.request.notes.NotesRenotesRequest;
+import misskey4j.api.request.notes.NotesRepliesRequest;
 import misskey4j.api.request.notes.NotesRequest;
 import misskey4j.api.request.notes.NotesSearchRequest;
 import misskey4j.api.request.notes.NotesShowRequest;
@@ -30,6 +31,7 @@ import misskey4j.api.response.notes.NotesLocalTimelineResponse;
 import misskey4j.api.response.notes.NotesMentionsResponse;
 import misskey4j.api.response.notes.NotesReactionsResponse;
 import misskey4j.api.response.notes.NotesRenotesResponse;
+import misskey4j.api.response.notes.NotesRepliesResponse;
 import misskey4j.api.response.notes.NotesResponse;
 import misskey4j.api.response.notes.NotesSearchResponse;
 import misskey4j.api.response.notes.NotesShowResponse;
@@ -74,6 +76,19 @@ public class NotesResourceImpl extends AbstractResourceImpl implements NotesReso
                 MisskeyAPI.NotesChildren.code(), request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<NotesRepliesResponse[]> replies(
+            NotesRepliesRequest request) {
+        return post(NotesRepliesResponse[].class,
+                MisskeyAPI.NotesReplies.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Response<NotesConversationResponse[]> conversation(
             NotesConversationRequest request) {
