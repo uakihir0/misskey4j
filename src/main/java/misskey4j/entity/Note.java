@@ -36,6 +36,8 @@ public class Note {
     private String visibility;
     private List<String> visibleUserIds;
 
+    private Boolean localOnly;
+
     private List<String> mentions;
     private List<String> tags;
 
@@ -48,6 +50,9 @@ public class Note {
     private Map<String, Long> reactions;
     private Emojis reactionEmojis;
     private String myReaction;
+
+    private String url;
+    private String uri;
 
     @SerializedName("_featuredId_")
     private String featuredId;
@@ -168,6 +173,14 @@ public class Note {
         this.visibleUserIds = visibleUserIds;
     }
 
+    public Boolean getLocalOnly() {
+        return localOnly;
+    }
+
+    public void setLocalOnly(Boolean localOnly) {
+        this.localOnly = localOnly;
+    }
+
     public List<String> getMentions() {
         return mentions;
     }
@@ -258,6 +271,22 @@ public class Note {
 
     public void setMyReaction(String myReaction) {
         this.myReaction = myReaction;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public String getFeaturedId() {
