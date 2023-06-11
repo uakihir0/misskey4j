@@ -2,6 +2,17 @@ package misskey4j.internal.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import net.socialhub.http.HttpException;
+import net.socialhub.http.HttpMediaType;
+import net.socialhub.http.HttpRequestBuilder;
+import net.socialhub.http.HttpResponse;
+import net.socialhub.logger.Logger;
+
+import java.io.File;
+import java.net.URLEncoder;
+import java.util.Map;
+
 import misskey4j.MisskeyException;
 import misskey4j.api.model.TokenRequest;
 import misskey4j.entity.Color;
@@ -12,15 +23,6 @@ import misskey4j.entity.share.Response;
 import misskey4j.internal.model.StreamFile;
 import misskey4j.util.ColorDeserializer;
 import misskey4j.util.EmojisDeserializer;
-import net.socialhub.http.HttpException;
-import net.socialhub.http.HttpMediaType;
-import net.socialhub.http.HttpRequestBuilder;
-import net.socialhub.http.HttpResponse;
-import net.socialhub.logger.Logger;
-
-import java.io.File;
-import java.net.URLEncoder;
-import java.util.Map;
 
 public abstract class AbstractResourceImpl {
 
@@ -79,7 +81,11 @@ public abstract class AbstractResourceImpl {
             if ((response.getStatusCode() >= 200) &&
                     (response.getStatusCode() < 300)) {
                 Response<T> result = new Response<>();
-                result.set(gson.fromJson(response.asString(), clazz));
+
+                // TODO Should only be enabled in specific conditions
+                result.json = response.asString();
+
+                result.set(gson.fromJson(result.json, clazz));
                 result.setRateLimit(RateLimit.of(response));
                 return result;
             }

@@ -9,6 +9,9 @@ public class Response<T> {
 
     private RateLimit limit;
 
+    // TODO Should only be enabled in specific conditions
+    public String json;
+
     public T get() {
         return object;
     }
