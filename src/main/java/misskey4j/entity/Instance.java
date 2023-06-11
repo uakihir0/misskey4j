@@ -10,6 +10,8 @@ public class Instance {
     private String softwareName;
     private String softwareVersion;
     private String iconUrl;
+
+    @Nullable
     private String faviconUrl;
 
     @Nullable
@@ -48,11 +50,12 @@ public class Instance {
         this.iconUrl = iconUrl;
     }
 
+    @Nullable
     public String getFaviconUrl() {
         return faviconUrl;
     }
 
-    public void setFaviconUrl(String faviconUrl) {
+    public void setFaviconUrl(@Nullable String faviconUrl) {
         this.faviconUrl = faviconUrl;
     }
 
