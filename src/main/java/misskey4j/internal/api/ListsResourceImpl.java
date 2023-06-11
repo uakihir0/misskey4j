@@ -4,12 +4,15 @@ import org.jetbrains.annotations.NotNull;
 
 import misskey4j.MisskeyAPI;
 import misskey4j.api.ListsResource;
+import misskey4j.api.request.UsersListsCreateRequest;
 import misskey4j.api.request.UsersListsListRequest;
 import misskey4j.api.request.UsersListsPullRequest;
 import misskey4j.api.request.UsersListsPushRequest;
 import misskey4j.api.request.UsersListsShowRequest;
+import misskey4j.api.request.UsersListsUpdateRequest;
 import misskey4j.api.response.UsersListsListResponse;
 import misskey4j.api.response.UsersListsShowResponse;
+import misskey4j.entity.List;
 import misskey4j.entity.share.Response;
 
 public class ListsResourceImpl extends AbstractResourceImpl implements ListsResource {
@@ -56,5 +59,19 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
                         .listId(listId)
                         .build();
         post(MisskeyAPI.ListsPull.code(), request);
+    }
+
+    @Override
+    public Response<List> create(@NotNull String name) {
+
+        UsersListsCreateRequest request = new UsersListsCreateRequest(name);
+        return post(List.class, MisskeyAPI.ListsCreate.code(), request);
+    }
+
+    @Override
+    public Response<List> update(@NotNull String listId, @NotNull String name) {
+
+        UsersListsUpdateRequest request = new UsersListsUpdateRequest(listId, name);
+        return post(List.class, MisskeyAPI.ListsUpdate.code(), request);
     }
 }
