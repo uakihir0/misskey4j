@@ -52,4 +52,11 @@ public interface ListsResource {
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/update"
      */
     Response<List> update(@NotNull String listId, @NotNull String name);
+
+    /**
+     * リストを削除します。
+     *
+     * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/delete"
+     */
+    void delete(@NotNull String listId);
 }

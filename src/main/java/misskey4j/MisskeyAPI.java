@@ -82,7 +82,7 @@ public enum MisskeyAPI {
     ListsPull("users/lists/pull"),
     ListsCreate("users/lists/create"),
     ListsUpdate("users/lists/update"),
-//    ListsDelete("users/lists/delete"),
+    ListsDelete("users/lists/delete"),
 
     // ------------------------------------------ //
     // Following

@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import misskey4j.MisskeyAPI;
 import misskey4j.api.ListsResource;
 import misskey4j.api.request.UsersListsCreateRequest;
+import misskey4j.api.request.UsersListsDeleteRequest;
 import misskey4j.api.request.UsersListsListRequest;
 import misskey4j.api.request.UsersListsPullRequest;
 import misskey4j.api.request.UsersListsPushRequest;
@@ -74,4 +75,12 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
         UsersListsUpdateRequest request = new UsersListsUpdateRequest(listId, name);
         return post(List.class, MisskeyAPI.ListsUpdate.code(), request);
     }
+
+    @Override
+    public void delete(@NotNull String listId) {
+
+        UsersListsDeleteRequest request = new UsersListsDeleteRequest(listId);
+        post(MisskeyAPI.ListsDelete.code(), request);
+    }
+
 }
