@@ -57,6 +57,7 @@ public class User {
     @Nullable
     private Instance instance;
 
+    @Nullable
     private Emojis emojis;
 
     @Nullable
@@ -286,6 +287,7 @@ public class User {
         this.hasUnreadMentions = hasUnreadMentions;
     }
 
+    @Nullable
     public List<Emoji> getEmojis() {
         if (emojis == null) return null;
         return emojis.getList();
