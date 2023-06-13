@@ -1,7 +1,6 @@
 package misskey4j.entity;
 
-import org.jetbrains.annotations.Nullable;
-
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class Poll {

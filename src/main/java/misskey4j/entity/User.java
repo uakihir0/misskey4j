@@ -1,10 +1,9 @@
 package misskey4j.entity;
 
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-
 import misskey4j.util.BlurHashDecoder;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * ユーザーオブジェクト

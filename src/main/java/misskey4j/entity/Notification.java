@@ -1,6 +1,6 @@
 package misskey4j.entity;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 
 public class Notification {
 

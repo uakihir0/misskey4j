@@ -2,8 +2,7 @@ package misskey4j.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.jetbrains.annotations.Nullable;
-
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
