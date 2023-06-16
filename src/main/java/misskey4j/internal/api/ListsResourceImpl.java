@@ -1,6 +1,6 @@
 package misskey4j.internal.api;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 
 import misskey4j.MisskeyAPI;
 import misskey4j.api.ListsResource;
@@ -43,7 +43,7 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
     }
 
     @Override
-    public void push(@NotNull String listId, @NotNull String userId) {
+    public void push(@Nonnull String listId, @Nonnull String userId) {
 
         UsersListsPushRequest request = UsersListsPushRequest.builder()
                         .userId(userId)
@@ -53,7 +53,7 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
     }
 
     @Override
-    public void pull(@NotNull String listId, @NotNull String userId) {
+    public void pull(@Nonnull String listId, @Nonnull String userId) {
 
         UsersListsPullRequest request = UsersListsPullRequest.builder()
                         .userId(userId)
@@ -63,21 +63,21 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
     }
 
     @Override
-    public Response<List> create(@NotNull String name) {
+    public Response<List> create(@Nonnull String name) {
 
         UsersListsCreateRequest request = new UsersListsCreateRequest(name);
         return post(List.class, MisskeyAPI.ListsCreate.code(), request);
     }
 
     @Override
-    public Response<List> update(@NotNull String listId, @NotNull String name) {
+    public Response<List> update(@Nonnull String listId, @Nonnull String name) {
 
         UsersListsUpdateRequest request = new UsersListsUpdateRequest(listId, name);
         return post(List.class, MisskeyAPI.ListsUpdate.code(), request);
     }
 
     @Override
-    public void delete(@NotNull String listId) {
+    public void delete(@Nonnull String listId) {
 
         UsersListsDeleteRequest request = new UsersListsDeleteRequest(listId);
         post(MisskeyAPI.ListsDelete.code(), request);

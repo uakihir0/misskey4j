@@ -1,6 +1,6 @@
 package misskey4j.api;
 
-import org.jetbrains.annotations.NotNull;
+import javax.annotation.Nonnull;
 
 import misskey4j.api.request.UsersListsListRequest;
 import misskey4j.api.request.UsersListsShowRequest;
@@ -30,33 +30,33 @@ public interface ListsResource {
      *
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/push"
      */
-    void push(@NotNull String listId, @NotNull String userId);
+    void push(@Nonnull String listId, @Nonnull String userId);
 
     /**
      * 指定したユーザーをリストから削除します。
      *
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/pull"
      */
-    void pull(@NotNull String listId, @NotNull String userId);
+    void pull(@Nonnull String listId, @Nonnull String userId);
 
     /**
      * リストを作成します。
      *
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/create"
      */
-    Response<List> create(@NotNull String name);
+    Response<List> create(@Nonnull String name);
 
     /**
      * リストを更新します。
      *
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/update"
      */
-    Response<List> update(@NotNull String listId, @NotNull String name);
+    Response<List> update(@Nonnull String listId, @Nonnull String name);
 
     /**
      * リストを削除します。
      *
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/delete"
      */
-    void delete(@NotNull String listId);
+    void delete(@Nonnull String listId);
 }
