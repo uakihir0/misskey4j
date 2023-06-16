@@ -1,10 +1,11 @@
 package misskey4j.api.request.notes;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import misskey4j.api.model.PollRequest;
 import misskey4j.api.model.TokenRequest;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 
 public class NotesCreateRequest extends TokenRequest {
