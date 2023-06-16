@@ -1,8 +1,8 @@
 package misskey4j.entity;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 public class Channel {
 
