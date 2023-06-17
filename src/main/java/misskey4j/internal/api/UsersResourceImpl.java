@@ -4,10 +4,12 @@ import misskey4j.MisskeyAPI;
 import misskey4j.api.UsersResource;
 import misskey4j.api.request.users.UsersFollowersRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
+import misskey4j.api.request.users.UsersReactionsRequest;
 import misskey4j.api.request.users.UsersRelationRequest;
 import misskey4j.api.request.users.UsersSearchRequest;
 import misskey4j.api.request.users.UsersShowMultipleRequest;
 import misskey4j.api.request.users.UsersShowSingleRequest;
+import misskey4j.api.response.notes.UsersReactionsResponse;
 import misskey4j.api.response.users.UsersFollowersResponse;
 import misskey4j.api.response.users.UsersFollowingsResponse;
 import misskey4j.api.response.users.UsersRelationResponse;
@@ -59,6 +61,16 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
             UsersShowMultipleRequest request) {
         return post(UsersShowResponse[].class,
                 MisskeyAPI.UsersShow.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersReactionsResponse[]> reactions(
+            UsersReactionsRequest request) {
+        return post(UsersReactionsResponse[].class,
+                MisskeyAPI.UsersReactions.code(), request);
     }
 
     /**

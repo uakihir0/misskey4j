@@ -2,10 +2,12 @@ package misskey4j.api;
 
 import misskey4j.api.request.users.UsersFollowersRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
+import misskey4j.api.request.users.UsersReactionsRequest;
 import misskey4j.api.request.users.UsersRelationRequest;
 import misskey4j.api.request.users.UsersSearchRequest;
 import misskey4j.api.request.users.UsersShowMultipleRequest;
 import misskey4j.api.request.users.UsersShowSingleRequest;
+import misskey4j.api.response.notes.UsersReactionsResponse;
 import misskey4j.api.response.users.UsersFollowersResponse;
 import misskey4j.api.response.users.UsersFollowingsResponse;
 import misskey4j.api.response.users.UsersRelationResponse;
@@ -42,6 +44,13 @@ public interface UsersResource {
      */
     Response<UsersShowResponse[]> show(
             UsersShowMultipleRequest request);
+
+    /**
+     * ユーザーがつけたリアクションを取得します。
+     * https://misskey.io/api-doc#operation/users/reactions
+     */
+    Response<UsersReactionsResponse[]> reactions(
+            UsersReactionsRequest request);
 
     /**
      * ユーザー間のリレーションを取得します。
