@@ -1,10 +1,13 @@
 package misskey4j.entity;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class Poll {
 
     private Boolean multiple;
+
+    @Nullable
     private String expiresAt;
     private List<Choice> choices;
 
@@ -17,11 +20,12 @@ public class Poll {
         this.multiple = multiple;
     }
 
+    @Nullable
     public String getExpiresAt() {
         return expiresAt;
     }
 
-    public void setExpiresAt(String expiresAt) {
+    public void setExpiresAt(@Nullable String expiresAt) {
         this.expiresAt = expiresAt;
     }
 

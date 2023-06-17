@@ -1,19 +1,28 @@
 package misskey4j.entity;
 
+import javax.annotation.Nullable;
+
 public class Instance {
 
+    @Nullable
     private String name;
+
     private String softwareName;
     private String softwareVersion;
     private String iconUrl;
+
+    @Nullable
     private String faviconUrl;
+
+    @Nullable
     private Color themeColor;
 
+    @Nullable
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@Nullable String name) {
         this.name = name;
     }
 
@@ -41,19 +50,21 @@ public class Instance {
         this.iconUrl = iconUrl;
     }
 
+    @Nullable
     public String getFaviconUrl() {
         return faviconUrl;
     }
 
-    public void setFaviconUrl(String faviconUrl) {
+    public void setFaviconUrl(@Nullable String faviconUrl) {
         this.faviconUrl = faviconUrl;
     }
 
+    @Nullable
     public Color getThemeColor() {
         return themeColor;
     }
 
-    public void setThemeColor(Color themeColor) {
+    public void setThemeColor(@Nullable Color themeColor) {
         this.themeColor = themeColor;
     }
 }

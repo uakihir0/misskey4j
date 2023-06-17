@@ -1,5 +1,7 @@
 package misskey4j.entity;
 
+import javax.annotation.Nullable;
+
 public class Notification {
 
     private String id;
@@ -7,6 +9,8 @@ public class Notification {
     private String type;
 
     private String userId;
+
+    @Nullable
     private User user;
     private Note note;
 
@@ -45,11 +49,12 @@ public class Notification {
         this.userId = userId;
     }
 
+    @Nullable
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(@Nullable User user) {
         this.user = user;
     }
 

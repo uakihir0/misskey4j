@@ -2,6 +2,7 @@ package misskey4j.entity;
 
 import misskey4j.util.BlurHashDecoder;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -12,15 +13,23 @@ public class User {
     private String id;
     private String username;
 
+    @Nullable
     private String name;
+
+    @Nullable
     private String url;
     private String avatarUrl;
     private String avatarBlurhash;
     private Color avatarColor;
+
+    @Nullable
     private String bannerUrl;
     private Color bannerColor;
 
+    @Nullable
     private String host;
+
+    @Nullable
     private String description;
 
     private String birthday;
@@ -44,9 +53,14 @@ public class User {
     private Boolean hasUnreadSpecifiedNotes;
     private Boolean hasUnreadMentions;
     private String onlineStatus;
+
+    @Nullable
     private Instance instance;
 
+    @Nullable
     private Emojis emojis;
+
+    @Nullable
     private List<Field> fields;
 
     // region
@@ -66,19 +80,21 @@ public class User {
         this.username = username;
     }
 
+    @Nullable
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@Nullable String name) {
         this.name = name;
     }
 
+    @Nullable
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(@Nullable String url) {
         this.url = url;
     }
 
@@ -108,11 +124,12 @@ public class User {
         this.avatarColor = avatarColor;
     }
 
+    @Nullable
     public String getBannerUrl() {
         return bannerUrl;
     }
 
-    public void setBannerUrl(String bannerUrl) {
+    public void setBannerUrl(@Nullable String bannerUrl) {
         this.bannerUrl = bannerUrl;
     }
 
@@ -124,19 +141,21 @@ public class User {
         this.bannerColor = bannerColor;
     }
 
+    @Nullable
     public String getHost() {
         return host;
     }
 
-    public void setHost(String host) {
+    public void setHost(@Nullable String host) {
         this.host = host;
     }
 
+    @Nullable
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(@Nullable String description) {
         this.description = description;
     }
 
@@ -268,6 +287,7 @@ public class User {
         this.hasUnreadMentions = hasUnreadMentions;
     }
 
+    @Nullable
     public List<Emoji> getEmojis() {
         if (emojis == null) return null;
         return emojis.getList();
@@ -278,11 +298,12 @@ public class User {
         this.emojis.setList(emojis);
     }
 
+    @Nullable
     public List<Field> getFields() {
         return fields;
     }
 
-    public void setFields(List<Field> fields) {
+    public void setFields(@Nullable List<Field> fields) {
         this.fields = fields;
     }
 
@@ -302,11 +323,12 @@ public class User {
         this.onlineStatus = onlineStatus;
     }
 
+    @Nullable
     public Instance getInstance() {
         return instance;
     }
 
-    public void setInstance(Instance instance) {
+    public void setInstance(@Nullable Instance instance) {
         this.instance = instance;
     }
 

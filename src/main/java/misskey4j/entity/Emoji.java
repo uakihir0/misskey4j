@@ -1,5 +1,6 @@
 package misskey4j.entity;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,8 @@ public class Emoji {
     private String name;
     private String url;
     private String category;
+
+    @Nullable
     private List<String> aliases;
 
     // region
@@ -57,7 +60,10 @@ public class Emoji {
         this.category = category;
     }
 
+    @Nullable
     public List<String> getAliases() {
+
+        if (aliases == null) return null;
 
         // 空文字列が含まれるバグが存在するため対応
         return aliases.stream()
@@ -65,7 +71,7 @@ public class Emoji {
                 .collect(Collectors.toList());
     }
 
-    public void setAliases(List<String> aliases) {
+    public void setAliases(@Nullable List<String> aliases) {
         this.aliases = aliases;
     }
     // endregion

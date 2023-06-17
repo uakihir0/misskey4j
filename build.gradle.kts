@@ -14,6 +14,9 @@ repositories {
 
 dependencies {
 
+    // For Annotation
+    compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+
     // J2ObjC
     implementation("com.github.uakihir0:JLogger:1.4")
     implementation("com.github.uakihir0:JHttpClient:1.1.8")
