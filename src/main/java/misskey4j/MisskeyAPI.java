@@ -50,6 +50,7 @@ public enum MisskeyAPI {
     UsersReactions("users/reactions"),
     UsersRelation("users/relation"),
     UsersSearch("users/search"),
+    UsersSearchByUsernameAndHost("users/search-by-username-and-host"),
 
     // ------------------------------------------ //
     // I
