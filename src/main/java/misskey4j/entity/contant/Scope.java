@@ -38,6 +38,10 @@ public class Scope {
             Scope.read().userGroups(),
             Scope.write().userGroups(),
 
+            // Channels
+            Scope.read().channels(),
+            Scope.write().channels(),
+
             // Write Only
             Scope.write().notes(),
             Scope.write().votes()
@@ -142,6 +146,10 @@ public class Scope {
 
         public Scope userGroups() {
             return new Scope(operation, "user-groups");
+        }
+
+        public Scope channels() {
+            return new Scope(operation, "channels");
         }
     }
 }
