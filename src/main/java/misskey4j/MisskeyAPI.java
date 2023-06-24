@@ -21,6 +21,7 @@ public enum MisskeyAPI {
     NotesCreate("notes/create"),
     NotesDelete("notes/delete"),
     NotesUnrenote("notes/unrenote"),
+    NotesRenotes("notes/renotes"),
 
     Notes("notes"),
     NotesShow("notes/show"),
