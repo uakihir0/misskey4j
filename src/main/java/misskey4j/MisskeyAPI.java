@@ -80,6 +80,11 @@ public enum MisskeyAPI {
 
     Lists("users/lists/list"),
     ListsShow("users/lists/show"),
+    ListsPush("users/lists/push"),
+    ListsPull("users/lists/pull"),
+    ListsCreate("users/lists/create"),
+    ListsUpdate("users/lists/update"),
+    ListsDelete("users/lists/delete"),
 
     // ------------------------------------------ //
     // Channels
