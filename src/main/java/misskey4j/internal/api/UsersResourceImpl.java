@@ -5,6 +5,7 @@ import misskey4j.api.UsersResource;
 import misskey4j.api.request.users.UsersFollowersRequest;
 import misskey4j.api.request.users.UsersFollowingsRequest;
 import misskey4j.api.request.users.UsersReactionsRequest;
+import misskey4j.api.request.users.UsersRecommendationRequest;
 import misskey4j.api.request.users.UsersRelationRequest;
 import misskey4j.api.request.users.UsersSearchRequest;
 import misskey4j.api.request.users.UsersShowMultipleRequest;
@@ -12,6 +13,7 @@ import misskey4j.api.request.users.UsersShowSingleRequest;
 import misskey4j.api.response.notes.UsersReactionsResponse;
 import misskey4j.api.response.users.UsersFollowersResponse;
 import misskey4j.api.response.users.UsersFollowingsResponse;
+import misskey4j.api.response.users.UsersRecommendationResponse;
 import misskey4j.api.response.users.UsersRelationResponse;
 import misskey4j.api.response.users.UsersSearchResponse;
 import misskey4j.api.response.users.UsersShowResponse;
@@ -41,6 +43,16 @@ public class UsersResourceImpl extends AbstractResourceImpl implements UsersReso
             UsersFollowingsRequest request) {
         return post(UsersFollowingsResponse[].class,
                 MisskeyAPI.UsersFollowing.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersRecommendationResponse[]> recommendation(
+            UsersRecommendationRequest request) {
+        return post(UsersRecommendationResponse[].class,
+                MisskeyAPI.UsersRecommendation.code(), request);
     }
 
     /**

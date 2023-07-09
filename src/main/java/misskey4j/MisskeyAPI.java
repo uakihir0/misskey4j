@@ -45,6 +45,7 @@ public enum MisskeyAPI {
 
     UsersFollowers("users/followers"),
     UsersFollowing("users/following"),
+    UsersRecommendation("users/recommendation"),
 
     UsersShow("users/show"),
     UsersReactions("users/reactions"),
