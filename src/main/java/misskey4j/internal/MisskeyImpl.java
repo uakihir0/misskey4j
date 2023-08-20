@@ -1,7 +1,10 @@
 package misskey4j.internal;
 
+import java.net.URL;
+
 import misskey4j.Misskey;
 import misskey4j.api.AccountsResource;
+import misskey4j.api.ApResource;
 import misskey4j.api.AppResource;
 import misskey4j.api.AuthResource;
 import misskey4j.api.BlocksResource;
@@ -22,6 +25,7 @@ import misskey4j.api.ReactionsResource;
 import misskey4j.api.UsersResource;
 import misskey4j.api.WebhooksResource;
 import misskey4j.internal.api.AccountsResourceImpl;
+import misskey4j.internal.api.ApResourceImpl;
 import misskey4j.internal.api.AppResourceImpl;
 import misskey4j.internal.api.AuthResourceImpl;
 import misskey4j.internal.api.BlocksResourceImpl;
@@ -43,12 +47,11 @@ import misskey4j.internal.api.UsersResourceImpl;
 import misskey4j.internal.api.WebhooksResourceImpl;
 import misskey4j.stream.MisskeyStream;
 
-import java.net.URL;
-
 public class MisskeyImpl implements Misskey {
 
     private final MetaResource meta;
     private final FederationResource federation;
+    private final ApResource ap;
     private final AppResource app;
     private final AuthResource auth;
     private final AccountsResource accounts;
@@ -81,6 +84,7 @@ public class MisskeyImpl implements Misskey {
         auth = new AuthResourceImpl(url);
 
         // Needs AccessToken
+        ap = new ApResourceImpl(url, i);
         accounts = new AccountsResourceImpl(url, i);
         users = new UsersResourceImpl(url, i);
         lists = new ListsResourceImpl(url, i);
@@ -108,6 +112,11 @@ public class MisskeyImpl implements Misskey {
     @Override
     public FederationResource federation() {
         return federation;
+    }
+
+    @Override
+    public ApResource ap() {
+        return ap;
     }
 
     @Override
