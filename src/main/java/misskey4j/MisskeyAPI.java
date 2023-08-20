@@ -38,6 +38,7 @@ public enum MisskeyAPI {
 
     NotesConversation("notes/conversation"),
     NotesChildren("notes/children"),
+    NotesReplies("notes/replies"),
 
     // ------------------------------------------ //
     // Users
