@@ -2,9 +2,10 @@ package misskey4j.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 /**
  * 投稿オブジェクト
@@ -81,6 +82,13 @@ public class Note {
 
     @SerializedName("_prId_")
     private String prId;
+
+    @Nullable
+    private String channelId;
+
+    @Nullable
+    private Channel channel;
+
 
     // region
     public String getId() {
@@ -338,6 +346,24 @@ public class Note {
 
     public void setPrId(String prId) {
         this.prId = prId;
+    }
+
+    @Nullable
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(@Nullable String channelId) {
+        this.channelId = channelId;
+    }
+
+    @Nullable
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(@Nullable Channel channel) {
+        this.channel = channel;
     }
     // endregion
 }
