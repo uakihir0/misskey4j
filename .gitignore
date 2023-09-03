@@ -2,4 +2,5 @@
 .idea
 /build/
 /out/
+/bin/
 secrets.json

@@ -1,5 +1,7 @@
 package misskey4j.stream.model;
 
+import javax.annotation.Nullable;
+
 public class StreamRequest<T> {
 
     private String type;
@@ -25,11 +27,16 @@ public class StreamRequest<T> {
 
     public static class Body<T> {
 
+        @Nullable
         private String channel;
+
         private String id;
+
+        @Nullable
         private T params;
 
         // region
+        @Nullable
         public String getChannel() {
             return channel;
         }
@@ -46,6 +53,7 @@ public class StreamRequest<T> {
             this.id = id;
         }
 
+        @Nullable
         public T getParams() {
             return params;
         }
