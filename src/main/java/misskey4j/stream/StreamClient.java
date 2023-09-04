@@ -1,9 +1,22 @@
 package misskey4j.stream;
 
+import java.lang.reflect.Type;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.UUID;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import misskey4j.entity.DeletedNote;
 import misskey4j.entity.Note;
 import misskey4j.entity.Notification;
+import misskey4j.entity.Reaction;
 import misskey4j.entity.User;
 import misskey4j.internal.api.AbstractResourceImpl;
 import misskey4j.stream.callback.ClosedCallback;
@@ -16,20 +29,12 @@ import misskey4j.stream.callback.NotificationCallback;
 import misskey4j.stream.callback.OpenedCallback;
 import misskey4j.stream.callback.RenoteCallback;
 import misskey4j.stream.callback.ReplayCallback;
+import misskey4j.stream.callback.TimelineCallback;
 import misskey4j.stream.client.WebSocketClient;
 import misskey4j.stream.client.WebSocketListener;
 import misskey4j.stream.model.StreamRequest;
 import misskey4j.stream.model.StreamResponse;
 import net.socialhub.logger.Logger;
-
-import java.lang.reflect.Type;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.UUID;
 
 public class StreamClient implements WebSocketListener {
 
@@ -77,22 +82,39 @@ public class StreamClient implements WebSocketListener {
     /**
      * Subscribe
      */
-    public <T> void subscribe(String type, T params, List<EventCallback> callbacks) {
+    public <T> void subscribe(String type, String channelType, String id, T params,
+            List<EventCallback> possibleCallbacks) {
         StreamRequest<T> request = new StreamRequest<>();
 
-        String id = UUID.randomUUID().toString();
-        addCallback(id, callbacks);
+        Optional.ofNullable(possibleCallbacks)
+                .ifPresent(callbacks -> addCallback(id, callbacks));
 
-        request.getBody().setChannel(type);
+        request.getBody().setChannel(channelType);
         request.getBody().setParams(params);
         request.getBody().setId(id);
-        request.setType("connect");
+        request.setType(type);
 
         Gson gson = AbstractResourceImpl.getGsonInstance();
         String text = gson.toJson(request);
 
         logger.trace("Send: " + text);
         client.send(text);
+    }
+
+    public <T> void connect(String channelType, T params, List<EventCallback> callbacks) {
+        subscribe("connect", channelType, UUID.randomUUID().toString(), params, callbacks);
+    }
+
+    public <T> void disconnect(String channelType) {
+        subscribe("disconnect", channelType, null, null, null);
+    }
+
+    public <T> void subscribeToNote(String id, T params, List<EventCallback> callbacks) {
+        subscribe("subNote", null, id, params, callbacks);
+    }
+
+    public <T> void unsubscribe(String id) {
+        subscribe("unsubNote", null, id, null, null);
     }
 
     @Override
@@ -137,9 +159,9 @@ public class StreamClient implements WebSocketListener {
 
                 if (events != null && events.size() > 0) {
                     for (EventCallback event : events) {
-                        if (event instanceof NoteCallback) {
+                        if (event instanceof TimelineCallback) {
                             Note body = note.getBody().getBody();
-                            ((NoteCallback) event).onNoteUpdate(body);
+                            ((TimelineCallback) event).onNoteUpdate(body);
                         }
                     }
                 }
@@ -234,6 +256,66 @@ public class StreamClient implements WebSocketListener {
                     }
                 }
             }
+        } else if (generic.getType().equals("noteUpdated")) {
+
+            // REACTED
+            if (generic.getBody().getType().equals("reacted")) {
+                Type noteType = new TypeToken<StreamResponse<Reaction>>() {
+                }.getType();
+
+                StreamResponse<Reaction> note = gson.fromJson(message, noteType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof NoteCallback) {
+                            Reaction body = note.getBody().getBody();
+                            body.setNoteId(generic.getBody().getId());
+                            ((NoteCallback) event).onReacted(body);
+                        }
+                    }
+                }
+            }
+
+            // UNREACTED
+            if (generic.getBody().getType().equals("unreacted")) {
+                Type noteType = new TypeToken<StreamResponse<Reaction>>() {
+                }.getType();
+
+                StreamResponse<Reaction> note = gson.fromJson(message, noteType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof NoteCallback) {
+                            Reaction body = note.getBody().getBody();
+                            body.setNoteId(generic.getBody().getId());
+                            ((NoteCallback) event).onUnreacted(body);
+                        }
+                    }
+                }
+            }
+
+            // DELETED
+            if (generic.getBody().getType().equals("deleted")) {
+                Type noteType = new TypeToken<StreamResponse<DeletedNote>>() {
+                }.getType();
+
+                StreamResponse<DeletedNote> note = gson.fromJson(message, noteType);
+                List<EventCallback> events = callbackMap.get(generic.getBody().getId());
+
+                if (events != null && events.size() > 0) {
+                    for (EventCallback event : events) {
+                        if (event instanceof NoteCallback) {
+                            DeletedNote body = note.getBody().getBody();
+                            body.setId(generic.getBody().getId());
+                            ((NoteCallback) event).onNoteDeleted(body);
+                        }
+                    }
+                }
+            }
+
+            // TODO: PollVoted
         }
 
         logger.trace(message);

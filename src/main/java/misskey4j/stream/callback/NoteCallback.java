@@ -1,7 +1,13 @@
 package misskey4j.stream.callback;
 
-import misskey4j.entity.Note;
+import misskey4j.entity.DeletedNote;
+import misskey4j.entity.Reaction;
 
 public interface NoteCallback extends EventCallback {
-    void onNoteUpdate(Note note);
+
+    void onReacted(Reaction reaction);
+
+    void onUnreacted(Reaction reaction);
+
+    void onNoteDeleted(DeletedNote note);
 }

@@ -1,13 +1,16 @@
 package misskey4j.stream;
 
+import java.util.Collections;
+
+import javax.annotation.CheckReturnValue;
+
 import misskey4j.Misskey;
 import misskey4j.stream.callback.ClosedCallback;
 import misskey4j.stream.callback.ErrorCallback;
 import misskey4j.stream.callback.EventCallback;
 import misskey4j.stream.callback.NoteCallback;
 import misskey4j.stream.callback.OpenedCallback;
-
-import java.util.Collections;
+import misskey4j.stream.callback.TimelineCallback;
 
 public class MisskeyStream {
 
@@ -53,35 +56,47 @@ public class MisskeyStream {
      * Notifications
      */
     public void main(EventCallback callback) {
-        client.subscribe("main", null, Collections.singletonList(callback));
+        client.connect("main", null, Collections.singletonList(callback));
     }
 
     /**
      * HomeTimeLine Events
      */
-    public void homeTimeLine(NoteCallback callback) {
-        client.subscribe("homeTimeline", null, Collections.singletonList(callback));
+    public void homeTimeLine(TimelineCallback callback) {
+        client.connect("homeTimeline", null, Collections.singletonList(callback));
     }
 
     /**
      * LocalTimeline Events
      */
-    public void localTimeline(NoteCallback callback) {
-        client.subscribe("localTimeline", null, Collections.singletonList(callback));
+    public void localTimeline(TimelineCallback callback) {
+        client.connect("localTimeline", null, Collections.singletonList(callback));
     }
 
     /**
      * HybridTimeline Events
      */
-    public void hybridTimeline(NoteCallback callback) {
-        client.subscribe("hybridTimeline", null, Collections.singletonList(callback));
+    public void hybridTimeline(TimelineCallback callback) {
+        client.connect("hybridTimeline", null, Collections.singletonList(callback));
     }
 
     /**
      * GlobalTimeline Events
      */
-    public void globalTimeline(NoteCallback callback) {
-        client.subscribe("globalTimeline", null, Collections.singletonList(callback));
+    public void globalTimeline(TimelineCallback callback) {
+        client.connect("globalTimeline", null, Collections.singletonList(callback));
+    }
+
+    /**
+     * Listen note Events
+     */
+    public void note(String noteId, NoteCallback callback) {
+        client.subscribeToNote(noteId, null, Collections.singletonList(callback));
+    }
+
+    @CheckReturnValue
+    public Unsubscribe unsubscribe() {
+        return new Unsubscribe(client);
     }
 
     public void setOpenedCallback(OpenedCallback openedCallback) {
@@ -94,5 +109,56 @@ public class MisskeyStream {
 
     public void setErrorCallback(ErrorCallback errorCallback) {
         client.setErrorCallback(errorCallback);
+    }
+
+    protected class Unsubscribe {
+
+        private StreamClient client;
+
+        protected Unsubscribe(StreamClient client) {
+            this.client = client;
+        }
+
+        /**
+         * Notifications
+         */
+        public void main() {
+            client.disconnect("main");
+        }
+
+        /**
+         * HomeTimeLine Events
+         */
+        public void homeTimeLine() {
+            client.disconnect("homeTimeline");
+        }
+
+        /**
+         * LocalTimeline Events
+         */
+        public void localTimeline() {
+            client.disconnect("localTimeline");
+        }
+
+        /**
+         * HybridTimeline Events
+         */
+        public void hybridTimeline() {
+            client.disconnect("hybridTimeline");
+        }
+
+        /**
+         * GlobalTimeline Events
+         */
+        public void globalTimeline() {
+            client.disconnect("globalTimeline");
+        }
+
+        /**
+         * Stop listening to note Events
+         */
+        public void note(String noteId) {
+            client.unsubscribe(noteId);
+        }
     }
 }
