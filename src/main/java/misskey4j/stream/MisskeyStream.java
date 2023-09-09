@@ -111,11 +111,11 @@ public class MisskeyStream {
         client.setErrorCallback(errorCallback);
     }
 
-    protected class Unsubscribe {
+    public class Unsubscribe {
 
         private StreamClient client;
 
-        protected Unsubscribe(StreamClient client) {
+        public Unsubscribe(StreamClient client) {
             this.client = client;
         }
 
