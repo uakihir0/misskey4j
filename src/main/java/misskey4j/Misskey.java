@@ -10,6 +10,7 @@ import misskey4j.api.FavoritesResource;
 import misskey4j.api.FederationResource;
 import misskey4j.api.FilesResource;
 import misskey4j.api.FollowingResource;
+import misskey4j.api.GalleriesResource;
 import misskey4j.api.HashtagsResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MessagesResource;
@@ -83,4 +84,6 @@ public interface Misskey {
     MisskeyStream stream();
 
     WebhooksResource webhook();
+
+    GalleriesResource gallery();
 }

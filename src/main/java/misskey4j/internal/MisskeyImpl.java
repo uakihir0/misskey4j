@@ -13,6 +13,7 @@ import misskey4j.api.FavoritesResource;
 import misskey4j.api.FederationResource;
 import misskey4j.api.FilesResource;
 import misskey4j.api.FollowingResource;
+import misskey4j.api.GalleriesResource;
 import misskey4j.api.HashtagsResource;
 import misskey4j.api.ListsResource;
 import misskey4j.api.MessagesResource;
@@ -34,6 +35,7 @@ import misskey4j.internal.api.FavoritesResourceImpl;
 import misskey4j.internal.api.FederationResourceImpl;
 import misskey4j.internal.api.FilesResourceImpl;
 import misskey4j.internal.api.FollowingResourceImpl;
+import misskey4j.internal.api.GalleriesResourceImpl;
 import misskey4j.internal.api.HashtagsResourceImpl;
 import misskey4j.internal.api.ListsResourceImpl;
 import misskey4j.internal.api.MessagesResourceImpl;
@@ -69,6 +71,7 @@ public class MisskeyImpl implements Misskey {
     private final FilesResource files;
     private final HashtagsResource hashtags;
     private final WebhooksResource webhooks;
+    private final GalleriesResource galleries;
     private final OtherResource other;
 
     private final String url;
@@ -101,6 +104,7 @@ public class MisskeyImpl implements Misskey {
         files = new FilesResourceImpl(url, i);
         hashtags = new HashtagsResourceImpl(url, i);
         webhooks = new WebhooksResourceImpl(url, i);
+        galleries = new GalleriesResourceImpl(url, i);
         other = new OtherResourceImpl(url, i);
     }
 
@@ -207,6 +211,11 @@ public class MisskeyImpl implements Misskey {
     @Override
     public WebhooksResource webhook() {
         return webhooks;
+    }
+
+    @Override
+    public GalleriesResource gallery() {
+        return galleries;
     }
 
 
