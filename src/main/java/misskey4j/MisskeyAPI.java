@@ -187,6 +187,19 @@ public enum MisskeyAPI {
     IWebhooksCreate("i/webhooks/create"),
 
     // ------------------------------------------ //
+    // Gallery
+    // ------------------------------------------ //
+    IGalleryPosts("i/gallery/posts"),
+    GalleryPosts("gallery/posts"),
+    UserGalleryPosts("users/gallery/posts"),
+    ShowGalleryPost("gallery/posts/show"),
+    CreateGalleryPost("gallery/posts/create"),
+    DeleteGalleryPost("gallery/posts/delete"),
+    UpdateGalleryPost("gallery/posts/update"),
+    LikeGalleryPost("gallery/posts/like"),
+    UnlikeGalleryPost("gallery/posts/unlike"),
+
+    // ------------------------------------------ //
     // Other
     // ------------------------------------------ //
 
