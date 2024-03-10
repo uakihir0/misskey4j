@@ -1,3 +1,5 @@
+### **If you are using this library on the JVM platform, especially with Kotlin, we recommend that you migrate to [kmisskey](https://github.com/uakihir0/kmisskey). This library is being migrated to maintenance only.**
+
 <img src="./resource/img/misskey4j.png" width="200">
 
 [![](https://jitpack.io/v/uakihir0/misskey4j.svg)](https://jitpack.io/#uakihir0/misskey4j)
